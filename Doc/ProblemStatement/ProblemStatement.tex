@@ -44,8 +44,22 @@ September 14, 2018 & Karol Serkis & Problem Idea proposed \& discussed with Dr. 
 \end{tabularx}
 \end{table}
 
+\wss{Why reproduce the contents of the Comments.tex file?  It was written
+  separately so that it can easily be included in every document.}
+
 \section*{Problem}
-A simple gravity pendulum has very easy to system to model and consists of a weight suspended from a pivot and the weight is given enough space to swing freely. To simplify the model we assume no air resistance with a frictionless pivot [1]. The model and calculations for the simple gravity pendulum are well defined and only require simple derivations and differential solvers [2].
+
+\wss{Please keep the lines of tex to a fixed width (say 80 characters) so that
+  it is easier to do diffs between commits.  Your tex editor should have a
+  facility for doing this.}
+
+A simple gravity pendulum has very easy to system to model and consists of a
+weight suspended from a pivot and the weight is given enough space to swing
+freely. To simplify the model we assume no air resistance with a frictionless
+pivot [1]. The model and calculations for the simple gravity pendulum are well
+defined and only require simple derivations and differential solvers
+[2]. \wss{Are you also assuming a small angle?  Usually that is an assumption
+  made so that sin(theta) is approximately equal to theta.}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=250px]{simple-pend.png}
@@ -72,7 +86,14 @@ A proposed software solution will produce a simulation of a multi-pendulum syste
 	\label{fig:maxresdefault}
 \end{figure}
 
-The proposed software is to develop a multi-platform equivalent solution that only focuses on multi-pendulum simulations and tracking the chaotic motion of the system. It will allow users to generate diagrams and plot trajectories over time using two different ODE/DAE initial value problem solvers [4]. If time allows, multiple solvers can be compared for performance and accuracy.
+The proposed software is to develop a multi-platform equivalent solution that
+only focuses on multi-pendulum simulations and tracking the chaotic motion of
+the system. It will allow users to generate diagrams and plot trajectories over
+time using two different ODE/DAE initial value problem solvers [4]. If time
+allows, multiple solvers can be compared for performance and
+accuracy. \wss{Rather than say ``If time allows,''  you can just make this part
+  of the original project.  If it has to be dropped out, we can ``fake'' this
+  document later, or simply modify your requirements document.}
 
 \section*{Context}
 \subsection*{Environment}
