@@ -1,0 +1,368 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=ForestGreen,
+	filecolor=WildStrawberry,
+	linkcolor=Purple,
+	urlcolor=Cerulean
+}
+\usepackage[round]{natbib}
+\usepackage{float}
+\usepackage{adjustbox}
+
+\usepackage{xr}
+\externaldocument{../SRS/SRS}
+\newcommand{\rref}[1]{R\ref{#1}}
+
+\externaldocument{../Design/MIS/MIS}
+\newcommand{\misref}[1]{MIS: \ref{#1}}
+
+\input{../Comments}
+
+\begin{document}
+
+\title{Test Report: Companion Cube Calculator} 
+\author{Geneva Smith}
+\date{\today}
+	
+\maketitle
+
+\pagenumbering{roman}
+
+\section{Revision History}
+
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+December 19, 2017 1 & 1.0 & Completed the initial test report\\
+\bottomrule
+\end{tabularx}
+
+~\newpage
+
+\section{Symbols, Abbreviations and Acronyms}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{Symbol} & \textbf{Description}\\
+  \midrule 
+  MIS & Module Interface Specification \\
+  R & Requirement \\
+  T & Test\\
+  \bottomrule
+\end{tabular}\\
+
+\newpage
+
+\tableofcontents
+
+\listoftables %if appropriate
+
+%\listoffigures %if appropriate
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+This is the test report for the Companion Cube Calculator, a mathematical 
+tool which determines the range of a user-specified function given the domains 
+of the function's variables. The the directory for this project can be found at:
+
+\begin{center}
+	\href{https://github.com/GenevaS/CAS741}{https://github.com/GenevaS/CAS741}.
+\end{center} 
+
+\section{Functional Requirements Evaluation}
+
+The following tests have failed by verification:
+
+	\begin{center}
+		\begin{longtable}{ | p{3cm} | p{3cm} | p{2cm} | p{2cm} | p{3cm} |}
+			\caption{Failed Functional Test Summary} \\ \hline 
+			\label{TblInputVar} 
+			ID & Input & Expected Outcome & Expected MsgID & Actual MsgID \\ 
+			\hline
+			test-control\_ precedenceOfOperators3 & 
+			\texttt{"x\textasciicircum2*y", 
+				"x,2,4\textbackslash ny,3,5"}, 
+				\texttt{"(x\textasciicircum2)*y", 
+				"x,2,4\textbackslash ny,3,5"} & $TRUE$ & - & (EQC\_ 
+				INCOMPLETE\_OP) 
+			Error: Unrecognized sequence encountered during Atomic Equation 
+			parsing. Remaining equation = \texttt{)*y}. \\ \hline
+			
+			test-control\_ precedenceOfOperators6 & 
+			\texttt{"(2(x+y)\textasciicircum2) /(3\textasciicircum z)", 
+				"x,1,2\textbackslash ny,3,4 \textbackslash nz,5,6"} & 
+			\texttt{"[0.0438 9574759945 13, \textbackslash n 0.2962962 
+			96296296]"} 
+			& 
+			Range calculated successfully. & (EQC\_ INCOMPLETE\_OP) Error: 
+			Unrecognized sequence 
+			encountered during Atomic Equation parsing. Remaining equation = 
+			\texttt{)/(3\textasciicircum z)}. \\ \hline
+		\end{longtable}
+	\end{center}
+
+
+\section{Non-Functional Requirements Evaluation}
+The non-functional requirements were not always easy to verify. Some, such as 
+robustness, could be adequately verified using the existing test suites. 
+Others, such as correctness and usability, required manual testing. Not all 
+non-functional requirements were verified in this project cycle due to time 
+constraints.
+
+\subsection{Correctness}
+Correctness testing could not be completed in this project cycle due to time 
+constraints.
+
+These tests are directly related to \rref{R_conditionfx} and 
+\rref{R_CalculateCompose} (Decomposing the user equation into components and 
+recomposing the results).
+
+\subsection{Robustness}
+The robustness requirement for recognizing violated data constraints was 
+covered in the functional tests:
+
+\begin{itemize}
+	\item The constraints on supported operators are contained in the Range 
+	Solver test suite. The containment of all operator-specific information 
+	within this module made it possible to collect all of these restrictions in 
+	the same suite. This design also implicitly supported the output constraint 
+	on $R(f(V))$ because only mathematical operations that produced closed, 
+	real intervals were implemented.
+	\item The constraint of having every $D(v) \in V$ defined as a closed, real 
+	interval are contained in the Interval Conversion and Interval Data 
+	Structure modules.
+\end{itemize}
+
+These tests are directly related to \rref{R_verifyinputs} and 
+\rref{R_VerifyOutputConstraints} (Verifying that the program satisfies the 
+input and output constraints).
+
+\subsection{Verifiability}
+The verifiability requirement stated that the program must be created in a way 
+in which its calculations can be checked for correctness. By basing this design 
+on verifiable mathematical concepts and implementing the equation decomposition 
+using a grammar definition, it is possible to measure if this requirement has 
+met. However, verifiability testing could not be completed in this project 
+cycle due to time constraints.
+
+This is indirectly related to \rref{R_Output} because the outputs must be shown 
+to the program user such that they understand and have confidence in the 
+program's results.
+
+\subsection{Usability}
+The usability requirements were verified using the informal user study 
+described in the test plan. There were five participants.
+
+All participants calculated the same range of their assigned equation within 
+nine significant figures. Differences in the values could be attributed to the 
+specifications of individual machines. Since floating-point error handing is 
+not considered an important aspect of this program, variations beyond nine 
+significant digits were not deemed unacceptable.
+
+In general, participants found it easy to find and use the input mechanisms on 
+the GUI for entering in their values directly and for loading data from a file 
+(Table~\ref{TblUserResponses}). 
+
+\begin{center}
+	\begin{longtable}{ | p{2.5cm} | p{1.5cm} | p{1.1cm} | m{1.5cm} | m{1.6cm} 
+			|m{1.5cm} |m{1.5cm} |}
+		\caption{Summary of User Responses} \\ \hline \label{TblUserResponses} 
+		& \textbf{Strongly Agree} & \textbf{Agree} & \textbf{Neutral} & 
+		\textbf{Disagree} & \textbf{Strongly Disagree} & \textbf{No Response}  
+		\\ 
+		\hline
+		Finding Equation Input Mechanism & 4 & 1 & 0 & 0 & 0 & 0 \\ 
+		\hline
+		
+		Using Equation Input Mechanism& 3 & 0 & 2 & 0 & 0 & 0 \\  \hline
+		
+		Finding Variable Input Mechanism& 5 & 0 & 0 & 0 & 0 & 0 \\  \hline
+		
+		Using Variable Input Mechanism& 4 & 0 & 1 & 0 & 0 & 0 \\  \hline
+		
+		Finding Load From File Option& 3 & 2 & 0 & 0 & 0 & 0 \\  \hline
+		
+		Finding the Calculated Range& 4 & 0 & 0 & 0 & 0 & 1 \\  \hline
+		
+		Understanding the Calculated Range& 4 & 0 & 0 & 0 & 0 & 1 \\  \hline
+		
+		Understanding the Program Workflow& 3 & 1 & 0 & 1 & 0 & 0 \\  \hline
+	\end{longtable}
+\end{center}
+
+For responses that were unfavourable towards the program's usability, a number 
+of suggestions were left to help improve the experience. The simplest 
+improvement to do is to make the range values copyable. Currently, the output 
+mechanism is a non-editable label, which does not support text selection. This 
+can be improved by changing it to a non-editable text box instead.
+
+While generally well received, one participant suggested that the ``Load from 
+File" functionality could be accessible from a button located next to the 
+equation input mechanism. This change would make it much easier to find the 
+option to do so without prompting, and its inclusion will be considered in 
+future GUI iterations.
+
+The last suggested improvement was for the variable information table. The 
+first identified problem was that a cursor does not appear until a cell is 
+triple-clicked, which is unusual for text entry fields. Another problem was 
+that text entry did not automatically move to the next cell in the table so 
+that they could enter in variables as they appeared in the task description. 
+Unfortunately, this is a limitation on the available GUI widgets and no further 
+improvements can be done within the scope of the program. If an improved table 
+entry mechanism is created for Windows GUI applications, these usability issues 
+can be addressed.
+
+Another problem that was identified for the variable data tabe was that an 
+extra row appeared at the bottom of the table even when no more variables were 
+required. They suggested an alternate such that an ``Add Variable" button is 
+required to add new table rows. Given the other work flow issues that have been 
+raised with this particular mechanism, the suggested alternative is a viable 
+option for future GUI design iterations.
+
+In addition to work flow and GUI mechanism issues, the user study also 
+uncovered an error with the program where extra, but valid, brackets were used. 
+Test cases to detect this situations have since been added to the test suite, 
+and are currently the only tests that are failing (Table~\ref{TblInputVar}).
+		
+\subsection{Maintainability}
+The maintainability requirements focus on the extensibility of the original 
+implementation with respect to its supported mathematical operations. Support 
+for open, real intervals already exists in the Interval Conversion and Interval 
+Data Structure modules. This means that it is possible that only the Range 
+Solver module would need to be updated to add more mathematical operations. 
+However, maintainability testing could not be completed in this project cycle 
+due to time constraints.
+
+\section{Unit Testing}
+In addition to the functional requirements, unit tests were implemented to 
+achieve 100\% code coverage in all documented modules. The purpose of this was 
+to ensure that all code paths, including conditional branches, were being 
+executed and to help identify program errors that were not covered in the 
+functional testing suite. Implementation files that were automatically 
+generated or that were added to implement the GUI are not covered in the unit 
+tests.
+
+\begin{center}
+		\begin{longtable}{ | p{2.5cm} | p{4cm} | p{2.5cm} | m{1cm} | m{1.5cm} 
+		|}
+		\caption{Unit Test Summary} \\ \hline \label{TblUnitTests} 
+		\textbf{Test Suite} & \textbf{Test File} & \textbf{Target Modules} & 
+		\textbf{Total Tests} & 
+		\textbf{Tests Passing (\%)}  \\ 
+		\hline
+		Control Flow & \texttt{ControlTests.cs} & ControlFlow 
+		(\misref{Module_controlflow}) & 6 & 100\% \\ 
+		\hline
+		
+		User Input & \texttt{InputTests.cs} &Input (\misref{Module_userinput}) 
+		& 10 & 100\% \\ \hline
+		
+		Interval & \texttt{IntervalTests.cs} &Interval Data Structure 
+		(\misref{Module_intervaldatastructure}), Interval Conversion 
+		(\misref{Module_intervalconversion}) & 7 & 100\% \\ \hline
+		
+		Equation & \texttt{EquationTests.cs} &Equation Data Structure 
+		(\misref{Module_equationdatastructure}), Equation Conversion 
+		(\misref{Module_equationconversion}) & 16 & 100\% \\ \hline
+		
+		Variable Consolidation & \texttt{VariableConsoli dationTests.cs} & 
+		Consolidate 
+		(\misref{Module_variableconsolidation}) & 8 & 100\% \\ \hline
+		
+		Solver &\texttt{SolverTests.cs} & Operator Data Structure 
+		(\misref{Module_operatordatastructure}), Solver 
+		(\misref{Module_rangesolver}) & 17 & 100\% \\ \hline
+		
+		Output & \texttt{OutputTests.cs} &Output (\misref{Module_output}) & 6 & 
+		100\% \\ \hline
+	\end{longtable}
+\end{center}
+
+\section{Changes Due to Testing}
+The test suites uncovered a number of bugs, most of which resulted in changes 
+to the equation parsing process in the Equation Conversion module 
+(\misref{Module_equationconversion}). The failed functional tests have 
+identified an additional parsing error that will be corrected in a future 
+project cycle.
+
+The user study also uncovered a number of failings, including the inability to 
+copy the range values, which will also be addressed in a future project cycle.
+
+\section{Automated Testing}
+All automated testing was performed using the unit testing framework available 
+in Visual Studio 2017 (Enterprise Edition). The associated project is 
+\texttt{UnitTests\_CompanionCubeCalculator.csproj}.
+		
+\section{Trace to Requirements}
+
+\begin{table}[H]
+	\centering
+	\rotatebox{-90}{
+		\scalebox{0.85}{
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			& \rref{R_Inputs}& \rref{R_conditionX} & \rref{R_verifyinputs}& 
+			\rref{R_conditionfx} & \rref{R_Calculate}& 
+			\rref{R_CalculateCompose}& 
+			\rref{R_VerifyOutput} & \rref{R_VerifyOutputConstraints}& 
+			\rref{R_Output} & NF: Robustness & NF: Usability\\
+			\hline
+			Control Flow & X & & & & & &  &&&X&X\\ \hline
+			User Input & X & & & & & & &&&&X\\ \hline 
+			Interval & & X & X & & & & &&&X&\\ \hline
+			Equation & & & & X & &&&& &X &\\ \hline
+			Variable Consolidation & & & X &  &&& & & &&\\ \hline
+			Solver & & &X &  & X & X & X & X & &X&\\ \hline
+			Output & & & & & & &&&X &&X\\ 
+			\hline
+		\end{tabular}}}
+	\caption{Traceability Matrix Showing the Connections Between Requirements 
+		and Test Suites}
+	\label{Table:R_trace}
+\end{table}
+		
+\section{Trace to Modules}	
+	\begin{table}[H]
+		\centering
+		\rotatebox{-90}{
+			\scalebox{0.88}{
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline
+			& Control Flow & User Input & Interval & Equation & Variable 
+			Consolidation& Solver	& Output \\
+			\hline
+			\misref{Module_controlflow}& X & & & &&&\\ \hline
+			\misref{Module_userinput}& X & X & & & && \\ \hline 
+			\misref{Module_intervalconversion}&  & & X & &X&&\\ \hline
+			\misref{Module_equationconversion}&  & & & X &X &&\\ \hline
+			\misref{Module_variableconsolidation}& X & & &&X&&\\ 
+			\hline
+			\misref{Module_rangesolver}& X & & & & &X& \\ \hline
+			\misref{Module_output}& X & & & & && X\\ \hline
+			\misref{Module_intervaldatastructure}& X & &X&&X&X &X \\ \hline
+			\misref{Module_equationdatastructure}& X & & & X&X&X&X\\\hline
+			\misref{Module_operatordatastructure}& & & &X &X &X&\\ 
+			\hline
+		\end{tabular}}}
+		\caption{Traceability Matrix Showing the Connections Between 
+		Modules	and Test Suites}
+		\label{Table:M_trace}
+	\end{table}
+
+
+\section{Code Coverage Metrics}
+A coverage of 100\% has been achieved for all documented modules. Code coverage 
+was not considered for additional files that were created to support the GUI.
+
+\end{document}

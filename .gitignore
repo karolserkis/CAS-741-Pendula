@@ -1,9 +1,12 @@
-*.lot
+*.gz
 *.aux
 *.log
-*.toc
-*.gz
-*.out
-*.blg
 *.bbl
+*.blg
+*.xml
+*-blx.bib
+*.toc
+*.out
 *.lof
+*.lot
+*.DS_Store
