@@ -126,6 +126,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
+October 8, 2018 & Karol Serkis &  First full draft for submission\\
 October 4, 2018 & Karol Serkis &  First full draft\\
 October 3, 2018 & Karol Serkis & First revision and all content sections added\\September 28, 2018 & 
 Karol Serkis & First draft of document in landscape
@@ -140,7 +141,7 @@ Spencer Smith \\
 
 \section{Reference Material}
 
-This section records information for easy reference.
+This section records information for easy reference: (Units, constants, symbols, abbreviations, and acronyms)
 
 \subsection{Notation}
 
@@ -165,6 +166,8 @@ resistance)[1]}
 	\label{fig:maxresdefault}
 \end{figure}
 
+\newpage
+
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
@@ -182,11 +185,10 @@ description of the unit and the SI name.\\
     \si{\metre} & length & metre\\
     \si{\kilogram} & mass & kilogram\\
     \si{\second} & time & second\\
+    \si{\degree} & angle & degree\\
     \bottomrule
   \end{tabular}
 \end{center}
-
-\newpage
 
 \subsection{Table of Symbols}
 
@@ -204,23 +206,23 @@ additional spaces defined in the following table.
 \midrule 
 $g$ & $\mathbb{R}$ & -- & gravitational constant
 \\
-$m_1$ & $\mathbb{R}$ & -- & mass of the 1st pendulum weight
+$m_1$ & $\mathbb{R}$ & kg & mass of the 1st pendulum weight
 \\ 
-$m_2$ & $\mathbb{R}$ & -- & mass of the 2nd pendulum weight
+$m_2$ & $\mathbb{R}$ & kg & mass of the 2nd pendulum weight
 \\ 
-$m_n$ & $\mathbb{R}$ & -- & mass of the nth pendulum weight
+$m_n$ & $\mathbb{R}$ & kg & mass of the nth pendulum weight
 \\ 
-$l_1$ & $\mathbb{R}$ & -- & length of the 1st pendulum rod
+$l_1$ & $\mathbb{R}$ & m & length of the 1st pendulum rod
 \\ 
-$l_2$ & $\mathbb{R}$ & -- & length of the 2nd pendulum rod
+$l_2$ & $\mathbb{R}$ & m & length of the 2nd pendulum rod
 \\ 
-$l_n$ & $\mathbb{R}$ & -- & length of the nth pendulum rod
+$l_n$ & $\mathbb{R}$ & m & length of the nth pendulum rod
 \\
-$\theta_1$ & $\mathbb{R}$ & -- & amplitude from the pivot point
+$\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from the pivot point
 \\
-$\theta_2$ & $\mathbb{R}$ & -- & amplitude from the 1st pendulum weight
+$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st pendulum weight
 \\
-$\theta_n$ & $\mathbb{R}$ & -- & amplitude from the nth pendulum weight
+$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth pendulum weight
 \\
 $L$ & $\sum\mathbb{R}$ & -- & Pendulum system Lagrangian
 \\
@@ -268,7 +270,8 @@ The symbols are listed in alphabetical order.\\
 This documents is an SRS for the \progname program. The directory for this
 project can
 be found at GitHub:
-\href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}
+\href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}\\
+This SRS template is based on Smith and Lai(2005); Smith et al. (2007) [8].
 
 \subsection{Purpose of Document}
 The purpose of this document is to describe the requirements for a
@@ -330,6 +333,7 @@ theories, definitions, and assumptions.
 theoretical
 models to the instance models. The data definitions are used to support the
 definitions of the different models.
+\item This document follows the template outlined in Smith and Lai (2005) [8].
 \end{itemize}
 \newpage
 \section{General System Description}
@@ -347,8 +351,9 @@ $ \xLongleftrightarrow[\textbf{Output to the User}] {\textbf{User sees results}}
 \begin{itemize}
 \item User Responsibilities:
 \begin{itemize}
-\item Ensure that the input data is fits the system model.
-\item Ensure that the input data is within scope.
+\item Ensure that the input data is fits the system model (For example, weights and lengths and other
+appropriate units found in Table of Units and Symbols)
+\item Ensure that the input data is within scope (See Table of Units and Symbols)
 \end{itemize}
 \item \progname program Responsibilities:
 \begin{itemize}
@@ -390,7 +395,8 @@ freely. To simplify the model we assume no air resistance with a frictionless
 pivot. The model and calculations for the simple gravity pendulum are well
 defined and only require simple derivations and differential solvers.
 
-\progname program will produce a simulation given a set of equilibrium constantsand input.
+\progname program will produce a simulation given a set of constants and input 
+(starting position away from equilibrium position).
 Terminologies and the physical system are described below.
 
 \subsubsection{Terminology and Definitions}
@@ -407,14 +413,14 @@ pivot position origin $(x,y,z)$
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=190px]{simple-pend.png}
+	\includegraphics[width=180px]{simple-pend.png}
 \caption{A simple gravity pendulum where the model assumes no friction or air
 resistance}
 	\label{fig:maxresdefault}
 \end{figure}
 
 \begin{description}
-\item[Lagrangian:] The $L=T-V$, where T and V are the kinetic and potential
+\item[Lagrangian:] The lagrangian equation $L=T-V$, where T and V are the kinetic and potential
 energies of the system respectively.
 \item[Poincaré map:] Starting with the poincaré section of the \progname in 3D space, the poincaré map P
 is a projection from point x onto point P(x) transforming the 3D space into a 2D projection diagram plot.
@@ -431,8 +437,8 @@ resistance in a 3D space.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=450px]{triplependula.PNG}
-\caption{A triple pendulum example[1]}
+	\includegraphics[width=190px]{triplependula.PNG}
+\caption{A triple pendulum example [1]. See Table of Symbols for more info}
 	\label{fig:maxresdefault}
 \end{figure}
 
@@ -442,10 +448,11 @@ resistance in a 3D space.
 statements are:
 
 \begin{itemize}
-
-\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory plot and a poincaré map plot of 
-the movement of the pendula from equilibrium state of rest and show logged
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory plot of 
+the movement of the pendula from user input starting state to equilibrium state of rest and show logged
 statistics over time to the user.
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a poincaré map plot of 
+the movement of the pendula from user input starting state to equilibrium state of rest.
 \end{itemize}
 
 
@@ -462,13 +469,15 @@ system. The numbers given in the square brackets refer to the theoretical model
 likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
-\item[A\refstepcounter{assumpnum}\theassumpnum:]
-  All generated simulation diagrams will fit the mathematical model and scope.
-\item[A\refstepcounter{assumpnum}\theassumpnum:]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:equation}:]
+In the model we assume no air resistance with a frictionless pivot, moving in space with respect to the Lagrangian caluations made. [T1][DD1][IM1]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:kinetic}:]
+  The kinetic energy will be represented by real-value and will fit the mathematical model and scope. [T2][DD1]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:poten}:]
+  The potential energy will be represented by real-value and will fit the mathematical model and scope. [T3][DD1]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:init-user}:]
 The user knows what the purpose of the simulation model and inputs weights and lengths
-according to possible simulation characteristics.
-\item[A\refstepcounter{assumpnum}\theassumpnum:]
-In the model we assume no air resistance with a frictionless pivot.
+according to possible simulation characteristics. [DD1][IM1][T1][T2][T3][T4]
 \end{itemize}
 
 \newpage
@@ -485,86 +494,7 @@ on.\\
 \begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum\\
-  \hline
-  Label&\bf Double Pendulum Pivot rod \\
-  \hline
-  Equation&  
-$$x_1 = l_1 \sin\theta_1 \quad\quad y_1 = -l_1 \cos\theta_1$$
-$$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
--l_2\cos\theta_2$$\\
-  \hline
-  Description & Simple coordinate model system solution\\
-  \hline
-  Source & [6]\\
-  \hline
-  Ref.\ By &--\\
-  \hline
-\end{tabu}
-\end{minipage}\\
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\tabulinesep=1.5mm
-\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum\\
-  \hline
-  Label&\bf Double Pendulum Potential Energy\\
-  \hline
-  Equation&  
-$$ T = \displaystyle\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 $$
-$$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
-\dot{y}_2^2) $$
-$$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
-\dot{\theta}_1^2 + l_2^2 \dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2
-\cos(\theta_1 - \theta_2)\right]$$\\
-  \hline
-  Description & Potential Energy model system solution\\
-  \hline
-  Source & [6]\\
-  \hline
-  Ref.\ By &--\\
-  \hline
-\end{tabu}
-\end{minipage}\\
-
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\tabulinesep=1.5mm
-\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum\\
-  \hline
-  Label&\bf Double Pendulum Potential Energy\\
-  \hline
-  Equation&  
-$$V = m_1 g y_1 + m_2gy_2$$
-$$= -m_1 g l_1 \cos\theta_1 - m_2 g (l_1 \cos\theta_1 + l_2 \cos\theta_2)$$
-$$= -(m_1 + m_2) g l_1 \cos\theta_1 - m_2 g l_2\cos\theta_2$$\\
-  \hline
-  Description & Potential Energy model system solution\\
-  \hline
-  Source & [6]\\
-  \hline
-  Ref.\ By &--\\
-  \hline
-\end{tabu}
-\end{minipage}\\
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\tabulinesep=1.5mm
-\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum\\
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{lagrangian}\\
   \hline
   Label&\bf Double Pendulum Lagrangian ($L=T-V$)\\
   \hline
@@ -578,7 +508,7 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
   \hline
   Source & [6]\\
   \hline
-  Ref.\ By &--\\
+  Ref.\ By & [A1][A4]\\
   \hline
 \end{tabu}
 \end{minipage}\\
@@ -590,7 +520,61 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
 \begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum\\
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{kinetic}\\
+  \hline
+  Label&\bf Double Pendulum Kinetic Energy\\
+  \hline
+  Equation&  
+$$ T = \displaystyle\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 $$
+$$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
+\dot{y}_2^2) $$
+$$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
+\dot{\theta}_1^2 + l_2^2 \dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2
+\cos(\theta_1 - \theta_2)\right]$$\\
+  \hline
+  Description & Potential Energy model system solution\\
+  \hline
+  Source & [6]\\
+  \hline
+  Ref.\ By & [A2][A4]\\
+  \hline
+\end{tabu}
+\end{minipage}\\
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\tabulinesep=1.5mm
+\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{potential}\\
+  \hline
+  Label&\bf Double Pendulum Potential Energy\\
+  \hline
+  Equation&  
+$$V = m_1 g y_1 + m_2gy_2$$
+$$= -m_1 g l_1 \cos\theta_1 - m_2 g (l_1 \cos\theta_1 + l_2 \cos\theta_2)$$
+$$= -(m_1 + m_2) g l_1 \cos\theta_1 - m_2 g l_2\cos\theta_2$$\\
+  \hline
+  Description & Potential Energy model system solution\\
+  \hline
+  Source & [6]\\
+  \hline
+  Ref.\ By & [A3][A4]\\
+  \hline
+\end{tabu}
+\end{minipage}\\
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\tabulinesep=1.5mm
+\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{poincare}\\
   \hline
   Label&\bf Poincaré map($P(x)$)\\
   \hline
@@ -601,7 +585,7 @@ $$P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   \hline
   Source & [6]\\
   \hline
-  Ref.\ By &--\\
+  Ref.\ By & [A4]\\
   \hline
 \end{tabu}
 \end{minipage}\\
@@ -624,6 +608,8 @@ models. The models here are to satisfy the theoretical models constrained and cl
 \begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
+  Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{real-interv}\\
+  \hline
   Label&\bf Closed, Real intervals\\
   \hline
   Equation&  
@@ -651,6 +637,8 @@ one which is expressed in mathematical terms. \\
 \begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
+  Number& IM\refstepcounter{instnum}\theinstnum \label{add-real}\\
+  \hline
   Label&\bf Addition of closed, real intervals\\
   \hline
   Equation&  
@@ -701,25 +689,28 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum:] \progname program will 
+\item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program will 
   take the following inputs:
   \begin{enumerate} \item The initial mass of the weights. 
                     \item The inital length of the rods.
   \end{enumerate}
+  
+\item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program will 
+calculate the kinetic and potential energy after the user has set the initialization 
+parameters of input from the user have been entered
 
-\item[R\refstepcounter{reqnum}\thereqnum:] \progname program
+\item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program will 
+calculate the Lagrangian (and Hamiltonian (differential on Lagrangian) if needed) after the 
+user has set the initialization parameters of input have been entered and the kinetic 
+and potential energy of the system as whole has been calculated
+
+\item[R\refstepcounter{reqnum}\thereqnum \label{funplot}:] \progname program
 will ensure that the inputs do not violate the constraints specified in the Data Contraints section:
     \begin{enumerate} \item \progname program will 
 generate diagrams with and plot lines and timeline of logged movement. 
 \item The timeline of swings of the pendulum will be logged and eventually
 return to a resting state in equilibrium
 \end{enumerate}
-
-\item[R\refstepcounter{reqnum}\thereqnum:] \progname program will 
-  take the following inputs:
-  \begin{enumerate} \item The initial mass of the weights. 
-                    \item The inital length of the rods.
-  \end{enumerate}
 
 \end{itemize}
 \newpage
@@ -732,7 +723,7 @@ are correctness, understandability, reusability, maintainability, and
 portability. 
 
 \begin{itemize}
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum:] \progname program access axis
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum:] \progname program should be able to have axis
 labels \& 3D cartesian coordinates.
 \end{itemize}
 
@@ -792,10 +783,133 @@ The portability of the \progname will be multi-platform.
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum:] Generation of diagrams 
+\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dsim}:] Generation of simulation only in 2D
+\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dplot}:] Generation of plot and diagrams only in 2D
+\item[LC\refstepcounter{lcnum}\thelcnum \label{maybe-mpi}:] Generation of diagrams 
   using distributed/parallel computing
 
 \end{itemize}
+
+\section{Traceability Matrices and Graphs}
+
+The purpose of the traceability matrices is to provide easy references on what
+has to be additionally modified if a certain component is changed.  Every time a
+component is changed, the items in the column of that component that are marked
+with an ``X'' may have to be modified as well. 
+
+% Table~\ref{Table:trace} shows the
+%dependencies of theoretical models, general definitions, data definitions, and
+%instance models with each other. Table~\ref{Table:R_trace} shows the
+%dependencies of instance models, requirements, and data constraints on each
+%other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
+%general definitions, data definitions, instance models, and likely changes on
+%the assumptions.
+
+%\afterpage{
+%\begin{landscape}
+\begin{table}[h!]
+\centering
+\label{Table:A_trace}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+	& \aref{A:equation} 
+	& \aref{A:kinetic}
+	& \aref{A:poten}
+	& \aref{A:init-user} \\
+\hline
+\tref{lagrangian} & X &  &  & X \\ \hline
+\tref{kinetic} &  & X &  & X \\ \hline
+\tref{potential} &  &  & X & X \\ \hline
+\tref{poincare} &  &  &  & X \\ \hline
+\ddref{real-interv} & X & X & X & X \\ \hline
+\iref{add-real} & X & X & X & X \\ \hline
+\lcref{only2dsim} & X & X & X & X \\ \hline
+\lcref{only2dplot} & X & X & X & X \\ \hline
+\lcref{maybe-mpi} & X & X & X & X\\ \hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+
+\end{table}
+%\end{landscape}
+%}
+
+\begin{table}[H]
+	\centering
+	\label{Table:trace}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline        
+		& \tref{lagrangian}
+		& \tref{kinetic}
+		& \tref{potential}
+		& \tref{poincare}
+		& \ddref{real-interv}
+		& \iref{add-real} \\
+		\hline
+        \tref{lagrangian} & X & X & X & X & X & X \\ \hline
+        \tref{kinetic} & X & X & X & X & X & X\\ \hline
+        \tref{potential} & X & X & X & X & X & X\\ \hline
+        \tref{poincare} &  &  &  &  & X & X\\ \hline
+        \ddref{real-interv} & X & X & X &  & X & X\\ \hline
+        \iref{add-real} & X & X & X &  & X & X\\ \hline
+	\end{tabular}
+	\caption{Traceability Matrix Showing the Connections Between Items of 
+	Different Sections}
+\end{table}
+
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline        
+		& \tref{lagrangian}
+		& \tref{kinetic}
+		& \tref{potential}
+		& \tref{poincare}
+		& \ddref{real-interv}
+		& \iref{add-real} \\
+		\hline
+        \rref{funinput} & X & X & X &  & X & X \\ \hline
+        \rref{funkinpot} & X & X & X & X & X & X\\ \hline
+        \rref{funlagham} & X & X & X &  & X & X \\ \hline
+        \rref{funplot} & X & X & X & X & X & X\\ \hline
+	\end{tabular}
+	\caption{Traceability Matrix Showing the Connections Between Requirements 
+	and Instance Models}
+	\label{Table:R_trace}
+\end{table}
+
+%The purpose of the traceability graphs is also to provide easy references on
+%what has to be additionally modified if a certain component is changed.  The
+%arrows in the graphs represent dependencies. The component at the tail of an
+%arrow is depended on by the component at the head of that arrow. Therefore, if 
+%a
+%component is changed, the components that it points to should also be
+%changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
+%general definitions, data definitions, instance models, likely changes, and
+%assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
+%instance models, requirements, and data constraints on each other.
+
+% \begin{figure}[h!]
+% 	\begin{center}
+% 		%\rotatebox{-90}
+% 		{
+% 			\includegraphics[width=\textwidth]{ATrace.png}
+% 		}
+% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
+% 	\end{center}
+% \end{figure}
+
+% \begin{figure}[h!]
+% 	\begin{center}
+% 		%\rotatebox{-90}
+% 		{
+% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
+% 		}
+% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
+% 	\end{center}
+% \end{figure}
+
+\newpage
 
 \subsection*{References}\label{ssec:ref}
 \begin{itemize}
@@ -813,9 +927,11 @@ Differential-Algebraic Equations by Taylor Series
 \\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
 \item{[7]} Poincaré map
 \\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
+\item{[8]} Smith and Lai(2005); Smith et al. (2007). \\
+See bib file that doesn't work for me for full citation.
 \end{itemize}
 
 \bibliographystyle {plainnat}
-\bibliography {../../ReferenceMaterial/SRS_Refs}
+\bibliography {../../ReferenceMaterial/References}
 
 \end{document}
