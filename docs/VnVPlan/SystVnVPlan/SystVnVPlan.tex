@@ -1,4 +1,24 @@
 \documentclass[12pt, titlepage]{article}
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{tabu}
+\usepackage{verbatim}
+\usepackage[round]{natbib}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{extarrows}
 
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -14,10 +34,14 @@
 
 \input{../../Comments}
 
+% Used so that cross-references have a meaningful prefix
+\newcommand{\progname}{Multi-Pendulum Simulation }
+
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan} 
-\author{Author Name}
+\title{\progname:\\ System Verification and Validation Plan} 
+\author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
+\href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
 	
 \maketitle
@@ -26,11 +50,11 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{tabularx}{\textwidth}{p{3.3cm}p{2.5cm}X}
+\toprule {\bf Date} & {\bf Developer(s)} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+October 22, 2018 & Karol Serkis & First revision of document\\
+October 21, 2018 & Karol Serkis & New Blank Project Template utilized \\
 \bottomrule
 \end{tabularx}
 
@@ -44,11 +68,105 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  R & Requirement\\ 
+  NFR & Non-functional Requirement\\ 
   \bottomrule
 \end{tabular}\\
 
 \wss{symbols, abbreviations or acronyms -- you can simply reference the SRS
   tables, if appropriate}
+\subsection{Table of Units}
+
+Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
+employedas the unit system. In addition to the basic units, several derived
+units are
+used as described below.  For each unit, the symbol is given followed by a
+description of the unit and the SI name.\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+  \noindent \begin{tabular}{l l l} 
+    \toprule		
+    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+    \midrule 
+    \si{\metre} & length & metre\\
+    \si{\kilogram} & mass & kilogram\\
+    \si{\second} & time & second\\
+    \si{\degree} & angle & degree\\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\newpage
+
+\subsection{Table of Symbols}
+
+The table that follows summarizes the symbols used in this document along with
+their units. The choice of symbols was made to be consistent with calculus,
+ordinary
+differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical
+spaces
+are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.) as well as some 
+additional spaces defined in the following table. 
+~\newline
+\renewcommand{\arraystretch}{1.2}
+\noindent \begin{longtable*}{l l l p{8cm}} \toprule
+\textbf{symbol} & \textbf{space} & \textbf{unit} & \textbf{description}\\
+\midrule 
+$g$ & $\mathbb{R}$ & -- & gravitational constant
+\\
+$m_1$ & $\mathbb{R}$ & kg & mass of the 1st pendulum weight
+\\ 
+$m_2$ & $\mathbb{R}$ & kg & mass of the 2nd pendulum weight
+\\ 
+$m_n$ & $\mathbb{R}$ & kg & mass of the nth pendulum weight
+\\ 
+$l_1$ & $\mathbb{R}$ & m & length of the 1st pendulum rod
+\\ 
+$l_2$ & $\mathbb{R}$ & m & length of the 2nd pendulum rod
+\\ 
+$l_n$ & $\mathbb{R}$ & m & length of the nth pendulum rod
+\\
+$\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from the pivot point
+\\
+$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st pendulum weight
+\\
+$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth pendulum weight
+\\
+$L$ & $\sum\mathbb{R}$ & -- & Pendulum system Lagrangian
+\\
+$T$ & $\sum\mathbb{R}$ & -- & Kinetic energy of system
+\\
+$V$ & $\sum\mathbb{R}$ & -- & Potential energy of system
+\\
+$P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré map P projects point x onto point P(x)
+\\
+\bottomrule
+\end{longtable*}
+
+\newpage
+\subsection{Abbreviations and Acronyms}
+
+The symbols are listed in alphabetical order.\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  A & Assumption\\
+  DD & Data Definition\\
+  GD & General Definition\\
+  GS & Goal Statement\\
+  IM & Instance Model\\
+  LC & Likely Change\\
+  NF & Non-Functional Requirement\\
+  PS & Physical System Description\\
+  R & Requirement\\
+  SRS & Software Requirements Specification\\
+  T & Theoretical Model\\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -56,23 +174,56 @@ Date 2 & 1.1 & Notes\\
 
 \listoftables
 
-\listoffigures
+%\listoffigures
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document discusses the verification and validation requirements
+and provides a detailed description of the testing that will be 
+carried out on the \progname Generator program.  Complementary documents include the 
+System Requirement Specifications, Module Guide and Module Interface Specification.  
+The full documentation and implementation can be found 
+\href{https://www.github.com/karolserkis}{here}. After reading this document one should be able to 
+create and run test cases to verify and validate \progname
+
+\wss{provide an introductory blurb and roadmap of the  Verification and Validation plan}
 
 \section{General Information}
 
 \subsection{Summary}
 
+The purpose of this document is to provide a comprehensive plan for testing the 
+\progname software against the requirements described in the
+\progname SRS. 
+The \progname will allow users to generate diagrams (e.g. Poincare
+mapping)
+and plot trajectories over time using two different ODE/DAE initial value
+problem solvers. See the instance models (IM) in the SRS for more details.
+
 \wss{Say what software is being tested.  Give its name and a brief overview of
   its general functions.}
 
 \subsection{Objectives}
+The purpose of this document is to describe the objectives for the
+\progname program solution that
+only focuses on multi-pendulum simulations and tracking the chaotic
+motion of the system. It will allow users to generate diagrams (e.g. Poincare
+mapping) and plot trajectories over time using two different ODE/DAE initial value
+problem solvers. The implementation should be reliable and accurate.\\\\
+The System VnV plan will in summary:
+\begin{itemize}
+\item Satisfy the requirements of Dr. Spencer Smith and those outlined in the SRS.
+\item Build confidence in the software correctness.
+\item Verify usability and effectiveness.
+\item The tests outlined in this document are limited to the verification of the 
+  requirements given in the \progname SRS.
+\item The tests outlined in this document are limited to dynamic tests only.  
+  No formal static testing (code walkthroughs, code inspections, etc.) will be carried out.
+\item The \progname software will be written in Python. The testing of 
+implementations in other languages will not be considered in this document.
+\end{itemize}
 
 \wss{State what is intended to be accomplished.  The objective will be around
   the qualities that are most important for your project.  You might have
@@ -81,16 +232,30 @@ This document ... \wss{provide an introductory blurb and roadmap of the
   just those that are most important.}
 
 \subsection{Relevant Documentation}
-
+SRS document:
+\begin{itemize}
+	\item Karol Serkis. System Requirements Specification for \progname. 
+	Github, 2018.
+\end{itemize}
 \wss{Reference relevant documentation.  This will definitely include your SRS}
 
 \section{Plan}
 	
 \subsection{Verification and Validation Team}
+The test team includes the following members:
+\begin{itemize}
+\item Karol Serkis
+\end{itemize}
+The verification and validation team consists of (possibly Dr. Spencer Smith) classmates and I. \\
 
 \wss{Probably just you.  :-)}
 
 \subsection{SRS Verification Plan}
+
+The SRS verification plan consists of feedback from Dr. Spencer Smith and CAS 741 classmates. 
+They will provide feedback regarding model assumptions, constraints and goals. 
+Feedback from classmates and Dr. Smith will criticize the document outline, 
+readability and requirements. \\
 
 \wss{List any approaches you intend to use for SRS verification.  This may just
   be ad hoc feedback from reviewers, like your classmates, or you may have
@@ -98,14 +263,41 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \subsection{Design Verification Plan}
 
+The design verification plan will simply involve inspection of the software by 
+Dr. Spencer Smith and CAS 741 classmates. \\ 
+
 \wss{Plans for design verification}
 
 \subsection{Implementation Verification Plan}
+
+The implementation verification plan consists of two parts. The first part 
+is a software verification. It will be completed by myself any others who 
+use \progname and will involve verification that basic that basic software 
+features have been implemented successfully, 
+such as allowing the user to successfully utilize the software to fullfill
+its basic responsibilities (ie generate diagrams (e.g. Poincare
+mapping) and plot trajectories). 
+More can be found in the appendix. The 
+second part involves running software tests 
+outlined in sections 5 (System Test) and 6 (Static Verification). 
+Unit testing will also be performed. 
 
 \wss{You should at least point to the tests listed in this document and the unit
   testing plan.}
 
 \subsection{Software Validation Plan}
+
+See SRS for more information in references ---\\
+External examples (tentative):
+
+\begin{itemize}
+\item{[1]} Differential-Algebraic Equations by Taylor Series
+\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
+\item{[2]} Multi-body Lagrangian Simulations
+\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
+\item{[3]} Poincaré map
+\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
+\end{itemize}
 
 \wss{If there is any external data that can be used for validation, you should
   point to it here.  If there are no plans for validation, you should state that
@@ -118,87 +310,144 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 \wss{Subsets of the tests may be in related, so this section is divided into
   different areas.  If there are no identifiable subsets for the tests, this
   level of document structure can be removed.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
-
 \begin{enumerate}
+\item{test-Rin1}	
+				
+Initial State: -
+					
+Input: Initial input for the pendula weights in chain. See SRS and appendix for more info.
+					
+Output: Error or pass message.
+					
+How test will be performed: Combinations of inputing non-numerical values as 
+input  (such as letters), or numerical values outside of their respective 
+constraints, will be considered. A successful test in these instances will be 
+an error message. \\
+I will also test cases with each variable in the input having an 
+acceptable numerical value. A successful test in this case will be a pass 
+message. 
+					
+\item{test-Rplt} 
 
-\item{test-id1\\}
+Initial State: -
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+Input: Similar to test-Rin1 
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+Output: Pass of fail message (Is there a graph/plot or not)
+
+How test will be performed: This test will simply check to see if the trajectory plot or
+Poincare plot is plotted and if the picture agrees with the related physics.
+These should be no plot for the failed test cases of test-Rin1. 
+
+\item{test-Rstl} 
+
+Initial State: -
+
+Input: Similar to test-Rin1 
+
+Output: Binary Variable (Verification of stability) 
+
+How test will be performed: The stability results will be compared with the 
+stability analysis in (ref1). 
 
 \end{enumerate}
-
-\subsubsection{Area of Testing2}
-
-...
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
-
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{test-NFR1\\}
 
-Type: 
+Type: Static
 					
-Initial State: 
+Initial State: -
 					
-Input/Condition: 
+Input/Condition: \progname Python code
 					
-Output/Result: 
+Output/Result: Pass or Fail
 					
-How test will be performed: 
-					
-\item{test-id2\\}
+How test will be performed: The software will be manually read by the developer 
+and his supervisor to see if there is a more effective code structure to allow 
+implementation of plot trajectories and Poincare plot and related ODE solvers utilized. 
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\item{test-NFR2\\} 
+
+Type: Manual 
+
+Initial State: Software system with prescribed input.
+
+Input: Input all inital user values to the ODE equation/Lagrangian equation.
+
+Output: Pass or fail (See SRS for equations).
+
+How test will be performed: The output ought fit with the physics and math simulations for
+progname. This test will loop through a various set of inputs to see if the plot does not 
+go out of bounds or fail with overflow.
+
+\item{test-NFR3\\} 
+
+Type: Manual 
+
+Initial State: Software system with prescribed input.
+
+Input: See SRS and appendix for more detail.
+
+Output: Pass or fail.
+
+How test will be performed: The output will be tested against the Simulations
+referenced in the SRS that are already available to compare. Also reference
+Dr. Ned's software and other related. \\ 
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
-
-...
-
+\newpage
 \subsection{Traceability Between Test Cases and Requirements}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline        
+		& Rin& Rplt & Rstl & NFR1 & NFR2 & NFR3 \\
+		\hline
+		test-Rin     &X & X &X  &X &X &X  \\ \hline
+		test-Rplt    & X  &X & &X & X &X \\ \hline 
+		test-Rstl    &X  & & & & &  \\ \hline 
+		test-NFR1    & X & X& &X &X &X  \\ \hline 
+		test-NFR2  &X  & X& & X&X &X \\ \hline 
+		test-NFR3  &X  &X & &X & X &X \\
+		\hline
+	\end{tabular}\\
+	\caption{Traceability Between Test }
+	\label{Table:D_1}
+\end{table} 
 
 \wss{Provide a table that shows which test cases are supporting which
   requirements.}
 
 \section{Static Verification Techniques}
+
+\begin{itemize}
+	\item Code inspection : I will 
+	go through the code to see if each step is correct with respect to the
+	mathematical theory. In particular I will ensure that: 
+	\begin{itemize}
+		\item any discretization of functions is performed accurately from the pivot points. 
+		\item plot trajectories are within scope
+		\item ensure a varible is not accidently overwritten or cleared. 
+		\item variables are being used in the right context. 
+		For example, equal incrementation in all used cartesian coordinates. 
+		\item functions from other packages are being used in the right 
+		context. For example, some packages have different standards for 
+		constants.
+	\end{itemize} 
+	\item Code walkthrough: Dr. Spencer Smith and I will go through the code 
+	together to ensure that: 
+	\begin{itemize}
+		\item I correctly implemented the mathematical theory and numerical 
+		algorithms.
+		\item I made the code manageable and maintainable for future use.
+	\end{itemize}
+\end{itemize}
 
 \wss{In this section give the details of any plans for static verification of
   the implementation.  Potential techniques include code walkthroughs, code
@@ -220,6 +469,14 @@ The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions?}
+
+\begin{itemize}
+	\item How long did it take to learn how to run the software? 
+	\item Was it easy to interpret the output? 
+	\item What aspects of this software do you feel need improvement?
+	\item Was the output recieved and processed in an adequate amount of time?
+	\item How does this program compare with other similar software?
+\end{itemize} 
 
 \wss{This is a section that would be appropriate for some projects.}
 
