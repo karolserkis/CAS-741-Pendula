@@ -155,16 +155,16 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which \progname software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+\item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The format of the
   initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{ac3d}:] The 3D coordinate space 
+to a 2D coordinate space.
+\item[\refstepcounter{acnum} \actheacnum \label{acCoord}:] The format of the
+  Lagrangian/Hamiltonian (2D vs 3D).
+\item[\refstepcounter{acnum} \actheacnum \label{acLinear}:] The (linear)
+  solver algorithm.
+\item[\refstepcounter{acnum} \actheacnum \label{acCont}:] The content of the
+  output (eg. 2D Poincare plot instead of 3D).
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -181,12 +181,10 @@ decisions will be changed.
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
   a source of input data external to the software.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The goal statements of \progname
+(see SRS; extensions to SRS are still possible, but current goals should not change
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucData}:] The data types (real number)
+interface device with user
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -197,8 +195,15 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module (described in MG$\_$Hardware)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module (described in MG$\_$Control)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module (described MG$\_$GUI)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters Module (described in MG$\_$InputFormat)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module (described in MG$\_$LA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module (described in MG$\_$HA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module (described in MG$\_$DataStruct)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module (described in MG$\_$GUIplot)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory Simulation GUI Module (described in MG$\_$SIM)
 \end{description}
 
 
@@ -211,20 +216,15 @@ actually be implemented.
 
 {Hardware-Hiding Module} & ~ \\
 \midrule
-
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & {\progname Control Module}\\
+& \progname GUI Module\\
+& User Input Parameters Module\\
+& Data Structure Module\\
 \midrule
-
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & {Generic Trajectory Simulation GUI Module}\\
+& Generic GUI/Plot Module\\
+& Lagrangian Module\\
+& Hamiltonian Module\\ 
 \bottomrule
 
 \end{tabular}
@@ -256,7 +256,7 @@ that the module is not a leaf and will not have to be implemented. Whether or
 not this module is implemented depends on the programming language
 selected.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules (M1)}%(\mref{mHH})}
 
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
@@ -279,17 +279,32 @@ selected.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\subsubsection{\progname{}Control Module (M2)}
+\label{MG_Control}
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Secrets:] Execution flow of \progname{}.
+\item[Services:] Calls the different modules in the appropriate order.
+\item[Implemented By:] \progname{}
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{\progname{}GUI (M3)}
+\label{MG_GUI}
+\begin{description}
+\item[Secrets:] Methods to interact with user to make run \progname{}.
+\item[Services:] Serves as interface between the user and the software through 
+the hardware by outputting calculation results and collecting user information 
+(user inputs) for the calculation modules. 
+\item[Implemented By:] \progname{}
+\end{description}
 
+\subsubsection{User Input Module (M4)}
+\label{MG_InputFormat}
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Loads, verifies and stores the input data into the appropriate 
+data and object structure.
+\item[Implemented By:] \progname{}
+\end{description}
 
 \subsection{Software Decision Module}
 
@@ -304,7 +319,50 @@ selected.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Lagrangian Module (M5)}
+\label{MG_LA}
+\begin{description}
+\item[Secrets:] Lagrangian calculation/algorithm.
+\item[Services:] Calculates the variation of Lagrangian for each pendulum in the chain 
+(each element of the array).
+\item[Implemented By:] \progname{}
+\end{description}
+
+\subsubsection{Hamiltonian Module (M6)}
+\label{MG_HA}
+\begin{description}
+\item[Secrets:] Hamiltonian calculation/algorithm.
+\item[Services:] Calculates the variation of Hamiltonian for each pendulum in the chain 
+(each element of the array).
+\item[Implemented By:] \progname{}
+\end{description}
+
+\subsubsection{Data Structure Module (M7)}
+\label{MG_DataStruct}
+\begin{description}
+\item[Secrets:] Data format for an image.
+\item[Services:] Provides convenient format to store, read and manipulate all 
+elements (pixel) from an image.
+\item[Implemented By:] Python library
+\end{description}
+
+\subsubsection{Generic GUI/Plot Module (M8)}
+\label{MG_GUIGene}
+\begin{description}
+\item[Secrets:] Generic methods to interact with the user.
+\item[Services:] Provides the generic interface methods such as buttons, 
+windows, plotting, entry fields to interact with a user.
+\item[Implemented By:] Python library
+\end{description}
+
+\subsubsection{Trajectory Simulation Module (M9)}
+\label{MG_SMHSim}
+\begin{description}
+\item[Secrets:] Algorithm to simulate the plot trajectory of the chain of pendula.
+\item[Services:] Simulates the chain of pendula in space using the Lagrangiam
+and the Hamiltonian.
+\item[Implemented By:] \progname{}
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -319,17 +377,10 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & M2, M3, M4, M5, M6, M7, M8, M9\\%\mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
+R2 & M2, M3, M4, M5, M6\\%\mref{mInput}, \mref{mParams}\\
+R3 & M4, M5, M6, M7, M8, M9\\%\mref{mVerify}\\
+R4 & M4, M5, M6, M7, M8, M9\\%\mref{mOutput}, \mref{mControl}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -342,18 +393,12 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acHardware} & M1, \mref{mHH}\\
+\acref{acFormat} & M4, M5, M6, M7\\%\mref{mInput}\\
+\acref{ac3d} & M2, M3, M8, M9\\%\mref{mParams}\\
+\acref{acCoord} & M2, M3, M8, M9\\%\mref{mVerify}\\
+\acref{acLinear} & M4, M5, M6, M7\\%\mref{mOutput}\\
+\acref{acCont} & M4, M5, M6, M7\\%\mref{mVerifyOut}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -375,7 +420,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=1.0\textwidth]{figure1.PNG}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
