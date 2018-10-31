@@ -1,5 +1,24 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{tabu}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{extarrows}
+\usetikzlibrary{shapes.geometric, arrows}
+
 \usepackage{fullpage}
 \usepackage[round]{natbib}
 \usepackage{multirow}
@@ -30,10 +49,14 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
+% Used so that cross-references have a meaningful prefix
+\newcommand{\progname}{Multi-Pendulum Simulation }
+
 \begin{document}
 
-\title{Module Guide: Project Title} 
-\author{Author Name}
+\title{CAS 741: Module Guide\\[10pt]\Large Dynamical Systems: \progname}
+\author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
+\href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
 
 \maketitle
@@ -42,11 +65,10 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+October 31, 2018 & 1.0 &  First full draft for submission\\
 \bottomrule
 \end{tabularx}
 
@@ -64,6 +86,8 @@ Date 2 & 1.1 & Notes\\
 
 \section{Introduction}
 
+The module guide document is providing to the reader the decomposition of \progname
+ into smaller pieces to help the implementation phase.
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
@@ -130,10 +154,17 @@ change.
 
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
+  hardware on which \progname software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
   initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -150,7 +181,12 @@ decisions will be changed.
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
   a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
+  a source of input data external to the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
+  a source of input data external to the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
+  a source of input data external to the software.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -345,6 +381,32 @@ because they use modules from the lower levels.
 \end{figure}
 
 %\section*{References}
+\subsection*{References}\label{ssec:ref}
+\begin{itemize}
+\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
+\item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
+\item{[3]} Pendulum (mathematics)
+\\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
+\item{[4]} Double Pendulum
+\\\url{https://en.wikipedia.org/wiki/Double_pendulum}\item{[4]}
+Differential-Algebraic Equations by Taylor Series
+\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
+\item{[5]} Multi-body Lagrangian Simulations
+\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
+\item{[6]} The double pendulum: Lagrangian formulation
+\\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
+\item{[7]} Poincaré map
+\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
+\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
+ACM, vol. 15, pp. 1053-1058, December 1972.
+\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
+in International Conference on Software Engineering, pp. 408-419, 1984.
+\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
+Proceedings of the 3rd international conference on Software engineering, \\
+(Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
+\item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
+See bib file that doesn't work for me for full citation.
+\end{itemize}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../ReferenceMaterial/References}
