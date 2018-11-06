@@ -108,6 +108,8 @@
 \date{\today}
 	
 \maketitle
+\wss{The name of your program ``\progname{}'' is rather long and awkward.  Do
+  you think you could come up with a shorter name, maybe MPS?}
 
 ~\newpage
 
@@ -165,6 +167,8 @@ $$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
 resistance)[1]}
 	\label{fig:maxresdefault}
 \end{figure}
+
+\wss{All figures should be referred to by your text at some point.}
 
 \newpage
 
@@ -235,6 +239,7 @@ $P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré map
 \bottomrule
 \end{longtable*}
 
+\wss{Poincaré in \LaTeX{} is written as Poincar\'{e}}
 \newpage
 \subsection{Abbreviations and Acronyms}
 
@@ -268,12 +273,12 @@ The symbols are listed in alphabetical order.\\
 \section{Introduction}
 
 This documents is an SRS for the \progname \wss{Your prog name isn't exactly
-  catchy; it seems more like a description than a program name.} program. The directory for this
-project can
-be found at GitHub:
+  catchy; it seems more like a description than a program name.} program. The
+directory for this project can be found at GitHub:
 \href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}\\
 This SRS template is based on Smith and Lai(2005); Smith et al. (2007)
-[8]. \wss{Use BibTex.  Follow the example in the blank project template}
+[8]. \wss{Use BibTex and citation command.  Follow the example in the blank
+  project template}
 
 \subsection{Purpose of Document}
 The purpose of this document is to describe the requirements for a
@@ -296,9 +301,9 @@ understand and verify the inputs to outputs. The SRS is abstract: the contents
 describe the problem being solved, but not how to solve it.
 
 This document will be used as a starting point for subsequent development
-phases, including writing the design specification and the software
-verification and validation plan. The verification and validation plan will show
-the steps inthe software documentation/implementation.
+phases, including writing the design specification and the software verification
+and validation plan. The verification and validation plan will show the steps
+inthe \wss{proof read, spell check} software documentation/implementation.
 
 \subsection{Scope of Requirements} 
 
@@ -328,16 +333,22 @@ understanding of the document.
 \begin{itemize}
 \item The organization of this document follows the template for an SRS for
 scientific
-computing software proposed by Dr. Spencer Smith. 
+computing software proposed by Dr. Spencer Smith. \wss{You have a citation
+  below.  Having this point too is redundant.}
 \item The presentation follows the standard pattern of presenting goals,
 theories, definitions, and assumptions.
 \item The goal statements are refined to the theoretical models, and the
 theoretical
 models to the instance models. The data definitions are used to support the
 definitions of the different models.
-\item This document follows the template outlined in Smith and Lai (2005) [8].
+\item This document follows the template outlined in Smith and Lai (2005)
+  [8]. \wss{You can use BibTeX to make it easy to manage citations and
+    references. Hard coding in reference will be a maintenance nightmare.}
 \end{itemize}
 \newpage
+\wss{Do you really need to hardcode in a newpage here?  \LaTeX{} usually makes
+  good decisions about pagebreaks.}
+
 \section{General System Description}
 This section identifies the interfaces between the system and its environment,
 describes the user characteristics and lists the system constraints.
@@ -349,6 +360,9 @@ describes the user characteristics and lists the system constraints.
 User}]{\textbf{User enters input}} $\framebox{\textbf { \progname}}
 $ \xLongleftrightarrow[\textbf{Output to the User}] {\textbf{User sees results}}$\framebox{\textbf {USER}}\\
 \end{center}
+
+\wss{Can you characterize the inputs better than just inputs?  What values are
+  going to be input?  Similarly for the outputs.}
 
 \begin{itemize}
 \item User Responsibilities:
@@ -377,7 +391,10 @@ this document or the inner workings of the software program.
 
 \subsection{System Constraints}
 There are no system constraints. The \progname software will be created with
-multi-platform support.
+multi-platform support.  \wss{Your current documentation has an implied
+  constraint.   You keep mentioning plots.  This is not the only way to output
+  data.  It would be more abstract to not impose this on the software.  If you
+  cannot be more abstract, then you should make the display requirement a system constraint.}
 
 \newpage
 \section{Specific System Description}
@@ -422,10 +439,10 @@ resistance}
 \end{figure}
 
 \begin{description}
-\item[Lagrangian:] The lagrangian equation $L=T-V$, where T and V are the kinetic and potential
+\item[Lagrangian:] The Lagrangian equation $L=T-V$, where $T$ and $V$ are the kinetic and potential
 energies of the system respectively.
-\item[Poincaré map:] Starting with the poincaré section of the \progname in 3D space, the poincaré map P
-is a projection from point x onto point P(x) transforming the 3D space into a 2D projection diagram plot.
+\item[Poincaré map:] Starting with the Poincaré section of the \progname in 3D space, the Poincaré map $P$
+is a projection from point $x$ onto point $P(x)$ transforming the 3D space into a 2D projection diagram plot.
 \end{description}
 
 \subsubsection{Physical System Description}
@@ -452,8 +469,9 @@ statements are: \wss{Isn't the initial state of the multi-pendulum part of the i
 \begin{itemize}
 \item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory plot of 
 the movement of the pendula from user input starting state to equilibrium state of rest and show logged
-statistics over time to the user.
-\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a poincaré map plot of 
+statistics over time to the user. \wss{I believe you are assuming no friction,
+  so I don't think the pendula will come to a state of rest.}
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a Poincaré map plot of 
 the movement of the pendula from user input starting state to equilibrium state of rest.
 \end{itemize}
 
@@ -476,7 +494,9 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:equation}:]
-In the model we assume no air resistance with a frictionless pivot, moving in space with respect to the Lagrangian caluations made. [T1][DD1][IM1]
+In the model we assume no air resistance with a frictionless pivot, moving in
+space with respect to the Lagrangian caluations \wss{spell check} made. [T1][DD1][IM1] \wss{You
+  need to explicitly invoke these assumptions when they apply, not just list them.}
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:kinetic}:]
   The kinetic energy will be represented by real-value and will fit the mathematical model and scope. [T2][DD1]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:poten}:]
@@ -485,6 +505,12 @@ In the model we assume no air resistance with a frictionless pivot, moving in sp
 The user knows what the purpose of the simulation model and inputs weights and lengths
 according to possible simulation characteristics. [DD1][IM1][T1][T2][T3][T4]
 \end{itemize}
+
+\wss{Don't you need the assumption that the angles are small enough that sin
+  theta equals theta?}
+
+\wss{I believe you should have an assumptions that the connecting rods are
+  massless.}
 
 \newpage
 
@@ -514,10 +540,17 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
   \hline
   Source & [6]\\
   \hline
-  Ref.\ By & [A1][A4]\\
+  Ref.\ By & [A1][A4] \wss{Use cross-references to generate these, rather than hardcoding.}\\
   \hline
 \end{tabu}
 \end{minipage}\\
+
+\wss{How is this equation derived?}
+\wss{I would think you would have theoretical models on kinetic energy and
+  potential energy, defined in an abstract way, so that they would be useful for
+  other problems.}
+\wss{These models are for a double pendulum, but the problem is supposed to have
+  more than two pendula.}
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -596,6 +629,7 @@ $$P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 \end{tabu}
 \end{minipage}\\
 
+\wss{This isn't enough information for me to understand what a Poincar\'{e} map is.}
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
@@ -631,6 +665,8 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 \end{tabu}
 \end{minipage}\\
 
+\wss{I don't know what this means/}
+
 \subsubsection{Instance Models} \label{sec_instance}    
 
 This section transforms the problem defined in problem description into 
@@ -660,6 +696,15 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 \end{tabu}
 \end{minipage}\\
 
+\wss{The instance model is the most refined version of your problem that is
+  closest to the eventual code.  I don't understand how the above IM fits in to
+  this.  If anything, isn't this a data definition?  Why is it even necessary?
+  Are you using interval arithmetic?  I would think the ODEs that you are going
+  to solve are your IMs.  Your theoretical models look more like IMs.  Your
+  theoretical models could then be replaced with more abstract versions of the
+  general concepts of Lagrangian etc.  The theoretical models are supposed to be
+  something that could be reused in a different project.}
+
 \subsubsection{Data Constraints} \label{sec_DataConstraints}    
 
 The data constraints on the input and output variables, respectively.  
@@ -677,11 +722,21 @@ input if one were performing an uncertainty quantification exercise.
 \item Constraint on gravity: g = $9.8 m/s^2$
 \end{itemize}
 
+\wss{What about the constraint that your lengths have to be positive?  Are there
+  any bounds on the initial angles?  Aren't they supposed to be small?  What
+  about your masses?}
+
 \subsubsection{Properties of a Correct Solution}
 
 \noindent
 A correct solution must satisfy the system of non-linear equations described. 
 The user will also be able to judge the results based on the knowledge about the model and input.
+
+\wss{The properties here should be something in addition to meeting the
+  requirements.  Meeting the requirements is a given.  We are interested here in
+  identifying things that should be true, but that are independent of the
+  requirements.  In your case, a correct solution should conserve energy.  The
+  energy at the start should be maintained as the simulation proceeds.}
 
 \newpage
 \section{Requirements}
@@ -696,19 +751,24 @@ qualities that the software is expected to exhibit.
 \noindent \begin{itemize}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program will 
-  take the following inputs:
-  \begin{enumerate} \item The initial mass of the weights. 
-                    \item The inital length of the rods.
+  take the following inputs: \wss{It would be nice to use symbols to represent
+    the inputs.  You also want a way to identify how many massess you have.}
+  \begin{enumerate} \item The initial mass of the weights. \wss{This is a
+      confusing sentence, since mass and weight are different concepts.  If you
+      use a symbol, like $m_i$ then you could probably simplify the presentation.}
+                    \item The inital \wss{spell check} length of the rods.
   \end{enumerate}
-  
+                    
 \item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program will 
 calculate the kinetic and potential energy after the user has set the initialization 
-parameters of input from the user have been entered
+parameters of input from the user have been entered.
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program will 
 calculate the Lagrangian (and Hamiltonian (differential on Lagrangian) if needed) after the 
 user has set the initialization parameters of input have been entered and the kinetic 
-and potential energy of the system as whole has been calculated
+and potential energy of the system as whole has been calculated. \wss{This is
+  the only time you mention the Hamiltonian.  You should define it in your
+  documentation, or not mention it.}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funplot}:] \progname program
 will ensure that the inputs do not violate the constraints specified in the Data Contraints section:
@@ -730,7 +790,8 @@ portability.
 
 \begin{itemize}
 \item[NF\refstepcounter{nfreqnum}\thenfreqnum:] \progname program should be able to have axis
-labels \& 3D cartesian coordinates.
+labels \& 3D cartesian coordinates. \wss{This isn't actually a nonfunctional
+  requirement; it is a functional requirement.}
 \end{itemize}
 
 \subsubsection*{Correctness}
@@ -782,6 +843,10 @@ that will rely on \progname
 
 \subsubsection*{Portability}
 The portability of the \progname will be multi-platform.
+
+\wss{Your NFRs are ambiguous.  You might have been better off with the blanket
+  statement in the first paragraph, since the list of qualities brings attention
+  to the fact that what you have stated is not measurable.}
 
 \newpage
 
@@ -937,6 +1002,9 @@ Differential-Algebraic Equations by Taylor Series
 See bib file that doesn't work for me for full citation.
 \end{itemize}
 
+\wss{Use BibTex.  You can follow the example in the sample document in the blank
+project template.  To start with, you can see whether you can compile that
+document.}
 \bibliographystyle {plainnat}
 \bibliography {../../ReferenceMaterial/References}
 
