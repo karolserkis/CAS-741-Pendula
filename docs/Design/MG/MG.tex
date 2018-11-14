@@ -180,11 +180,15 @@ decisions will be changed.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
+  a source of input data external to the software. \wss{You can remove this UC.
+    I know it was in the template, but it doesn't make sense to me.  I've
+    removed it from the template.}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The goal statements of \progname
 (see SRS; extensions to SRS are still possible, but current goals should not change
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucData}:] The data types (real number)
-interface device with user
+interface device with user \wss{This looks like two unlikely changes in one.
+  The physics of the problem is for real numbers, so I'm not sure you need to
+  say this.  You already mention input devices in the first UC.}
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -282,7 +286,8 @@ selected.
 \subsubsection{\progname{}Control Module (M2)}
 \label{MG_Control}
 \begin{description}
-\item[Secrets:] Execution flow of \progname{}.
+\item[Secrets:] Execution flow of \progname{}. \wss{At the end of a sentence you
+    want to just use progname without the parentheses.} 
 \item[Services:] Calls the different modules in the appropriate order.
 \item[Implemented By:] \progname{}
 \end{description}
@@ -290,7 +295,10 @@ selected.
 \subsubsection{\progname{}GUI (M3)}
 \label{MG_GUI}
 \begin{description}
-\item[Secrets:] Methods to interact with user to make run \progname{}.
+\item[Secrets:] Methods to interact with user to make run \progname{}. \wss{Are
+    you combining your GUI and your control?  You might want to consider the
+    Model View Controller pattern.  This would mean that the view wouldn't
+    actually control anything.}
 \item[Services:] Serves as interface between the user and the software through 
 the hardware by outputting calculation results and collecting user information 
 (user inputs) for the calculation modules. 
@@ -360,6 +368,7 @@ windows, plotting, entry fields to interact with a user.
 \begin{description}
 \item[Secrets:] Algorithm to simulate the plot trajectory of the chain of pendula.
 \item[Services:] Simulates the chain of pendula in space using the Lagrangiam
+  \wss{spell check}
 and the Hamiltonian.
 \item[Implemented By:] \progname{}
 \end{description}
@@ -425,8 +434,15 @@ because they use modules from the lower levels.
 \label{FigUH}
 \end{figure}
 
+\wss{The uses relation is confusing.  The input module should be ``used by'' other
+  modules, not using them.  I would think the input module would be lower in the
+hierarchy.  I don't know why the trajectory simulation module uses the gui
+module?  Maybe this will be clear to me (and you) when you write the MIS.}
+
 %\section*{References}
-\subsection*{References}\label{ssec:ref}
+\subsection*{References}\label{ssec:ref} \wss{You shouldn't do this manually,
+  especially since you use BibTeX in the next section.  The new references can
+  be added to your .bib file and everything will be generated automatically.}
 \begin{itemize}
 \item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
 \item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
