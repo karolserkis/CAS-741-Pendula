@@ -35,15 +35,16 @@ urlcolor=cyan          % color of external links
 
 \input{../../Comments}
 
-\newcommand{\progname}{Program Name}
+% Used so that cross-references have a meaningful prefix
+\newcommand{\progname}{Multi-Pendulum Simulation }
 
 \begin{document}
 
-\title{Module Interface Specification for ...}
-
-\author{Author Name}
-
+\title{CAS 741: Module Interface Specification\\[10pt]\Large Dynamical Systems: \progname}
+\author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
+\href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
+
 
 \maketitle
 
@@ -51,11 +52,10 @@ urlcolor=cyan          % color of external links
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+November 22, 2018 & 1.0 &  First full draft for submission\\
 \bottomrule
 \end{tabularx}
 
@@ -63,9 +63,32 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at 
+\href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
+\wss{give url}
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+\wss{Also add any additional symbols, abbreviations or acronyms}\\
+The symbols are listed in alphabetical order.\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  A & Assumption\\
+  DD & Data Definition\\
+  GD & General Definition\\
+  GS & Goal Statement\\
+  IM & Instance Model\\
+  LC & Likely Change\\
+  NF & Non-Functional Requirement\\
+  MIS & Module Interface Specification\\
+  PS & Physical System Description\\
+  R & Requirement\\
+  SRS & Software Requirements Specification\\
+  T & Theoretical Model\\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -77,26 +100,31 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
+The following document details the Module Interface Specifications for the \progname project
 \wss{Fill in your project name and description}
 
 Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+and Module Guide. The full documentation and implementation can be
+found at: \\\url{https://github.com/karolserkis/CAS-741-Pendula}.  \wss{provide the url for your repo}
 
 \section{Notation}
 
 \wss{You should describe your notation.  You can use what is below as
   a starting point.}
 
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
+The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995}\wss{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
-multiple assignment statement and conditional rules follow the form $(c_1
-\Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
+\cite{GhezziEtAl2003}\wss{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
+\citet{HoffmanAndStrooper1995}\wss{HoffmanAndStrooper1995}.  
+For instance, the symbol := is used for a multiple assignment statement and conditional rules follow the form 
+$(c_1 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.\\\\
+(Karol) I am also using \href{https://proofwiki.org/wiki/Symbols:R}{this link} for 
+now.\\
 
-The following table summarizes the primitive data types used by \progname. 
+The following table summarizes the primitive data types used by \progname and the symbols used in this document.
+The choice of symbols was made to be consistent with calculus, ordinary
+differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical
+spaces are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.)
 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
@@ -114,10 +142,10 @@ real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
+The specification of \progname uses some derived data types: sequences, strings, and
 tuples. Sequences are lists filled with elements of the same data type. Strings
 are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+different types. In addition, \progname uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -135,18 +163,16 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & \progname Control Module\\
+& \progname GUI Module\\
+& User Input Parameters Module\\
+& Data Structure Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision} & {Generic Trajectory Simulation GUI Module}\\
+& Generic GUI/Plot Module\\
+& Lagrangian Module\\
+& Hamiltonian Module\\ 
 \bottomrule
 
 \end{tabular}
@@ -154,8 +180,51 @@ The following table is taken directly from the Module Guide document for this pr
 \label{TblMH}
 \end{table}
 
+
+
 \newpage
-~\newpage
+
+\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+\subsection{Module}
+
+\wss{Short name for the module}
+
+\subsection{Uses}
+
+
+\subsection{Syntax}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\wss{accessProg} & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \wss{accessProg}():
+\begin{itemize}
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
+\end{itemize}
 
 \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
   cross-referencing}
@@ -201,8 +270,38 @@ The following table is taken directly from the Module Guide document for this pr
 
 \newpage
 
+%\section*{References}
+\subsection*{References}\label{ssec:ref} \wss{You shouldn't do this manually,
+  especially since you use BibTeX in the next section.  The new references can
+  be added to your .bib file and everything will be generated automatically.}
+\begin{itemize}
+\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
+\item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
+\item{[3]} Pendulum (mathematics)
+\\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
+\item{[4]} Double Pendulum
+\\\url{https://en.wikipedia.org/wiki/Double_pendulum}\item{[4]}
+Differential-Algebraic Equations by Taylor Series
+\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
+\item{[5]} Multi-body Lagrangian Simulations
+\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
+\item{[6]} The double pendulum: Lagrangian formulation
+\\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
+\item{[7]} Poincaré map
+\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
+\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
+ACM, vol. 15, pp. 1053-1058, December 1972.
+\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
+in International Conference on Software Engineering, pp. 408-419, 1984.
+\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
+Proceedings of the 3rd international conference on Software engineering, \\
+(Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
+\item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
+See bib file that doesn't work for me for full citation.
+\end{itemize}
+
 \bibliographystyle {plainnat}
-\bibliography {../../../ReferenceMaterial/References}
+\bibliography{../../../ReferenceMaterial/References}
 
 \newpage
 
