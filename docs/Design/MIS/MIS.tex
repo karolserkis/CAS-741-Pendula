@@ -415,8 +415,8 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-verify\_userInput & int, str & - & - \\
-calc\_datastruct & int, str & - & - \\
+verify\_Input & int, str & - & - \\
+data\_struct & int, str & - & - \\
 gui\_trajsim & - & GUI object & - \\
 gui\_plot & - & GUI object (Poincar\'{e}) & - \\
 \hline
@@ -443,7 +443,7 @@ data : object
 
 \subsubsection{Access Routine Semantics}
 
-\noindent verify\_userInput():
+\noindent verify\_Input():
 \begin{itemize}
 \item transition: \wss{if appropriate} 
 \item output: \wss{if appropriate} 
@@ -451,7 +451,7 @@ data : object
 ($\exists \mathbb{I}:I_{\text{calc}} \notin \mathbb{R})$ \& $\Rightarrow$ NotReal\\\wss{if appropriate}
 \end{itemize}
 
-\noindent calc\_datastruct(mps\_input):
+\noindent data\_struct(mps\_input):
 \begin{itemize}
 \item transition: mps\_input is the user input that is entered into the GUI. The input is used to initialize the data structure.
 \item output: \wss{if appropriate} 
@@ -754,6 +754,7 @@ coresponding modules.
 \item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
 \end{itemize}
 
+
 \wss{A module without environment variables or state variables is unlikely to
   have a state transition.  In this case a state transition can only occur if
   the module is changing the state of another module.}
@@ -830,6 +831,14 @@ Plot{\_}Poincar\'{e}: GUI object\\
 \item transition: \wss{if appropriate} 
 \item output: To mps\_gui(mps\_datastruct, gui\_trajsim, gui\_plot) or the generic\_plot module \wss{if appropriate} 
 \item exception: WarnOutOfBounds (warn when gui\_trajsim are invalid) \wss{if appropriate} 
+\end{itemize}
+
+\noindent gui\_plot(mps\_datastruct, mps\_input):
+\begin{itemize}
+\item transition: mps\_datastruct is a module that takes the mps\_input and thus the program gui\_plot will 
+be prepared for the lagrangian and hamiltonian calculations done by their coresponding modules.
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
 \end{itemize}
 
 \wss{A module without environment variables or state variables is unlikely to
