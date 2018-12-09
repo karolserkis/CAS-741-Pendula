@@ -109,7 +109,8 @@ found at: \\\url{https://github.com/karolserkis/CAS-741-Pendula}.  \wss{provide 
 \section{Notation}
 
 \wss{You should describe your notation.  You can use what is below as
-  a starting point.}
+  a starting point.}  \wss{You shouldn't keep my original comments in your
+  version.  The SS comments for the references really look odd.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995}\wss{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -206,7 +207,7 @@ mps\_control
 
 mps\_gui (M3, Section 7)\\
 mps\_input (M4, Section 8)\\\\
-Processing modules:\\
+Processing modules: \wss{what are processing modules?  I'm not sure about this terminology}\\
 mps\_lagrang (M5, Section 9), mps\_hamil (M6, Section 10)\\
 mps\_datastruct (M7, Section 11)\\
 generic\_plot (M8, Section 12), mps\_trajplotsim (M9, Section 13) 
@@ -243,6 +244,9 @@ The \progname Control Module uses the events in the \progname GUI to use the pro
 	\item mps\_hamil : calc (see Section 10)
 \end{itemize}
 
+\wss{init is not a type, either is calc?  How am I supposed to read this?  State
+  variables are specified as a name and a type.}
+
 \subsubsection{Environment Variables}
 
 \wss{This section is not necessary for all modules.  Its purpose is to capture
@@ -256,10 +260,10 @@ The \progname Control Module uses the events in the \progname GUI to use the pro
 
 \subsubsection{Access Routine Semantics}
 
-\noindent run\_mps(mps\_input):
+\noindent run\_mps(mps\_input) \wss{This doesn't match the int, str specified above?}:
 \begin{itemize}
 \item transition: The Multi Pendulum Simulation is initialized and the data structure through the modules
-for calculation (Lagrangian \& Hamilonian). The result is then passed to the plot/simulation/output modules.
+for calculation (Lagrangian \& Hamilonian \wss{spell check!}). The result is then passed to the plot/simulation/output modules.
 \item output: None \wss{if appropriate} 
 \item exception: None \wss{if appropriate} 
 \end{itemize}
@@ -277,6 +281,9 @@ for calculation (Lagrangian \& Hamilonian). The result is then passed to the plo
   They are not necessarily something that is going to be implemented
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
+
+\newpage \wss{A new page between modules makes the document a more convenient
+  reference document.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MIS of \progname{}GUI (M3)} \label{Module} \wss{Use labels for
@@ -323,7 +330,7 @@ gui\_plot & - & GUI object (Poincar\'{e}) & - \\
 \subsection{Semantics}
 
 The \progname process flow is initialized buy user through the GUI. 
-The user triggeres the events that start the selected processing step.
+The user triggeres \wss{spell check} the events that start the selected processing step.
 
 \subsubsection{State Variables}
 
@@ -335,6 +342,8 @@ None
 button{\_}Input: GUI object\\
 button{\_}TrajSim: GUI object\\
 button{\_}Poincar\'{e}: GUI object\\
+
+\wss{More words to describe these environment variables would be helpful.}
 
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
@@ -400,7 +409,8 @@ mps\_input
 \subsection{Uses}
 
 mps\_gui (M3, Section 7)\\
-mps\_datastruct (M7, Section 11)
+mps\_datastruct (M7, Section 11) \wss{The modules in the uses section should
+  actually be used in the specification.  I don't see where these are actually invoked.}
 
 \subsection{Syntax}
 
@@ -427,11 +437,18 @@ gui\_plot & - & GUI object (Poincar\'{e}) & - \\
 
 \subsubsection{State Variables}
 
-data : object
+data : object \wss{What is this?  object is not a type.  What data are you storing?}
 
 \subsubsection{Environment Variables}
 
 \noindent Plot{\_}TrajSim: GUI object\\
+\wss{Describe this enviro variable.  Are you taking the data fields from
+  corresponding fields in the GUI object?}
+\wss{You have really integrated the GUI into your design.  It is better if you
+  almost don't mention the GUI with the idea that the modules can be implemented
+  by any interface.  Maybe a model view controller pattern would work in your
+  case?}
+
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
   device driver, screen interface, keyboard, file, etc.}
@@ -448,12 +465,16 @@ data : object
 \item transition: \wss{if appropriate} 
 \item output: \wss{if appropriate} 
 \item exception: Check of int or str value out of bounds: 
-($\exists \mathbb{I}:I_{\text{calc}} \notin \mathbb{R})$ \& $\Rightarrow$ NotReal\\\wss{if appropriate}
+($\exists \mathbb{I}:I_{\text{calc}} \notin \mathbb{R})$ \& $\Rightarrow$
+NotReal \wss{I have no idea how to read this.  Are you just checking the type?
+  You don't need to do that.  Why are reals mentioned?} \\\wss{if appropriate}
 \end{itemize}
 
 \noindent data\_struct(mps\_input):
 \begin{itemize}
-\item transition: mps\_input is the user input that is entered into the GUI. The input is used to initialize the data structure.
+\item transition: mps\_input is the user input that is entered into the GUI. The
+  input is used to initialize the data structure. \wss{What is the data
+    structure?  The MIS is where you make decisions about this.}
 \item output: \wss{if appropriate} 
 \item exception: \wss{if appropriate} 
 \end{itemize}
@@ -573,6 +594,9 @@ calc\_lagrang & int, str & long, str & - \\
   They are not necessarily something that is going to be implemented
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
+
+\wss{For the Lagrangian and Hamiltonian modules, I expected to see equations,
+  like those from your SRS.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MIS of Hamiltonian Module (M6)} \label{Module} \wss{Use labels for
@@ -715,10 +739,15 @@ mps\_gui & GUI object & - & - \\
 
 \subsubsection{State Variables}
 
+\wss{the data structure doesn't have state variables?}
+
 \subsubsection{Environment Variables}
 
 \noindent Plot{\_}TrajSim: GUI object\\
 Plot{\_}Poincar\'{e}: GUI object\\
+
+\wss{Why does the data structure use gui objects?  As mentioned previously, the
+  GUI connects to too many modules.  Most modules should be independent of the interface.}
 
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
@@ -837,7 +866,8 @@ Plot{\_}Poincar\'{e}: GUI object\\
 \begin{itemize}
 \item transition: mps\_datastruct is a module that takes the mps\_input and thus the program gui\_plot will 
 be prepared for the lagrangian and hamiltonian calculations done by their coresponding modules.
-\item output: \wss{if appropriate} 
+\item output: \wss{if appropriate}  \wss{if it isn't appropriate, you should
+    remove this field.}
 \item exception: \wss{if appropriate} 
 \end{itemize}
 
