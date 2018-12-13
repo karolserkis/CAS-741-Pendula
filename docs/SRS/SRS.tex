@@ -1,28 +1,28 @@
 \documentclass[12pt]{article}
 
+\usepackage{hyperref}
 \usepackage{amsmath, mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{colortbl}
 \usepackage{xr}
-\usepackage{hyperref}
 \usepackage{longtable}
 \usepackage{xfrac}
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{siunitx}
-\usepackage{booktabs}
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{tabu}
 \usepackage{verbatim}
-\usepackage[round]{natbib}
 \usepackage{url}
 \usepackage{tikz}
 \usepackage{enumitem}
 \usepackage{extarrows}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
 \usetikzlibrary{shapes.geometric, arrows}
 
 \captionsetup{belowskip=12pt,aboveskip=4pt}
@@ -46,6 +46,7 @@
 }
 
 \input{../Comments}
+\input{../Common}
 
 
 \newcommand{\sskip}{\vskip 1mm}
@@ -95,9 +96,6 @@
 \newcommand{\sref}[1]{\S~\ref{#1}}
 
 \usepackage{fullpage}
-
-% Used so that cross-references have a meaningful prefix
-\newcommand{\progname}{Multi-Pendulum Simulation }
 
 \begin{document}
 \pagenumbering{gobble}
@@ -160,12 +158,12 @@ $$x_1 = l_1 \sin\theta_1 \quad\quad y_1 = -l_1 \cos\theta_1$$
 $$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
 -l_2\cos\theta_2$$
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=175px]{doublepend.PNG}
 \caption{A simple gravity double pendulum (model assumes no friction or air
 resistance)[1]}
-	\label{fig:maxresdefault}
+	\label{fig:doublepend}
 \end{figure}
 
 \wss{All figures should be referred to by your text at some point.}
@@ -178,7 +176,7 @@ Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
 employedas the unit system. In addition to the basic units, several derived
 units are
 used as described below.  For each unit, the symbol is given followed by a
-description of the unit and the SI name.\\
+description of the unit and the SI name.
 
 \renewcommand{\arraystretch}{1.2}
 \begin{center}
@@ -197,10 +195,8 @@ description of the unit and the SI name.\\
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units. The choice of symbols was made to be consistent with calculus,
-ordinary
-differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical
-spaces
+their units. The choice of symbols was made to be consistent with calculus, ordinary
+differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical spaces
 are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.) as well as some 
 additional spaces defined in the following table. 
 ~\newline
@@ -238,7 +234,6 @@ $P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré map
 \\
 \bottomrule
 \end{longtable*}
-
 \wss{Poincaré in \LaTeX{} is written as Poincar\'{e}}
 \newpage
 \subsection{Abbreviations and Acronyms}
@@ -262,7 +257,7 @@ The symbols are listed in alphabetical order.\\
   SRS & Software Requirements Specification\\
   T & Theoretical Model\\
   \bottomrule
-\end{tabular}\\
+\end{tabular}
 
 \newpage
 
@@ -277,6 +272,7 @@ This documents is an SRS for the \progname \wss{Your prog name isn't exactly
 directory for this project can be found at GitHub:
 \href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}\\
 This SRS template is based on Smith and Lai(2005); Smith et al. (2007)
+(ex. based on the principle of information hiding~\citep{Parnas1972a})
 [8]. \wss{Use BibTex and citation command.  Follow the example in the blank
   project template}
 
@@ -543,7 +539,7 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
   Ref.\ By & [A1][A4] \wss{Use cross-references to generate these, rather than hardcoding.}\\
   \hline
 \end{tabu}
-\end{minipage}\\
+\end{minipage}
 
 \wss{How is this equation derived?}
 \wss{I would think you would have theoretical models on kinetic energy and
@@ -578,8 +574,7 @@ $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
   Ref.\ By & [A2][A4]\\
   \hline
 \end{tabu}
-\end{minipage}\\
-
+\end{minipage}
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -627,7 +622,7 @@ $$P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   Ref.\ By & [A4]\\
   \hline
 \end{tabu}
-\end{minipage}\\
+\end{minipage}
 
 \wss{This isn't enough information for me to understand what a Poincar\'{e} map is.}
 
@@ -663,7 +658,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   Ref.\ By & T1,T2,T3,T4,T5\\
   \hline
 \end{tabu}
-\end{minipage}\\
+\end{minipage}
 
 \wss{I don't know what this means/}
 
@@ -694,7 +689,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   Ref.\ By & T1,T2,T3,T4,T5\\
   \hline
 \end{tabu}
-\end{minipage}\\
+\end{minipage}
 
 \wss{The instance model is the most refined version of your problem that is
   closest to the eventual code.  I don't understand how the above IM fits in to
@@ -904,7 +899,7 @@ with an ``X'' may have to be modified as well.
 %\end{landscape}
 %}
 
-\begin{table}[H]
+\begin{table}[h]
 	\centering
 	\label{Table:trace}
 	\begin{tabular}{|c|c|c|c|c|c|c|}
