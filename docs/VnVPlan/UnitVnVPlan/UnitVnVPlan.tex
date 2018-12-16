@@ -125,7 +125,8 @@ December 5, 2018 & 1.0 &  First full draft for submission\\
 
 See SRS Documentation at 
 \href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
-\wss{give url}
+\wss{give url} \wss{You should remove these comments, so that the new comments
+  that are added are easier to see.}
 
 \wss{Also add any additional symbols, abbreviations or acronyms}\\
 The symbols are listed in alphabetical order.\\
@@ -155,7 +156,7 @@ The symbols are listed in alphabetical order.\\
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
-employedas the unit system. In addition to the basic units, several derived
+employedas \wss{proof read} the unit system. In addition to the basic units, several derived
 units are
 used as described below.  For each unit, the symbol is given followed by a
 description of the unit and the SI name.\\
@@ -254,6 +255,10 @@ The modules that might be tested for under the Unit VnV plan that are traced to 
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory Simulation GUI Module (described in MG$\_$SIM)
 \end{description}
 
+\wss{You should leave the hardware hiding module out of scope.  The control
+  module is usually also left out of scope, since it is covered in the system
+  vnv plan.}
+
 %\subsection{Overview of Document}
 
 \section{Plan}
@@ -287,11 +292,14 @@ this process are detailed in the following link:
 
 \subsection{Non-Testing Based Verification}
 
-The non-testing based verfication will involve a code inspection by myself and
-Prof Smith during final submission. He will inspect each of the modules to guarentee that the 
-physical equations have been implemented succesfully, verify that the software 
+The non-testing based verfication \wss{spell check} will involve a code inspection by myself and
+Prof Smith during final submission. He will inspect each of the modules to
+guarentee \wss{spell check} that the 
+physical equations have been implemented succesfully, \wss{spell check} verify that the software 
 is designed to be maintainable and manageable and complete the 
 two surveys in the appendix.\\
+\wss{I will be reviewing your final documentation (for the purpose of grading),
+  but the scope of the review you are proposing for me is beyond the time I have available.}
 \wss{List any approaches like code inspection, code walkthrough, symbolic
   execution etc.  Enter not applicable if that is the case.}
 
@@ -313,7 +321,7 @@ as all of the other modules rely on these quantities.
 \begin{enumerate}				
 \item{test-InParams\\}
 
-Type: Automaic
+Type: Automaic \wss{spell check}
 
 Initial State: 
 
@@ -337,6 +345,11 @@ Ex. units for length, mass and time cannot be negative.
 
 How test will be performed: Integer numbers will be inputed in the environment. An assert statement will return true if these 
 are equal.
+
+\wss{The output field should be the expected output, not an assert statement.  I
+  do not know how to do your test case.  There should be enough information with
+a test case that someone could independently write it.  You also aren't using
+the distinction between the environment variables and state variables correctly.}
     
 \end{enumerate}
 
@@ -349,7 +362,7 @@ as all of the other modules rely on these quantities.
 \begin{enumerate}				
 	\item{test-Lagrangian\\}
 	
-	Type: Automaic
+	Type: Automaic \wss{spell check}
 	
 	Initial State: 
 	
@@ -391,7 +404,7 @@ as all of the other modules rely on these quantities.
 \begin{enumerate}				
 	\item{test-Hamiltonian\\}
 	
-	Type: Automaic
+	Type: Automaic \wss{spelling!}
 	
 	Initial State: 
 	
@@ -420,7 +433,16 @@ $$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
 $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
 \dot{\theta}_1^2 + l_2^2 \dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2
 \cos(\theta_1 - \theta_2)\right]$$
-			
+
+\wss{Your tests are not complete.  You say that you will check whether the
+  pendula behaves as expected, but you don't say how this will be determined.
+  You give equations, but not how they will be compared.  If you are looking at
+  time histories, maybe you can calculate the norm of the difference between the
+calculated and expected time histories.  Another option is to compare to Dr.\
+Nedialkov's software.  Again, you could calculate the norm of the residual of
+the difference between your calculations and Dr.\ Nedialkov's software and
+yours.}
+
 \end{enumerate} 
 		
 \subsubsection{Plotting Module} 
@@ -451,7 +473,8 @@ $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
 	output that corresponds to the reference material and examples.
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resmble the examples in my references. See references [1] and [7]
+	they resmble \wss{spell check} the examples in my references. See
+        references [1] and [7] \wss{use BibTeX - similar comment elsewhere}
 \end{enumerate} 
 
 \begin{enumerate}				
@@ -622,7 +645,8 @@ Their values are defined in this section for easy maintenance.
 \subsection{Software Verification Checklist} 
 \label{softwarevercheck}
 \begin{itemize}
-	\item Did any of the inputs you entered provide suprising results? If yes, 
+	\item Did any of the inputs you entered provide suprising \wss{spell
+            check} results? If yes, 
 	what were they?
 	\item Were all of the plots legible? 
 \end{itemize} 
@@ -632,7 +656,7 @@ Their values are defined in this section for easy maintenance.
 	\item Were you able to setup and execute the program using the comment
 	and makefile instructions alone, or did you require additional troubleshooting/help? 
 	If any steps were unclear, please explain how they might be improved.
-	\item Did the program accept your inital input?
+	\item Did the program accept your inital \wss{spell check} input?
 	\item Did the program output the trajectory plot simulation?
 	\item Did the program run the simulation to its completion and smoothly without issues?
 	\item Did the plot of pendulum movement pattern and/or Poincar\'{e} map?
@@ -662,7 +686,12 @@ in International Conference on Software Engineering, pp. 408-419, 1984.
 Proceedings of the 3rd international conference on Software engineering, \\
 (Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
 \item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
-See bib file that doesn't work for me for full citation.
+See bib file that doesn't work for me for full citation. \wss{The example in the
+  blank project template works.  Following that example should have worked for
+  you as well.}
 \end{itemize}
+
+\wss{I haven't tracked them down, but \LaTeX tells me that you have unresolved
+  references.}
 
 \end{document}
