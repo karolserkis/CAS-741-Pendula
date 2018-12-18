@@ -1,7 +1,7 @@
 # CAS-741-Pendula
 
 Karol Serkis
-CAS 741 Project
+CAS 741 Project - Multi-Pendulum Simulation (MPS)
 
 # Documentation
 
