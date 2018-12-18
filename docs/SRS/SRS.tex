@@ -111,6 +111,7 @@
 
 \pagenumbering{roman}
 \tableofcontents
+\listoffigures
 
 \clearpage
 
@@ -143,12 +144,8 @@ December 18, 2018 & Karol Serkis & SRS \& bibliography fixed,
 
 \section{Reference Material}
 
-This section records information for easy reference: (Units, constants, 
-symbols, abbreviations, and acronyms)
-
-\subsection{Notation}
-
-This section describes the notation conventions used in this document.
+This section records information for easy reference: \\
+(Units, constants, symbols, abbreviations, and acronyms)
 
 \subsubsection{Mathematical Notation}
 
@@ -161,13 +158,24 @@ $$x_1 = l_1 \sin\theta_1 \quad\quad y_1 = -l_1 \cos\theta_1$$
 $$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
 -l_2\cos\theta_2$$
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\centering
-	\includegraphics[width=175px]{doublepend.PNG}
+	\includegraphics[width=170px]{doublepend.PNG}
 \caption{A simple gravity double pendulum~\citep{SzuminskiOlsztyn2012}}
 	\label{fig:doublepend}
 \end{figure}
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=150px]{Double-pendulum-rigid.png}
+	\caption{An example of rigid-body double compound 
+	pendulum~\citep{DoublePendulum}}
+	\label{fig:multipend}
+\end{figure}
+
+Compound pendulum: mass is distributed along its length and the center 
+of mass of each limb is at its midpoint, and the limb has a moment of inertia 
+of $I = \frac{1}{12}ml^2$ about that point~\cite{DoublePendulum}.
 \newpage
 
 \subsection{Table of Units}
@@ -251,6 +259,7 @@ The symbols are listed in alphabetical order.\\
   GS & Goal Statement\\
   IM & Instance Model\\
   LC & Likely Change\\
+  MPSim & Multi-Pendulum Simulation\\
   NF & Non-Functional Requirement\\
   PS & Physical System Description\\
   R & Requirement\\
@@ -419,21 +428,18 @@ resting state.
 pivot position origin $(x,y,z)$
 \end{description}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=180px]{simple-pend.png}
-\caption{A simple gravity pendulum where the model assumes no friction or air
-resistance}
-	\label{fig:maxresdefault}
-\end{figure}
-
 \begin{description}
 \item[Lagrangian:] The Lagrangian equation $L=T-V$, where $T$ and $V$ are 
 the kinetic and potential energies of the system respectively.
-\item[Poincaré map:] Starting with the Poincaré section of the \progname 
-in 3D space, the Poincaré map $P$ is a projection from point $x$ onto point 
-$P(x)$ transforming the 3D space into a 2D projection diagram plot.
 \end{description}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=190px]{Pendulum_phase_PE.png}
+	\caption{Potential energy and phase portrait of a simple 
+	pendulum~\citep{WikipediaPendulum}}
+	\label{fig:PE-pend}
+\end{figure}
 
 \subsubsection{Physical System Description}
 

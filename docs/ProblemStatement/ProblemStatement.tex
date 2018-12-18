@@ -99,7 +99,7 @@ The proposed software is to develop a multi-platform equivalent solution that
 only focuses on multi-pendulum simulations and tracking the chaotic motion of
 the system. It will allow users to track kinetic and potential energy over time 
 using ODE/DAE initial value problem solvers, and display a simulation showing
-the animated trajectory of the pendulums~\cite{DAETS}. To make things simpler
+the animated trajectory of the pendulums~\cite{DAETS}.To make things simpler
 to animate and calculate we can restrict to a rigid-body system, where the mass 
 of each pendulum rod is located at the center of gravity of each 
 rod~\cite{DoublePendulum}.
@@ -107,10 +107,14 @@ rod~\cite{DoublePendulum}.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=220px]{Double-pendulum-rigid.png}
-	\caption{An example of rigid-body double 
+	\caption{An example of rigid-body double compound 
 	pendulum~\cite{DoublePendulum}}
 	\label{fig:multipend}
 \end{figure}
+
+In the compound pendulum, mass is distributed along its length and the center 
+of mass of each limb is at its midpoint, and the limb has a moment of inertia 
+of $I = \frac{1}{12}ml^2$ about that point~\cite{DoublePendulum}.
 
 \section*{Context}
 \subsection*{Environment}
