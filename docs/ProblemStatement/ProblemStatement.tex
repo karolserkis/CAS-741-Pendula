@@ -19,7 +19,7 @@
   {\normalfont\bfseries}{\thesection}{1em}{{#1}}
 
 \title{CAS 741: Problem Statement\\[10pt]\Large Dynamical Systems: 
-Multi-Pendulum }
+Multi-Pendulum Simulation (MPSim)}
 
 \author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}}
 
@@ -43,6 +43,8 @@ Multi-Pendulum }
 September 17, 2018 & Karol Serkis & First revision of document\\
 September 14, 2018 & Karol Serkis & Problem Idea proposed \& discussed with Dr.
 Spencer Smith \\
+December 18, 2018 & Karol Serkis & Problem Statement \& bibliography fixed, 
+\& program name fixed \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -51,31 +53,30 @@ Spencer Smith \\
 
 A simple gravity pendulum has very easy to system to model and consists of a
 weight suspended from a pivot and the weight is given enough space to swing
-freely. To simplify the model we assume no air resistance with a frictionless
-pivot [1]. The model and calculations for the simple gravity pendulum are well
-defined and only require ordinary differential equation (ODE) solvers as well 
-as Lagrangian and/or Hamiltonian mechanics equations.
-[2]. \wss{Are you also assuming a small angle?  Usually that is an assumption
-  made so that sin(theta) is approximately equal to theta.}
+freely. To simplify the model we assume no air resistance and a friction-less
+pivot~\cite{WikiPendulum}. The model and calculations for the simple gravity 
+pendulum are well defined and only require ordinary differential equation (ODE) 
+solvers as well as Lagrangian mechanics equations~\cite{MathPendulum}. Below
+is an example of a single pendulum to demonstrate the idea:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=250px]{simple-pend.png}
-\caption{A simple gravity pendulum where the model assumes no friction or air
-resistance [1]}
+\caption{A simple gravity pendulum: frictionless pivot \& no air 
+resistance~\cite{WikiPendulum}}
 	\label{fig:simplepend}
 \end{figure}
 
 However, once you attach a pendulum to the bottom of another pendulum in the
 case of a double pendulum you have a new system that is dynamic and chaotic and
-requires a set of coupled ordinary differential equation solvers [3]. Once you
-introduce multiple pendula the system becomes chaotic and interesting to model
-and simulate.
+requires a set of coupled ordinary differential equation 
+solvers~\cite{DoublePendulum}. Once you introduce multiple pendulums the system 
+becomes chaotic and interesting to model and simulate.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=220px]{multi-pend.jpg}
-\caption{An example of dynamical and chaoitc system with
-Spring-Mass-Multi-Pendulum [5]}
+	\caption{An example of dynamical and chaoitc system with
+	Spring-Mass-Multi-Pendulum~\cite{MathPendulum}}
 	\label{fig:multipend}
 \end{figure}
 
@@ -84,29 +85,39 @@ A proposed software solution will produce a simulation of a multi-pendulum
 system. Inspiration for this problem came from Dr. Ned Nedialkov's Multi-body
 Lagrangian Simulations using DAETS (Differential-Algebraic Equations by Taylor
 Series). DAETS is a C++ package for solving initial value problems for DAE
-systems [4].
+systems~\cite{DAETS}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=150px]{3pend.jpg}
-	\caption{Simulation of Multi-Pendulum system using DAETS [5]}
+	\caption{Simulation of Multi-Pendulum system using 
+	DAETS~\cite{MathPendulum}}
 	\label{fig:simpendula}
 \end{figure}
 
 The proposed software is to develop a multi-platform equivalent solution that
 only focuses on multi-pendulum simulations and tracking the chaotic motion of
-the system. It will allow users to generate diagrams and plot trajectories over
-time using two different ODE/DAE initial value problem solvers [4]. 
-Multiple solvers can be compared for performance and accuracy.
- \wss{Rather than say ``If time allows,''  you can just make this part
-  of the original project.  If it has to be dropped out, we can ``fake'' this
-  document later, or simply modify your requirements document.}
+the system. It will allow users to track kinetic and potential energy over time 
+using ODE/DAE initial value problem solvers, and display a simulation showing
+the animated trajectory of the pendulums~\cite{DAETS}. To make things simpler
+to animate and calculate we can restrict to a rigid-body system, where the mass 
+of each pendulum rod is located at the center of gravity of each 
+rod~\cite{DoublePendulum}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=220px]{Double-pendulum-rigid.png}
+	\caption{An example of rigid-body double 
+	pendulum~\cite{DoublePendulum}}
+	\label{fig:multipend}
+\end{figure}
 
 \section*{Context}
 \subsection*{Environment}
 The simulation software will be created with multi-platform support in mind and
 be compatible with Windows 10, Mac OS, Linux, etc. In order to achieve this,
-Python and/or MATLAB will be used for development of the software.
+Python will be used for development and implementation of the simulation
+software.
 
 \subsection*{Stakeholders}
 Specific stakeholders include:
@@ -118,16 +129,27 @@ Specific stakeholders include:
 \item Individuals studying or working in fields related to physics
 \end{itemize}
 
-\subsection*{References}
-\begin{itemize}
-\item{[1]} Pendulum\\\url{https://en.wikipedia.org/wiki/Pendulum}
-\item{[2]} Pendulum (mathematics)
+\newpage
+\begin{thebibliography}{9}
+\bibitem{WikiPendulum} 
+Wikipedia - Pendulum, \\\url{https://en.wikipedia.org/wiki/Pendulum}
+
+\bibitem{MathPendulum} 
+Wikipedia - Pendulum (mathematics), 
 \\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
-\item{[3]} Double Pendulum\\\url{https://en.wikipedia.org/wiki/Double_pendulum}
-\item{[4]} Differential-Algebraic Equations by Taylor Series
+
+\bibitem{DoublePendulum} 
+Wikipedia - Double Pendulum, 
+\\\url{https://en.wikipedia.org/wiki/Double_pendulum}
+
+\bibitem{DAETS} 
+Differential-Algebraic Equations by Taylor Series, 
 \\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
-\item{[5]} Multi-body Lagrangian Simulations
+
+\bibitem{MLSim} 
+Multi-body Lagrangian Simulations, 
 \\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
-\end{itemize}
+
+\end{thebibliography}
 
 \end{document}
