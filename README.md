@@ -20,13 +20,13 @@ If changes are made to the tex files, then you will need to regenerate the pdfs.
 In order to generate the pdfs, you need to have latex (texlive), make, bibtex,
 and pdflatex installed. Then, run the following command:
 
-`(kenv) $ make -f Makefile`
+`$ make all`
 
 An IDE for editing tex files is recommended (such as texstudio or texmaker).
 
 To get rid of all of the extra files, run the clean command:
 
-`(kenv) $ make -f Makefile clean`
+`$ make clean`
 
 ### Design
 
