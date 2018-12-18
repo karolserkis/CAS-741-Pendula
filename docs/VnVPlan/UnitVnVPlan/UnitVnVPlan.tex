@@ -101,8 +101,7 @@
 
 \begin{document}
 
-\title{CAS 741: Unit Verification and Validation Plan\\[10pt]\Large Dynamical 
-Systems: \progname}
+\title{CAS 741: Unit Verification and Validation Plan\\[10pt]\Large Dynamical Systems: \progname}
 \author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
 \href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
@@ -125,15 +124,9 @@ December 5, 2018 & 1.0 &  First full draft for submission\\
 \section{Symbols, Abbreviations and Acronyms}
 
 See SRS Documentation at 
-<<<<<<< HEAD
-\href{https://github.com/karolserkis/CAS-741-Pendula
-/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
-\wss{give url}
-=======
 \href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
 \wss{give url} \wss{You should remove these comments, so that the new comments
   that are added are easier to see.}
->>>>>>> c24f32acc08a8f0a986a62fa5e81a546ff6d417a
 
 \wss{Also add any additional symbols, abbreviations or acronyms}\\
 The symbols are listed in alphabetical order.\\
@@ -199,8 +192,7 @@ description of the unit and the SI name.\\
 
 \pagenumbering{arabic}
 
-The purpose of the document is to provide the Unit Verification and Validation 
-Plan for testing the \progname{}software with 
+The purpose of the document is to provide the Unit Verification and Validation Plan for testing the \progname{}software with 
 respect to the requirements (see SRS document). Unit Verification and 
 Validation plan consists of outlining test cases for particular units of a 
 software's modules. These tests are created to ensure that the units satisfy 
@@ -212,19 +204,21 @@ requirement.
 
 This documents is an Unit VnV Plan for the \progname program. The
 directory for this project can be found at GitHub:
-\href{https://github.com/karolserkis/CAS-741-Pendula/}
-{/karolserkis/CAS-741-Pendula/}\\
+\href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}\\
 
 \subsection{Purpose}
 
-The purpose of this document is to describe the unit VnV plan and requirements 
-for the \progname program solution that only focuses on multi-pendulum 
-simulations (double \& triple pendula and beyond) and tracking the chaotic
+The purpose of this document is to describe the unit VnV plan and requirements for the
+\progname program solution that
+only focuses on multi-pendulum simulations (double \& triple pendula and beyond) and tracking the chaotic
 motion of the system. It will allow users to generate diagrams (e.g. Poincare
-mapping) and plot trajectories over time using two different ODE/DAE initial 
-valueproblem solvers. In the case of a double pendulum you have a new system 
-that is dynamic and chaotic and requires a set of coupled ordinary differential 
-equation solvers. Once one introduces multiple
+mapping)
+and plot trajectories over time using two different ODE/DAE initial value
+problem solvers. In the case of
+a double pendulum you have a new system that is dynamic and chaotic and
+requires a set of coupled ordinary differential equation solvers. Once one
+introduces
+multiple
 pendula the system becomes chaotic and interesting to model and simulate. 
 
 \subsection{Scope}
@@ -242,33 +236,23 @@ The scope of the test plan is described below:
 \end{itemize}
 
 The \progname is limited to the user
-initialized inputs and the output of the \progname will either plot 
-trajectories over time, generate diagrams, like Poincare mapping
+initialized inputs and the output of the \progname will either plot trajectories over time, generate
+diagrams, like Poincare mapping
 and limit the user to a specific duration of the simulation, in order to allow
 diagrams and trajectory history to be saved.
 The user will be able to set a range of time and initialize the system. \\
 
-The modules that might be tested for under the Unit VnV plan that are traced 
-to the SRS requirements are:
+The modules that might be tested for under the Unit VnV plan that are traced to the SRS requirements are:
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module 
-(described in MG$\_$Hardware)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module 
-(described in MG$\_$Control)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module 
-(described MG$\_$GUI)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters 
-Module (described in MG$\_$InputFormat)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module 
-(described in MG$\_$LA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module 
-(described in MG$\_$HA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module 
-(described in MG$\_$DataStruct)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module 
-(described in MG$\_$GUIplot)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory 
-Simulation GUI Module (described in MG$\_$SIM)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module (described in MG$\_$Hardware)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module (described in MG$\_$Control)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module (described MG$\_$GUI)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters Module (described in MG$\_$InputFormat)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module (described in MG$\_$LA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module (described in MG$\_$HA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module (described in MG$\_$DataStruct)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module (described in MG$\_$GUIplot)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory Simulation GUI Module (described in MG$\_$SIM)
 \end{description}
 
 \wss{You should leave the hardware hiding module out of scope.  The control
@@ -289,16 +273,13 @@ Karol Serkis
 
 \subsection{Automated Testing Approach}
 
-Unit-based scripts can be created for testing the modules in \progname{}and be 
-tested automatically with scripts written in pytest. 
-See section on verification tools for more information.
+Unit-based scripts can be created for testing the modules in \progname{}and be tested automatically with 
+scripts written in pytest. See section on verification tools for more information.
 
 \subsection{Verification Tools}
 
-Python has a few open source unit testing frameworks, namely, \\pytest: 
-\url{https://docs.pytest.org}. 
-Unit-based scripts can be created for testing the modules in \progname. 
-The functions and classes that automate 
+Python has a few open source unit testing frameworks, namely, \\pytest: \url{https://docs.pytest.org}. 
+Unit-based scripts can be created for testing the modules in \progname. The functions and classes that automate 
 this process are detailed in the following link: 
 \url{https://github.com/pytest-dev/pytest}.\\
 \wss{Thoughts on what tools to use, such as the following: unit testing
@@ -311,14 +292,6 @@ this process are detailed in the following link:
 
 \subsection{Non-Testing Based Verification}
 
-<<<<<<< HEAD
-The non-testing based verfication will involve a code inspection by myself and
-Prof Smith during final submission. He will inspect each of the modules to 
-guarantee that the physical equations have been implemented successfully, 
-verify that the software is designed to be maintainable and manageable and 
-complete the two surveys in the appendix.\\
-\wss{List any approaches like code inspection, code walk-through, symbolic
-=======
 The non-testing based verfication \wss{spell check} will involve a code inspection by myself and
 Prof Smith during final submission. He will inspect each of the modules to
 guarentee \wss{spell check} that the 
@@ -328,15 +301,14 @@ two surveys in the appendix.\\
 \wss{I will be reviewing your final documentation (for the purpose of grading),
   but the scope of the review you are proposing for me is beyond the time I have available.}
 \wss{List any approaches like code inspection, code walkthrough, symbolic
->>>>>>> c24f32acc08a8f0a986a62fa5e81a546ff6d417a
   execution etc.  Enter not applicable if that is the case.}
 
 \section{Unit Test Description}
 
 The modules that are being unit tested are specificed in the MIS 
-(\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/}). 
-The unit VnV plan ensure that each module is behaving accurately and that each 
-module is satisfying the SRS requirements.\\ 
+(\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/}). The unit VnV plan 
+ensure that each module is behaving accurately and that each module is 
+satisfying the SRS requirements.\\ 
 	
 \subsection{Tests for Functional Requirements}
 
@@ -371,8 +343,7 @@ Test Case Derivation: The environment variable inputted by the user should
 match the state variable meant to store the value.\\
 Ex. units for length, mass and time cannot be negative.
 
-How test will be performed: Integer numbers will be inputted in the environment. 
-An assert statement will return true if these 
+How test will be performed: Integer numbers will be inputed in the environment. An assert statement will return true if these 
 are equal.
 
 \wss{The output field should be the expected output, not an assert statement.  I
@@ -413,8 +384,7 @@ as all of the other modules rely on these quantities.
 	Pendulum Lagrangian ($L=T-V$)
 	(Refer to SRS for equations)
 	
-	How test will be performed: We will check to see if each pendula and 
-	plot behaves as expected.
+	How test will be performed: We will check to see if each pendula and plot behaves as expected.
 	Testing the Kinetic Energy equation:
 	$$ T = \displaystyle\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 $$
 $$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
@@ -455,8 +425,7 @@ as all of the other modules rely on these quantities.
 	Test Case Derivation: From instance model of the SRS it follows that:
 	(Refer to SRS for equations)
 	
-	How test will be performed: We will check to see if each pendula and 
-	plot behaves as expected.
+	How test will be performed: We will check to see if each pendula and plot behaves as expected.
 	Testing the Kinetic Energy equation:
 	$$ T = \displaystyle\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 $$
 $$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
@@ -500,17 +469,12 @@ yours.}
 	
 	Output: Time pendulum trail plot and Poincare\'{e} map
 	
-	Test Case Derivation: The Lagrangian Module, Hamiltonian Module and 
-	Data structure module should produce valid
+	Test Case Derivation: The Lagrangian Module, Hamiltonian Module and Data structure module should produce valid
 	output that corresponds to the reference material and examples.
 	
 	How test will be performed: I will inspect the plots to see if 
-<<<<<<< HEAD
-	they resemble the examples in my references. See references [1] and [7]
-=======
 	they resmble \wss{spell check} the examples in my references. See
         references [1] and [7] \wss{use BibTeX - similar comment elsewhere}
->>>>>>> c24f32acc08a8f0a986a62fa5e81a546ff6d417a
 \end{enumerate} 
 
 \begin{enumerate}				
@@ -526,13 +490,11 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 	
 	Output: Trajectory plot of multiple pendula
 	
-	Test Case Derivation: The Lagrangian Module and Data structure module 
-	should produce valid
+	Test Case Derivation: The Lagrangian Module and Data structure module should produce valid
 	output that corresponds to the reference material and examples.
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resemble the examples in my references. See references 
-	[1],[2],[3],[4],[5] and [6].
+	they resmble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
 \end{enumerate}
 
 \subsubsection{GUI/Plot Module} 
@@ -559,15 +521,13 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 	
 	Output: GUI interface and pendulum trail plot with axis
 	
-	Test Case Derivation: The Lagrangian Module, Hamiltonian Module and 
-	Data structure module should produce valid
+	Test Case Derivation: The Lagrangian Module, Hamiltonian Module and Data structure module should produce valid
 	output that corresponds to the reference material and examples.
 	
 	Check GUI for visual integrity
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resemble the examples in my references. See references 
-	[1],[2],[3],[4],[5] and [6].
+	they resmble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
 \end{enumerate} 
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -619,8 +579,8 @@ Verification and Validation Plan at
         \rref{funlagham} & X & X & X &  & X & X \\ \hline
         \rref{funplot} & X & X & X & X & X & X\\ \hline
 	\end{tabular}
-	\caption{Traceability Matrix Showing the Connections Between 
-	Requirements and Instance Models}
+	\caption{Traceability Matrix Showing the Connections Between Requirements 
+	and Instance Models}
 	\label{Table:R_trace}
 \end{table}
 
@@ -685,38 +645,26 @@ Their values are defined in this section for easy maintenance.
 \subsection{Software Verification Checklist} 
 \label{softwarevercheck}
 \begin{itemize}
-<<<<<<< HEAD
-	\item Did any of the inputs you entered provide surprising results? 
-	If yes, what were they?
-=======
 	\item Did any of the inputs you entered provide suprising \wss{spell
             check} results? If yes, 
 	what were they?
->>>>>>> c24f32acc08a8f0a986a62fa5e81a546ff6d417a
 	\item Were all of the plots legible? 
 \end{itemize} 
 
 \subsection{Usability Survey Questions?}
 \begin{enumerate}
 	\item Were you able to setup and execute the program using the comment
-	and Makefile instructions alone, or did you require additional 
-	troubleshooting/help? 
+	and makefile instructions alone, or did you require additional troubleshooting/help? 
 	If any steps were unclear, please explain how they might be improved.
-<<<<<<< HEAD
-	\item Did the program accept your initial input?
-=======
 	\item Did the program accept your inital \wss{spell check} input?
->>>>>>> c24f32acc08a8f0a986a62fa5e81a546ff6d417a
 	\item Did the program output the trajectory plot simulation?
-	\item Did the program run the simulation to its completion and 
-	smoothly without issues?
-	\item Did the plot of pendulum movement pattern appear?
+	\item Did the program run the simulation to its completion and smoothly without issues?
+	\item Did the plot of pendulum movement pattern and/or Poincar\'{e} map?
 \end{enumerate}
 
 \subsection*{References}\label{ssec:ref}
 \begin{itemize}
-\item{[1]} Dynamics of multiple pendula 
-\\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
+\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
 \item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
 \item{[3]} Pendulum (mathematics)
 \\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
@@ -730,14 +678,12 @@ Differential-Algebraic Equations by Taylor Series
 \\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
 \item{[7]} Poincaré map
 \\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems 
-into modules'', Comm. ACM, vol. 15, pp. 1053-1058, December 1972.
-\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of 
-complex systems'',in International Conference on Software Engineering, 
-pp. 408-419, 1984.
-\item{[10]} D. L. Parnas, ``Designing software for ease of extension and 
-contraction,'' in ICSE '78:Proceedings of the 3rd international conference 
-on Software engineering, \\
+\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
+ACM, vol. 15, pp. 1053-1058, December 1972.
+\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
+in International Conference on Software Engineering, pp. 408-419, 1984.
+\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
+Proceedings of the 3rd international conference on Software engineering, \\
 (Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
 \item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
 See bib file that doesn't work for me for full citation. \wss{The example in the
