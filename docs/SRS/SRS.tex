@@ -37,10 +37,10 @@
 
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
-      colorlinks=true,      % false: boxed links; true: colored links
+    colorlinks=true,        % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links 
                             %  (change box color with linkbordercolor)
-    citecolor=blue,        % color of links to bibliography
+    citecolor=blue,         % color of links to bibliography
     filecolor=magenta,      % color of file links
     urlcolor=cyan           % color of external links
 }
@@ -106,8 +106,6 @@
 \date{\today}
 	
 \maketitle
-\wss{The name of your program ``\progname{}'' is rather long and awkward.  Do
-  you think you could come up with a shorter name, maybe MPS?}
 
 ~\newpage
 
@@ -128,11 +126,13 @@
 \midrule
 October 8, 2018 & Karol Serkis &  First full draft for submission\\
 October 4, 2018 & Karol Serkis &  First full draft\\
-October 3, 2018 & Karol Serkis & First revision and all content sections added\\September 28, 2018 & 
+October 3, 2018 & Karol Serkis & First revision and all content sections added
+\\September 28, 2018 & 
 Karol Serkis & First draft of document in landscape
 orientation for presentation\\
 September 26, 2018 & Karol Serkis & SRS presentation slides discussed with Dr.
 Spencer Smith \\
+December 14, 2018 & Karol Serkis & All GitHub issues and comments addressed \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -141,7 +141,8 @@ Spencer Smith \\
 
 \section{Reference Material}
 
-This section records information for easy reference: (Units, constants, symbols, abbreviations, and acronyms)
+This section records information for easy reference: (Units, constants, 
+symbols, abbreviations, and acronyms)
 
 \subsection{Notation}
 
@@ -150,10 +151,10 @@ This section describes the notation conventions used in this document.
 \subsubsection{Mathematical Notation}
 
 The notation in this document follows the standard mathematical notation
-conventations.
-The standard mathematical spaces are used for the symbols in this document (see
-Table of Symbols).
-Example of mathematical notation use:
+conventions.
+The standard mathematical spaces (specifically Euclidean space in this project)
+are used for the symbols in this document (see Table of Symbols).
+Example of mathematical notation usage and for double pendulum below:
 $$x_1 = l_1 \sin\theta_1 \quad\quad y_1 = -l_1 \cos\theta_1$$
 $$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
 -l_2\cos\theta_2$$
@@ -161,21 +162,18 @@ $$x_2 = l_1 \sin\theta_1 + l_2 \sin\theta_2 \quad\quad y_2 = -l_1\cos\theta_1
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=175px]{doublepend.PNG}
-\caption{A simple gravity double pendulum (model assumes no friction or air
-resistance)[1]}
+\caption{A simple gravity double pendulum~\citep{SzuminskiOlsztyn2012}}
 	\label{fig:doublepend}
 \end{figure}
-
-\wss{All figures should be referred to by your text at some point.}
 
 \newpage
 
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
-employedas the unit system. In addition to the basic units, several derived
-units are
-used as described below.  For each unit, the symbol is given followed by a
+utilized as the unit system. In addition to the basic units, several derived
+units are used as described below.  
+For each unit, the symbol is given followed by a
 description of the unit and the SI name.
 
 \renewcommand{\arraystretch}{1.2}
@@ -195,10 +193,10 @@ description of the unit and the SI name.
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units. The choice of symbols was made to be consistent with calculus, ordinary
-differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical spaces
-are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.) as well as some 
-additional spaces defined in the following table. 
+their units. The choice of symbols was made to be consistent with calculus, 
+ordinary differentials (ODE), the Lagrangian, kinematics etc. The standard 
+mathematical spaces are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, 
+etc.) as well as some additional spaces defined in the following table. 
 ~\newline
 \renewcommand{\arraystretch}{1.2}
 \noindent \begin{longtable*}{l l l p{8cm}} \toprule
@@ -218,11 +216,14 @@ $l_2$ & $\mathbb{R}$ & m & length of the 2nd pendulum rod
 \\ 
 $l_n$ & $\mathbb{R}$ & m & length of the nth pendulum rod
 \\
-$\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from the pivot point
+$\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from 
+the pivot point
 \\
-$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st pendulum weight
+$\theta_2$ & $\mathbb{R}$ & \si{\degree} & amplitude from 
+the 1st pendulum weight
 \\
-$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth pendulum weight
+$\theta_n$ & $\mathbb{R}$ & \si{\degree} & amplitude from 
+the nth pendulum weight
 \\
 $L$ & $\sum\mathbb{R}$ & -- & Pendulum system Lagrangian
 \\
@@ -230,11 +231,8 @@ $T$ & $\sum\mathbb{R}$ & -- & Kinetic energy of system
 \\
 $V$ & $\sum\mathbb{R}$ & -- & Potential energy of system
 \\
-$P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré map P projects point x onto point P(x)
-\\
 \bottomrule
 \end{longtable*}
-\wss{Poincaré in \LaTeX{} is written as Poincar\'{e}}
 \newpage
 \subsection{Abbreviations and Acronyms}
 
@@ -267,28 +265,17 @@ The symbols are listed in alphabetical order.\\
 
 \section{Introduction}
 
-This documents is an SRS for the \progname \wss{Your prog name isn't exactly
-  catchy; it seems more like a description than a program name.} program. The
+This documents is an SRS for the \progname program. The
 directory for this project can be found at GitHub:
-\href{https://github.com/karolserkis/CAS-741-Pendula/}{/karolserkis/CAS-741-Pendula/}\\
-This SRS template is based on Smith and Lai(2005); Smith et al. (2007)
-(ex. based on the principle of information hiding~\citep{Parnas1972a})
-[8]. \wss{Use BibTex and citation command.  Follow the example in the blank
-  project template}
+\href{https://github.com/karolserkis/CAS-741-Pendula/}
+{/karolserkis/CAS-741-Pendula/}\\
+This SRS template is based on~\citep{SmithAndLai2005} \&~\citep{SmithEtAl2007}
+(ex. based on the principle of information hiding~\citep{Parnas1972a}).
 
 \subsection{Purpose of Document}
-The purpose of this document is to describe the requirements for a
-\progname program solution that
-only focuses on multi-pendulum simulations (double \& triple pendula and beyond) and tracking the chaotic
-motion of the system. It will allow users to generate diagrams (e.g. Poincare
-mapping)
-and plot trajectories over time using two different ODE/DAE initial value
-problem solvers. In the case of
-a double pendulum you have a new system that is dynamic and chaotic and
-requires a set of coupled ordinary differential equation solvers. Once one
-introduces
-multiple
-pendula the system becomes chaotic and interesting to model and simulate. 
+The purpose of this document is to describe the requirements for finding a 
+solution for a Multi-Pendulum Simulation ( \progname) program and tracking the 
+chaotic motion of the system. 
 
 The theoretical models used in the \progname code will be provided, insuring
 assumptions and unambiguous definitions are identified. This document 
@@ -297,53 +284,53 @@ understand and verify the inputs to outputs. The SRS is abstract: the contents
 describe the problem being solved, but not how to solve it.
 
 This document will be used as a starting point for subsequent development
-phases, including writing the design specification and the software verification
-and validation plan. The verification and validation plan will show the steps
-inthe \wss{proof read, spell check} software documentation/implementation.
+phases, including writing the design specification and the software 
+verification and validation plan. The verification and validation plan 
+will show the steps in the software documentation/implementation.
 
 \subsection{Scope of Requirements} 
 
 The scope of the \progname program is limited to the generation 
-of diagrams and plot trajectories that are possible to run and compute on a
-local system.
+of a plot trajectory simulation and other related plots.
+This document is to describe the requirements for a
+\progname program solution that only focuses on multi-pendulum simulations 
+and tracking the chaotic motion of the system. 
+It will allow users to generate plot trajectories over time using ODE/DAE 
+initial value problem solvers. In the case of a double pendulum you have 
+a new system that is dynamic and chaotic and
+requires a set of coupled ordinary differential equation solvers. Once one
+introduces multiple pendulums the system becomes chaotic 
+and interesting to model and simulate. 
 
-Assumptions: The \progname will be a closed system. Air resistance and friction
-will
-not be considered for the simulation. The \progname will be limited to the user
-initialized inputs and
-the output of the \progname will either plot trajectories over time, generate
-diagrams, like Poincare mapping
-and limit the user to a specific duration of the simulation, in order to allow
-diagrams and trajectory history to be saved.
+Assumptions: The \progname will be a closed system. 
+Air resistance and friction will not be considered for the simulation. 
+The \progname will be limited to the user initialized inputs and
+the output of the \progname will either plot trajectories over time and 
+limit the user to a specific duration of the simulation, 
+in order to allow diagrams and trajectory history to be saved. 
+The plot trajectory simulation should run on a local system 
+(personal computer) that is capable of executing the simulation without serious 
+performance problems.
 The user will be able to set a range of time and initialize the system. \\
 
 \subsection{Characteristics of Intended Reader} 
 Simplification of some physical concepts are proposed to make the document
 technically accessible and also the software to be accessible.
 Nevertheless, the intended reader is expected to have a basic knowledge in
-mathematics (calculus, differentials/ODEs) and physics (kinematics, energy
-potential, Lagrangian, Poincare mapping) is recommended to get a deeper
-understanding of the document.
+mathematics (calculus, differentials/ODEs) and physics (kinematics, kinetic 
+energy, potential energy, Lagrangian) to get a deeper understanding of 
+the document.
 
 \subsection{Organization of Document}
 \begin{itemize}
-\item The organization of this document follows the template for an SRS for
-scientific
-computing software proposed by Dr. Spencer Smith. \wss{You have a citation
-  below.  Having this point too is redundant.}
+\item This document follows the template outlined in \citet{SmithAndLai2005} 
 \item The presentation follows the standard pattern of presenting goals,
 theories, definitions, and assumptions.
 \item The goal statements are refined to the theoretical models, and the
 theoretical
 models to the instance models. The data definitions are used to support the
 definitions of the different models.
-\item This document follows the template outlined in Smith and Lai (2005)
-  [8]. \wss{You can use BibTeX to make it easy to manage citations and
-    references. Hard coding in reference will be a maintenance nightmare.}
 \end{itemize}
-\newpage
-\wss{Do you really need to hardcode in a newpage here?  \LaTeX{} usually makes
-  good decisions about pagebreaks.}
 
 \section{General System Description}
 This section identifies the interfaces between the system and its environment,
@@ -352,20 +339,21 @@ describes the user characteristics and lists the system constraints.
 \subsection{System Context}
 
 \begin{center}
-\framebox{\textbf {USER}} $ \xLongleftrightarrow[\textbf{Input with the
-User}]{\textbf{User enters input}} $\framebox{\textbf { \progname}}
-$ \xLongleftrightarrow[\textbf{Output to the User}] {\textbf{User sees results}}$\framebox{\textbf {USER}}\\
+\framebox{\textbf {USER}} $ \xLongrightarrow[\textbf{ex. num of pendula, 
+toggle plot}]{\textbf{User Input}} $\framebox{\textbf { \progname}}
+$ \xLongrightarrow[\textbf{ex. GUI, trajectory simulation, plots}] 
+{\textbf{Output to the Usere}}$\framebox{\textbf {USER}}\\
 \end{center}
-
-\wss{Can you characterize the inputs better than just inputs?  What values are
-  going to be input?  Similarly for the outputs.}
 
 \begin{itemize}
 \item User Responsibilities:
 \begin{itemize}
-\item Ensure that the input data is fits the system model (For example, weights and lengths and other
-appropriate units found in Table of Units and Symbols)
-\item Ensure that the input data is within scope (See Table of Units and Symbols)
+\item Ensure that the input data is fits the system model (i.e. correct value,
+only positive integers, when required) 
+(For example, weights and lengths and other appropriate units found in 
+Table of Units and Symbols)
+\item Ensure that the input data is of the correct type 
+(i.e. Enter an integer not char or string when integer is asked for)
 \end{itemize}
 \item \progname program Responsibilities:
 \begin{itemize}
@@ -375,7 +363,11 @@ appropriate units found in Table of Units and Symbols)
   constraints.
 \item Solve the system of equations arising from the input data to generate 
   the output data.
-\item Generate a plot of the output data and generate diagrams to display to the user.
+\item Generate a plot of the output data and generate diagrams 
+to display to the user.
+\item Ensure that simulation is within the scope of the simulation window 
+(For example the number of pendulums cannot exceed the boundry of the
+GUI window of the simulation)
 \end{itemize}
 \end{itemize}
 
@@ -386,11 +378,9 @@ required to use the software than understand
 this document or the inner workings of the software program.
 
 \subsection{System Constraints}
-There are no system constraints. The \progname software will be created with
-multi-platform support.  \wss{Your current documentation has an implied
-  constraint.   You keep mentioning plots.  This is not the only way to output
-  data.  It would be more abstract to not impose this on the software.  If you
-  cannot be more abstract, then you should make the display requirement a system constraint.}
+The system constraint will be the display requirements for the GUI and thus 
+a contraint on the number of pendula possible to be displayed 
+in the simulation.
 
 \newpage
 \section{Specific System Description}
@@ -404,9 +394,9 @@ definitions and finally the instance models.
 \subsection{Problem Description}
 
 The \progname software will generate a plot trajectory in a 3D plot grid.
-A simple gravity pendulum has very easy to system to model and consists of a
+A simple gravity pendulum is very easy to system to model and consists of a
 weight suspended from a pivot and the weight is given enough space to swing
-freely. To simplify the model we assume no air resistance with a frictionless
+freely. To simplify the model we assume no air resistance with a friction-less
 pivot. The model and calculations for the simple gravity pendulum are well
 defined and only require simple derivations and differential solvers.
 
@@ -421,7 +411,8 @@ sections and their meaning, with the purpose of reducing ambiguity and making
 it easier to correctly understand the requirements:
 
 \begin{description}
-\item[Equilibrium position:] The pendulum rod and weight position in its resting state.
+\item[Equilibrium position:] The pendulum rod and weight position in its 
+resting state.
 \item[3D Cartesian coordinate system:] The pendulum rod and weight swing from a
 pivot position origin $(x,y,z)$
 \end{description}
@@ -435,10 +426,11 @@ resistance}
 \end{figure}
 
 \begin{description}
-\item[Lagrangian:] The Lagrangian equation $L=T-V$, where $T$ and $V$ are the kinetic and potential
-energies of the system respectively.
-\item[Poincaré map:] Starting with the Poincaré section of the \progname in 3D space, the Poincaré map $P$
-is a projection from point $x$ onto point $P(x)$ transforming the 3D space into a 2D projection diagram plot.
+\item[Lagrangian:] The Lagrangian equation $L=T-V$, where $T$ and $V$ are 
+the kinetic and potential energies of the system respectively.
+\item[Poincaré map:] Starting with the Poincaré section of the \progname 
+in 3D space, the Poincaré map $P$ is a projection from point $x$ onto point 
+$P(x)$ transforming the 3D space into a 2D projection diagram plot.
 \end{description}
 
 \subsubsection{Physical System Description}
@@ -453,26 +445,31 @@ resistance in a 3D space.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=190px]{triplependula.PNG}
-\caption{A triple pendulum example [1]. See Table of Symbols for more info}
+\caption{A triple pendulum example~\citep{SzuminskiOlsztyn2012}.
+See Table of Symbols for more info.}
 	\label{fig:maxresdefault}
 \end{figure}
 
 \subsubsection{Goal Statements}
 
-\noindent Given the user input and the initial state of the \progname with reference to the table of symbols the goal
-statements are: \wss{Isn't the initial state of the multi-pendulum part of the input?}
+\noindent Given the user input and the initial state of the \progname with 
+reference to the table of symbols the goal statements are: 
+
+\wss{Isn't the initial state of the multi-pendulum part of the input?}
 
 \begin{itemize}
 \item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory plot of 
-the movement of the pendula from user input starting state to equilibrium state of rest and show logged
-statistics over time to the user. \wss{I believe you are assuming no friction,
-  so I don't think the pendula will come to a state of rest.}
+the movement of the pendula from user input starting state to equilibrium 
+state of rest and show logged statistics over time to the user. 
+\wss{I believe you are assuming no friction,
+so I don't think the pendula will come to a state of rest.}
 \item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a Poincaré map plot of 
-the movement of the pendula from user input starting state to equilibrium state of rest.
+the movement of the pendula from user input starting state to equilibrium 
+state of rest.
 \end{itemize}
 
 \wss{Your goals are focused on plots.  A more abstract output would be to
-  generate the trajectory, without the word plot.  You can still make generating
+  generate the trajectory, without the word plot. You can still make generating
   a plot part of the requirements, but it would also be nice to see the option
   of outputting the results to a file}
 
@@ -490,30 +487,34 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:equation}:]
-In the model we assume no air resistance with a frictionless pivot, moving in
-space with respect to the Lagrangian caluations \wss{spell check} made. [T1][DD1][IM1] \wss{You
-  need to explicitly invoke these assumptions when they apply, not just list them.}
+In the model we assume no air resistance with a friction-less pivot, moving in
+space with respect to the Lagrangian calculations made. [T1][DD1][IM1] 
+\wss{You need to explicitly invoke these assumptions when they apply, 
+not just list them.}
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:kinetic}:]
-  The kinetic energy will be represented by real-value and will fit the mathematical model and scope. [T2][DD1]
+  The kinetic energy will be represented by real-value and will fit the 
+mathematical model and scope. [T2][DD1]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:poten}:]
-  The potential energy will be represented by real-value and will fit the mathematical model and scope. [T3][DD1]
+  The potential energy will be represented by real-value and will fit the 
+mathematical model and scope. [T3][DD1]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:init-user}:]
-The user knows what the purpose of the simulation model and inputs weights and lengths
-according to possible simulation characteristics. [DD1][IM1][T1][T2][T3][T4]
+The user knows what the purpose of the simulation model and inputs weights and 
+lengths according to possible simulation characteristics. 
+[DD1][IM1][T1][T2][T3][T4]
 \end{itemize}
 
 \wss{Don't you need the assumption that the angles are small enough that sin
   theta equals theta?}
 
 \wss{I believe you should have an assumptions that the connecting rods are
-  massless.}
+  mass-less.}
 
 \newpage
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
-This section focuses on the general equations and laws that \progname program is based
-on.\\
+This section focuses on the general equations and laws that \progname program 
+is based on.\\
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -534,19 +535,20 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
   \hline
   Description & Lagrangian model system solution\\
   \hline
-  Source & [6]\\
+  Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & [A1][A4] \wss{Use cross-references to generate these, rather than hardcoding.}\\
+  Ref.\ By & [A1][A4] \wss{Use cross-references to generate these, 
+rather than hard-coding.}\\
   \hline
 \end{tabu}
 \end{minipage}
 
 \wss{How is this equation derived?}
 \wss{I would think you would have theoretical models on kinetic energy and
-  potential energy, defined in an abstract way, so that they would be useful for
-  other problems.}
-\wss{These models are for a double pendulum, but the problem is supposed to have
-  more than two pendula.}
+  potential energy, defined in an abstract way, so that they would be useful 
+  for other problems.}
+\wss{These models are for a double pendulum, but the problem is supposed to 
+  have more than two pendulums.}
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -569,7 +571,7 @@ $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
   \hline
   Description & Potential Energy model system solution\\
   \hline
-  Source & [6]\\
+  Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
   Ref.\ By & [A2][A4]\\
   \hline
@@ -594,37 +596,12 @@ $$= -(m_1 + m_2) g l_1 \cos\theta_1 - m_2 g l_2\cos\theta_2$$\\
   \hline
   Description & Potential Energy model system solution\\
   \hline
-  Source & [6]\\
+  Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
   Ref.\ By & [A3][A4]\\
   \hline
 \end{tabu}
 \end{minipage}\\
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\tabulinesep=1.5mm
-\begin{tabu}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum \label{poincare}\\
-  \hline
-  Label&\bf Poincaré map($P(x)$)\\
-  \hline
-  Equation&  
-$$P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
-  \hline
-  Description & Poincaré map P projects point x onto point P(x)\\
-  \hline
-  Source & [6]\\
-  \hline
-  Ref.\ By & [A4]\\
-  \hline
-\end{tabu}
-\end{minipage}
-
-\wss{This isn't enough information for me to understand what a Poincar\'{e} map is.}
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
@@ -634,7 +611,8 @@ current documentation.
 \subsubsection{Data Definitions}\label{sec_datadef}
 
 This section collects and defines all the data needed to build the instance
-models. The models here are to satisfy the theoretical models constrained and closed 3D space.\\
+models. The models here are to satisfy the theoretical models constrained and 
+closed 3D space.\\
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -653,7 +631,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   \hline
   Description & Simple cartesian coordinate model system solution\\
   \hline
-  Source & [6]\\
+  Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
   Ref.\ By & T1,T2,T3,T4,T5\\
   \hline
@@ -684,7 +662,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   \hline
   Description & Simple cartesian coordinate model system solution\\
   \hline
-  Source & [6]\\
+  Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
   Ref.\ By & T1,T2,T3,T4,T5\\
   \hline
@@ -692,12 +670,12 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 \end{minipage}
 
 \wss{The instance model is the most refined version of your problem that is
-  closest to the eventual code.  I don't understand how the above IM fits in to
-  this.  If anything, isn't this a data definition?  Why is it even necessary?
-  Are you using interval arithmetic?  I would think the ODEs that you are going
-  to solve are your IMs.  Your theoretical models look more like IMs.  Your
+  closest to the eventual code. I don't understand how the above IM fits in to
+  this. If anything, isn't this a data definition? Why is it even necessary?
+  Are you using interval arithmetic? I would think the ODEs that you are going
+  to solve are your IMs. Your theoretical models look more like IMs. Your
   theoretical models could then be replaced with more abstract versions of the
-  general concepts of Lagrangian etc.  The theoretical models are supposed to be
+  general concepts of Lagrangian etc. The theoretical models are supposed to be
   something that could be reused in a different project.}
 
 \subsubsection{Data Constraints} \label{sec_DataConstraints}    
@@ -705,7 +683,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 The data constraints on the input and output variables, respectively.  
 The column for physical constraints gives the physical limitations on 
 the range of values that can be taken by the
-variable.  The column for software constraints restricts the range of inputs to
+variable. The column for software constraints restricts the range of inputs to
 reasonable values.  The constraints are conservative, to give the user of the
 model the flexibility to experiment with unusual situations.  The column of
 typical values is intended to provide a feel for a common scenario.  The
@@ -717,20 +695,21 @@ input if one were performing an uncertainty quantification exercise.
 \item Constraint on gravity: g = $9.8 m/s^2$
 \end{itemize}
 
-\wss{What about the constraint that your lengths have to be positive?  Are there
-  any bounds on the initial angles?  Aren't they supposed to be small?  What
+\wss{What about the constraint that your lengths have to be positive? Are there
+  any bounds on the initial angles? Aren't they supposed to be small? What
   about your masses?}
 
 \subsubsection{Properties of a Correct Solution}
 
 \noindent
 A correct solution must satisfy the system of non-linear equations described. 
-The user will also be able to judge the results based on the knowledge about the model and input.
+The user will also be able to judge the results based on the knowledge about 
+the model and input.
 
 \wss{The properties here should be something in addition to meeting the
-  requirements.  Meeting the requirements is a given.  We are interested here in
+  requirements. Meeting the requirements is a given. We are interested here in
   identifying things that should be true, but that are independent of the
-  requirements.  In your case, a correct solution should conserve energy.  The
+  requirements. In your case, a correct solution should conserve energy. The
   energy at the start should be maintained as the simulation proceeds.}
 
 \newpage
@@ -745,28 +724,35 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program will 
-  take the following inputs: \wss{It would be nice to use symbols to represent
-    the inputs.  You also want a way to identify how many massess you have.}
-  \begin{enumerate} \item The initial mass of the weights. \wss{This is a
-      confusing sentence, since mass and weight are different concepts.  If you
-      use a symbol, like $m_i$ then you could probably simplify the presentation.}
-                    \item The inital \wss{spell check} length of the rods.
+\item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname 
+program should be able to have axis labels \& 3D Cartesian coordinates. 
+
+\item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program 
+  will take the following inputs: \wss{It would be nice to use symbols to 
+  represent the inputs. You also want a way to identify how 
+  many masses you have.}
+  \begin{enumerate} \item The initial mass of the weights. 
+      \wss{This is a confusing sentence, since mass and weight are different 
+      concepts. If you use a symbol, like $m_i$ then you could probably 
+      simplify the presentation.}
+                    \item The initial length of the rods.
   \end{enumerate}
                     
-\item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program will 
-calculate the kinetic and potential energy after the user has set the initialization 
-parameters of input from the user have been entered.
+\item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program 
+will calculate the kinetic and potential energy after the user has set the 
+initialization parameters of input from the user have been entered.
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program will 
-calculate the Lagrangian (and Hamiltonian (differential on Lagrangian) if needed) after the 
-user has set the initialization parameters of input have been entered and the kinetic 
-and potential energy of the system as whole has been calculated. \wss{This is
-  the only time you mention the Hamiltonian.  You should define it in your
+\item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program 
+will calculate the Lagrangian (and Hamiltonian (differential on Lagrangian) 
+if needed) after the user has set the initialization parameters of input 
+have been entered and the kinetic and potential energy of the system as whole 
+has been calculated. \wss{This is
+  the only time you mention the Hamiltonian. You should define it in your
   documentation, or not mention it.}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funplot}:] \progname program
-will ensure that the inputs do not violate the constraints specified in the Data Contraints section:
+will ensure that the inputs do not violate the constraints specified in the 
+Data Constraints section:
     \begin{enumerate} \item \progname program will 
 generate diagrams with and plot lines and timeline of logged movement. 
 \item The timeline of swings of the pendulum will be logged and eventually
@@ -780,23 +766,23 @@ return to a resting state in equilibrium
 \progname program will be try to be small and simple, so performance is not a 
 priority. Any reasonable implementation will be very quick and use minimal 
 storage. Rather than performance, the non-functional requirement priorities 
-are correctness, understandability, reusability, maintainability, and 
+are correctness, understand-ability, re-usability, maintainability, and 
 portability. 
 
 \begin{itemize}
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum:] \progname program should be able to have axis
-labels \& 3D cartesian coordinates. \wss{This isn't actually a nonfunctional
-  requirement; it is a functional requirement.}
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum:] \progname program should be 
+reliable and portable and easy to use for beginners or experts.
 \end{itemize}
 
 \subsubsection*{Correctness}
 \begin{itemize}
-	\item The \progname tool must be correct in its generation of plot trajectories.
+\item The \progname tool must be correct in its generation 
+of plot trajectories.
 \end{itemize}
 
 \subsubsection*{Reliability}
 
-The \progname should run successfully on all platforms.
+The \progname should run successfully and have error checking for user input.
 
 \subsubsection*{Robustness}
 \begin{itemize}
@@ -807,10 +793,10 @@ The \progname should run successfully on all platforms.
 \end{itemize}
 
 \subsubsection*{Performance}
-Performance is a priority in the \progname
-specification. It needs to be able to generate a plot reasonable amount of time.
+Performance is a priority in the \progname specification. 
+It needs to be able to generate a plot reasonable amount of time.
 
-\subsubsection*{Verifiability}
+\subsubsection*{Verify-ability}
 \begin{itemize}
 	\item The \progname must be verifiable with respect to the 
 	correctness of its calculations. The calculation 
@@ -820,28 +806,28 @@ specification. It needs to be able to generate a plot reasonable amount of time.
 
 \subsubsection*{Usability}
 \begin{itemize}
-	\item The user must be able to enter values using standard mathematical 
-	notation.
-
-	\item The plot should generate and be large enough for the user's display.
+\item The user must be able to enter values using standard mathematical 
+notation.
+\item The plot should generate and be large enough for 
+the user's display.
 \end{itemize}
 
 \subsubsection*{Maintainability}
 \begin{itemize}
-	\item The evolvability of the \progname must allow the addition 
+	\item The evolve-ability of the \progname must allow the addition 
 	of real intervals.
 \end{itemize}
 
-\subsubsection*{Reusability}
+\subsubsection*{Re-usability}
 Reusability is not a priority because there are currently no future products 
 that will rely on \progname
 
 \subsubsection*{Portability}
-The portability of the \progname will be multi-platform.
+To ensure the portability, the \progname software will be multi-platform.
 
-\wss{Your NFRs are ambiguous.  You might have been better off with the blanket
-  statement in the first paragraph, since the list of qualities brings attention
-  to the fact that what you have stated is not measurable.}
+\wss{Your NFRs are ambiguous. You might have been better off with the blanket
+  statement in the first paragraph, since the list of qualities brings 
+  attention to the fact that what you have stated is not measurable.}
 
 \newpage
 
@@ -849,17 +835,19 @@ The portability of the \progname will be multi-platform.
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dsim}:] Generation of simulation only in 2D
-\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dplot}:] Generation of plot and diagrams only in 2D
-\item[LC\refstepcounter{lcnum}\thelcnum \label{maybe-mpi}:] Generation of diagrams 
-  using distributed/parallel computing
+\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dsim}:] Generation of 
+simulation only in 2D
+\item[LC\refstepcounter{lcnum}\thelcnum \label{only2dplot}:] Generation of 
+plot and diagrams only in 2D
+\item[LC\refstepcounter{lcnum}\thelcnum \label{maybe-mpi}:] Generation of 
+diagrams using distributed/parallel computing
 
 \end{itemize}
 
 \section{Traceability Matrices and Graphs}
 
 The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
+has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
 with an ``X'' may have to be modified as well. 
 
@@ -893,7 +881,8 @@ with an ``X'' may have to be modified as well.
 \lcref{only2dplot} & X & X & X & X \\ \hline
 \lcref{maybe-mpi} & X & X & X & X\\ \hline
 \end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+\caption{Traceability Matrix Showing the Connections Between Assumptions 
+and Other Items}
 
 \end{table}
 %\end{landscape}
@@ -939,8 +928,8 @@ with an ``X'' may have to be modified as well.
         \rref{funlagham} & X & X & X &  & X & X \\ \hline
         \rref{funplot} & X & X & X & X & X & X\\ \hline
 	\end{tabular}
-	\caption{Traceability Matrix Showing the Connections Between Requirements 
-	and Instance Models}
+	\caption{Traceability Matrix Showing the Connections Between 
+	Requirements and Instance Models}
 	\label{Table:R_trace}
 \end{table}
 
@@ -961,7 +950,8 @@ with an ``X'' may have to be modified as well.
 % 		{
 % 			\includegraphics[width=\textwidth]{ATrace.png}
 % 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
+% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the 
+%		Connections Between Items of Different Sections}
 % 	\end{center}
 % \end{figure}
 
@@ -971,35 +961,14 @@ with an ``X'' may have to be modified as well.
 % 		{
 % 			\includegraphics[width=0.7\textwidth]{RTrace.png}
 % 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
+% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the 
+%		Connections Between Requirements, Instance Models, 
+%		and Data Constraints}
 % 	\end{center}
 % \end{figure}
 
 \newpage
 
-\subsection*{References}\label{ssec:ref}
-\begin{itemize}
-\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
-\item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
-\item{[3]} Pendulum (mathematics)
-\\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
-\item{[4]} Double Pendulum
-\\\url{https://en.wikipedia.org/wiki/Double_pendulum}\item{[4]}
-Differential-Algebraic Equations by Taylor Series
-\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
-\item{[5]} Multi-body Lagrangian Simulations
-\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
-\item{[6]} The double pendulum: Lagrangian formulation
-\\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
-\item{[7]} Poincaré map
-\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} Smith and Lai(2005); Smith et al. (2007). \\
-See bib file that doesn't work for me for full citation.
-\end{itemize}
-
-\wss{Use BibTex.  You can follow the example in the sample document in the blank
-project template.  To start with, you can see whether you can compile that
-document.}
 \bibliographystyle {plainnat}
 \bibliography {../../ReferenceMaterial/References}
 

@@ -79,7 +79,7 @@ October 21, 2018 & Karol Serkis & New Blank Project Template utilized \\
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
-employedas the unit system. In addition to the basic units, several derived
+employed as the unit system. In addition to the basic units, several derived
 units are
 used as described below.  For each unit, the symbol is given followed by a
 description of the unit and the SI name.\\
@@ -130,9 +130,11 @@ $l_n$ & $\mathbb{R}$ & m & length of the nth pendulum rod
 \\
 $\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from the pivot point
 \\
-$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st pendulum weight
+$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st 
+pendulum weight
 \\
-$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth pendulum weight
+$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth 
+pendulum weight
 \\
 $L$ & $\sum\mathbb{R}$ & -- & Pendulum system Lagrangian
 \\
@@ -140,7 +142,8 @@ $T$ & $\sum\mathbb{R}$ & -- & Kinetic energy of system
 \\
 $V$ & $\sum\mathbb{R}$ & -- & Potential energy of system
 \\
-$P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré map P projects point x onto point P(x)
+$P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré 
+map P projects point x onto point P(x)
 \\
 \bottomrule
 \end{longtable*}
@@ -187,16 +190,17 @@ The symbols are listed in alphabetical order.\\
 This document discusses the verification and validation requirements and
 provides a detailed description of the testing that will be carried out on the
 \progname \wss{I made a comment about your program name in your SRS.  When you
-  get a chance to address the issue there, please address it here as well.  I've
+  get a chance to address the issue there, please address it here as well. I've
   revised the blank template to use a common file that defines the program name.
   You might want to make the same modification.} Generator program.
 Complementary documents include the System Requirement Specifications, Module
 Guide and Module Interface Specification.  The full documentation and
 implementation can be found
-\href{https://www.github.com/karolserkis}{here}. After reading this document one
-should be able to create and run test cases to verify and validate \progname
-
-\wss{provide an introductory blurb and roadmap of the  Verification and Validation plan}
+\href{https://www.github.com/karolserkis}{here}. 
+After reading this document one should be able to create and run test cases to 
+verify and validate \progname
+\wss{provide an introductory blurb and road map of the Verification and 
+Validation plan}
 
 \section{General Information}
 
@@ -218,24 +222,25 @@ The purpose of this document is to describe the objectives for the
 \progname program solution that
 only focuses on multi-pendulum simulations and tracking the chaotic
 motion of the system. It will allow users to generate diagrams (e.g. Poincare
-mapping) and plot trajectories over time using two different ODE/DAE initial value
-problem solvers. The implementation should be reliable and accurate.\\\\
+mapping) and plot trajectories over time using two different ODE/DAE initial 
+value problem solvers. The implementation should be reliable and accurate.\\\\
 The System VnV plan will in summary:
 \begin{itemize}
 \item Satisfy the requirements of Dr. Spencer Smith \wss{\LaTeX{} has a rule
     that it inserts two spaces at the end of a sentence.  It detects a sentence
-    as a period followed by a capital letter.  This comes up, for instance, with
+    as a period followed by a capital letter. This comes up, for instance, with
     Dr. Smith.  Since the period after Dr.\ isn't actually the end of a
-    sentence, you need to tell \LaTeX{} to insert one space.  You do this either
+    sentence, you need to tell \LaTeX{} to insert one space. You do this either
     by Dr.\ Smith (if you don't mind a line-break between Dr.\ and Smith), or
     Dr.~Spencer Smith (to force \LaTeX{} to not insert a line break).}and those
   outlined in the SRS.
 \item Build confidence in the software correctness.
 \item Verify usability and effectiveness.
-\item The tests outlined in this document are limited to the verification of the 
-  requirements given in the \progname SRS.
+\item The tests outlined in this document are limited to the verification of 
+the requirements given in the \progname SRS.
 \item The tests outlined in this document are limited to dynamic tests only.  
-  No formal static testing (code walkthroughs, code inspections, etc.) will be carried out.
+No formal static testing (code walk-through, code inspections, etc.) will be 
+carried out.
 \item The \progname software will be written in Python. The testing of 
 implementations in other languages will not be considered in this document.
 \end{itemize}
@@ -243,7 +248,7 @@ implementations in other languages will not be considered in this document.
 \wss{State what is intended to be accomplished.  The objective will be around
   the qualities that are most important for your project.  You might have
   something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
+  ``demonstrate adequate usability.'' etc. You won't list all of the qualities,
   just those that are most important.}
 
 \subsection{Relevant Documentation}
@@ -252,31 +257,31 @@ SRS document:
 	\item Karol Serkis. System Requirements Specification for \progname. 
 	Github, 2018.
 \end{itemize}
-\wss{Reference relevant documentation.  This will definitely include your SRS}
+\wss{Reference relevant documentation. This will definitely include your SRS}
 
 \wss{A hypperlink to your GitHub documentation would be great.}
 
 \section{Plan}
 	
 \subsection{Verification and Validation Team}
-The test team includes the following members:
-\begin{itemize}
-\item Karol Serkis
-\end{itemize}
-The verification and validation team consists of (possibly Dr. Spencer Smith) classmates and I. \\
+The test team includes the following members: Karol Serkis
+
+The verification and validation team consists of (possibly Dr. Spencer Smith) 
+classmates and I. \\
 
 \wss{Probably just you.  :-)}
 
 \subsection{SRS Verification Plan}
 
-The SRS verification plan consists of feedback from Dr. Spencer Smith and CAS 741 classmates. 
+The SRS verification plan consists of feedback from Dr. Spencer Smith and 
+CAS 741 classmates. 
 They will provide feedback regarding model assumptions, constraints and goals. 
 Feedback from classmates and Dr. Smith will criticize the document outline, 
 readability and requirements. \\ \wss{Using Repos.xlsx you can be more specific
   about how is going to provide you with feedback.}  \wss{You could mention the
   use of the GitHub issue tracker.}
 
-\wss{List any approaches you intend to use for SRS verification.  This may just
+\wss{List any approaches you intend to use for SRS verification. This may just
   be ad hoc feedback from reviewers, like your classmates, or you may have
   something more rigorous/systematic in mind..}
 
@@ -293,7 +298,7 @@ The implementation verification plan consists of two parts. The first part
 is a software verification. It will be completed by myself any others who 
 use \progname and will involve verification that basic that basic software 
 features have been implemented successfully, 
-such as allowing the user to successfully utilize the software to fullfill
+such as allowing the user to successfully utilize the software to full-fill
 its basic responsibilities (ie generate diagrams (e.g. Poincare
 mapping) and plot trajectories). 
 More can be found in the appendix. The 
@@ -301,8 +306,8 @@ second part involves running software tests
 outlined in sections 5 (System Test) and 6 (Static Verification). 
 Unit testing will also be performed. 
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+\wss{You should at least point to the tests listed in this document 
+and the unit testing plan.}
 
 \subsection{Software Validation Plan}
 
@@ -318,12 +323,12 @@ External examples (tentative):
 \\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
 \end{itemize}
 
-\wss{I don't know how to use this information.  How does it help?   How does it
+\wss{I don't know how to use this information. How does it help? How does it
   apply?}
 
 \wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+  point to it here.  If there are no plans for validation, you should state 
+  that here.}
 
 \section{System Test Description}
 	
@@ -337,11 +342,12 @@ External examples (tentative):
 				
 Initial State: -
 					
-Input: Initial input for the pendula weights in chain. See SRS and appendix for more info.
+Input: Initial input for the pendula weights in chain. See SRS and appendix for 
+more info.
 					
 Output: Error or pass message.
 					
-How test will be performed: Combinations of inputing non-numerical values as 
+How test will be performed: Combinations of inputting non-numerical values as 
 input  (such as letters), or numerical values outside of their respective 
 constraints, will be considered. A successful test in these instances will be 
 an error message. \\
@@ -357,9 +363,10 @@ Input: Similar to test-Rin1
 
 Output: Pass of fail message (Is there a graph/plot or not)
 
-How test will be performed: This test will simply check to see if the trajectory plot or
-Poincare plot is plotted and if the picture agrees with the related physics.
-These should be no plot for the failed test cases of test-Rin1. 
+How test will be performed: This test will simply check to see if the 
+trajectory plot or Poincare plot is plotted and if the picture agrees with the 
+related physics.
+There should be no plot for the failed test cases of test-Rin1. 
 
 \item{test-Rstl} 
 
@@ -377,7 +384,7 @@ stability analysis in (ref1).
 \wss{The test cases are specific enough.  Each test case should only test one
   thing.  That means the output cannot have an ``or'' in it.  There should be
   enough information for someone to write the test without having to look
-  anything up, or having to consult with you.  You want to give specific values
+  anything up, or having to consult with you. You want to give specific values
   for the inputs.}
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -411,9 +418,9 @@ Input: Input all inital user values to the ODE equation/Lagrangian equation.
 
 Output: Pass or fail (See SRS for equations).
 
-How test will be performed: The output ought fit with the physics and math simulations for
-progname. This test will loop through a various set of inputs to see if the plot does not 
-go out of bounds or fail with overflow.
+How test will be performed: The output ought fit with the physics and math 
+simulations for \progname. This test will loop through a various set of inputs 
+to see if the plot does not go out of bounds or fail with overflow.
 
 \item{test-NFR3\\} 
 
@@ -432,7 +439,7 @@ Dr. Ned's software and other related. \\
 \end{enumerate}
 
 \wss{Your test cases need to be more specific.  What are the inputs for your
-  tests and what are the expected outputs.  For the expected outputs you need to
+  tests and what are the expected outputs. For the expected outputs you need to
 say how you are going to calculate the error.  Your output will likely be a
 sequence of values that you need to compare to the ``correct'' sequence of
 values.  You should consider using the ratio of the Euclidean norm of the
@@ -469,33 +476,34 @@ residual vector to the Euclidean norm of the expected output vector.}
 	go through the code to see if each step is correct with respect to the
 	mathematical theory. In particular I will ensure that: 
 	\begin{itemize}
-		\item any discretization of functions is performed accurately from the pivot points. 
-		\item plot trajectories are within scope
-		\item ensure a varible is not accidently \wss{proof read and
-                    spell check} overwritten or cleared. 
-		\item variables are being used in the right context. 
-		For example, equal incrementation in all used cartesian coordinates. 
-		\item functions from other packages are being used in the right 
-		context. For example, some packages have different standards for 
-		constants.
+	\item any discretization of functions is performed accurately from the 
+	pivot points. 
+	\item plot trajectories are within scope
+	\item ensure a variable is not accidentally 
+	overwritten or cleared. 
+	\item variables are being used in the right context. 
+	For example, equal increment in all used Cartesian coordinates. 
+	\item functions from other packages are being used in the right 
+	context. For example, some packages have different standards for 
+	constants.
 	\end{itemize} 
-	\item Code walkthrough: Dr. Spencer Smith and I will go through the code 
-	together to ensure that: 
+	\item Code walk-through: Dr. Spencer Smith and I will go 
+	through the code together to ensure that: 
 	\begin{itemize}
-		\item I correctly implemented the mathematical theory and numerical 
-		algorithms.
-		\item I made the code manageable and maintainable for future use.
+	\item I correctly implemented the mathematical theory and numerical 
+	algorithms.
+	\item I made the code manageable and maintainable for future use.
 	\end{itemize}
 \end{itemize}
 
-\wss{These ideas are a good starting point.  I suggest that you flesh them out
+\wss{These ideas are a good starting point. I suggest that you flesh them out
   more.  Also, you can delete this section and move the contents to Section 4.4
   (Implementation Verification Plan.)  I've modified the template after reading
   several student examples.  It turns out that this section and Section 4.4 are
   really covering the same topic.}
 
 \wss{In this section give the details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
+  the implementation.  Potential techniques include code walk-through, code
   inspection, static analyzers, etc.}
 				
 \bibliographystyle{plainnat}
@@ -519,7 +527,8 @@ Their values are defined in this section for easy maintenance.
 	\item How long did it take to learn how to run the software? 
 	\item Was it easy to interpret the output? 
 	\item What aspects of this software do you feel need improvement?
-	\item Was the output recieved \wss{spell check} and processed in an adequate amount of time?
+	\item Was the output received and processed in an 
+	adequate amount of time?
 	\item How does this program compare with other similar software?
 \end{itemize} 
 
@@ -527,7 +536,7 @@ Their values are defined in this section for easy maintenance.
   find a reference.   You should connect this to a NFR test related to
   usability.  I like your questions, but try to put some time into making them
   less ambiguous.  Was it easy to interpret the output is a difficult question
-  to answer.  Instead you could ask them how long it took them to interpet the
+  to answer.  Instead you could ask them how long it took them to interpret the
   output?  (You want to ask questions that are measurable and unambiguous.)}
 \wss{This is a section that would be appropriate for some projects.}
 

@@ -1,7 +1,7 @@
 # Makefile
 .PHONY:	SRS
 
-all:	SRS MG MIS PS SVnVP UVnVP SVnVR UVnVR
+all:	SRS MG MIS PS SVnVP UVnVP SVnVR UVnVR UserGuide
 
 SRS:
 	cd SRS && make && cd ..
@@ -27,8 +27,11 @@ SVnVR:
 UVnVR:
 	cd VnVReport/UnitVnVReport && make && cd ../..
 
+UserGuide:
+	cd UserGuide && make && cd ..
 
-clean:	cleanSRS cleanMG cleanMIS cleanPS cleanSVnVP cleanUVnVP cleanSVnVR cleanUVnVR
+
+clean:	cleanSRS cleanMG cleanMIS cleanPS cleanSVnVP cleanUVnVP cleanSVnVR cleanUVnVR cleanUserGuide
 
 cleanPS:
 	cd ProblemStatement && make clean && cd ..
@@ -53,3 +56,6 @@ cleanSVnVR:
 
 cleanUVnVR:
 	cd VnVReport/UnitVnVReport && make clean && cd ..
+
+cleanUserGuide:
+	cd UserGuide && make clean && cd ..

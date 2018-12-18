@@ -84,8 +84,8 @@ October 31, 2018 & 1.0 &  First full draft for submission\\
 
 \section{Introduction}
 
-The module guide document is providing to the reader the decomposition of \progname
- into smaller pieces to help the implementation phase.
+The module guide document is providing to the reader the decomposition of 
+\progname into smaller pieces to help the implementation phase.
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
@@ -95,7 +95,7 @@ hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
 solution space is explored.  
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+Our design follows the rules laid out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -105,18 +105,18 @@ Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \end{itemize}
 
 After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
+Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}.
+The MG specifies the modular structure of the system and is intended to allow 
+both designers and maintainers to easily identify the parts of the software. 
+The potential readers of this document are as follows:
 
 \begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
+\item New project members: This document can be a guide for a new project
+  member to easily understand the overall structure and quickly find the
   relevant modules they are searching for.
 \item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
+  maintainers' understanding when they need to make changes to the system. It 
+  is important for a maintainer to update the relevant sections of the document
   after changes have been made.
 \item Designers: Once the module guide has been written, it can be used to
   check for consistency, feasibility and flexibility. Designers can verify the
@@ -131,9 +131,9 @@ was constructed according to the likely changes. Section \ref{SecConnection}
 specifies the connections between the software requirements and the
 modules. Section \ref{SecMD} gives a detailed description of the
 modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
+the completeness of the design against the requirements provided in the SRS. 
+The other shows the relation between anticipated changes and the modules. 
+Section \ref{SecUse} describes the use relation between modules.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -146,9 +146,8 @@ unlikely changes are listed in Section \ref{SecUchange}.
 
 Anticipated changes are the source of the information that is to be hidden
 inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+require changing the one module that hides the associated decision. 
+The approach adapted here is called design for change.
 
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
@@ -156,7 +155,7 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The format of the
   initial input data.
 \item[\refstepcounter{acnum} \actheacnum \label{ac3d}:] The 3D coordinate space 
-to a 2D coordinate space.
+  to a 2D coordinate space.
 \item[\refstepcounter{acnum} \actheacnum \label{acCoord}:] The format of the
   Lagrangian/Hamiltonian (2D vs 3D).
 \item[\refstepcounter{acnum} \actheacnum \label{acLinear}:] The (linear)
@@ -167,8 +166,8 @@ to a 2D coordinate space.
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
+The module design should be as general as possible. However, a general system 
+is more complex. Sometimes this complexity is not necessary. Fixing some design
 decisions at the system architecture stage can simplify the software design. If
 these decision should later need to be changed, then many parts of the design
 will potentially need to be modified. Hence, it is not intended that these
@@ -181,10 +180,12 @@ decisions will be changed.
   a source of input data external to the software. \wss{You can remove this UC.
     I know it was in the template, but it doesn't make sense to me.  I've
     removed it from the template.}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The goal statements of \progname
-(see SRS; extensions to SRS are still possible, but current goals should not change
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucData}:] The data types (real number)
-interface device with user \wss{This looks like two unlikely changes in one.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The goal statements 
+ of \progname (see SRS; extensions to SRS are still possible, but current goals
+ should not change)
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucData}:] The data types 
+(real number) interface device with user
+\wss{This looks like two unlikely changes in one.
   The physics of the problem is for real numbers, so I'm not sure you need to
   say this.  You already mention input devices in the first UC.}
 \end{description}
@@ -197,17 +198,25 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module (described in MG$\_$Hardware)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module (described in MG$\_$Control)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module (described MG$\_$GUI)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters Module (described in MG$\_$InputFormat)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module (described in MG$\_$LA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module (described in MG$\_$HA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module (described in MG$\_$DataStruct)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module (described in MG$\_$GUIplot)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory Simulation GUI Module (described in MG$\_$SIM)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module 
+(described in MG$\_$Hardware)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module 
+(described in MG$\_$Control)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module 
+(described MG$\_$GUI)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters 
+Module (described in MG$\_$InputFormat)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module 
+(described in MG$\_$LA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module 
+(described in MG$\_$HA)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module 
+(described in MG$\_$DataStruct)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module 
+(described in MG$\_$GUIplot)
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory 
+Simulation GUI Module (described in MG$\_$SIM)
 \end{description}
-
 
 \begin{table}[h!]
 \centering
@@ -218,12 +227,14 @@ actually be implemented.
 
 {Hardware-Hiding Module} & ~ \\
 \midrule
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & {\progname Control Module}\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & 
+{\progname Control Module}\\
 & \progname GUI Module\\
 & User Input Parameters Module\\
 & Data Structure Module\\
 \midrule
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {Generic Trajectory Simulation GUI Module}\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & {Generic Trajectory 
+Simulation GUI Module}\\
 & Generic GUI/Plot Module\\
 & Lagrangian Module\\
 & Hamiltonian Module\\ 
@@ -284,8 +295,8 @@ selected.
 \subsubsection{\progname{}Control Module (M2)}
 \label{MG_Control}
 \begin{description}
-\item[Secrets:] Execution flow of \progname{}. \wss{At the end of a sentence you
-    want to just use progname without the parentheses.} 
+\item[Secrets:] Execution flow of \progname{}. \wss{At the end of a sentence
+    you want to just use progname without the parentheses.} 
 \item[Services:] Calls the different modules in the appropriate order.
 \item[Implemented By:] \progname{}
 \end{description}
@@ -329,8 +340,8 @@ data and object structure.
 \label{MG_LA}
 \begin{description}
 \item[Secrets:] Lagrangian calculation/algorithm.
-\item[Services:] Calculates the variation of Lagrangian for each pendulum in the chain 
-(each element of the array).
+\item[Services:] Calculates the variation of Lagrangian for each pendulum in 
+the chain (each element of the array).
 \item[Implemented By:] \progname{}
 \end{description}
 
@@ -338,8 +349,8 @@ data and object structure.
 \label{MG_HA}
 \begin{description}
 \item[Secrets:] Hamiltonian calculation/algorithm.
-\item[Services:] Calculates the variation of Hamiltonian for each pendulum in the chain 
-(each element of the array).
+\item[Services:] Calculates the variation of Hamiltonian for each pendulum in 
+the chain (each element of the array).
 \item[Implemented By:] \progname{}
 \end{description}
 
@@ -364,7 +375,8 @@ windows, plotting, entry fields to interact with a user.
 \subsubsection{Trajectory Simulation Module (M9)}
 \label{MG_SMHSim}
 \begin{description}
-\item[Secrets:] Algorithm to simulate the plot trajectory of the chain of pendula.
+\item[Secrets:] Algorithm to simulate the plot trajectory of the chain 
+of pendula.
 \item[Services:] Simulates the chain of pendula in space using the Lagrangian
 and the Hamiltonian.
 \item[Implemented By:] \progname{}
@@ -383,7 +395,8 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & M2, M3, M4, M5, M6, M7, M8, M9\\%\mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
+R1 & M2, M3, M4, M5, M6, M7, M8, M9\\%\mref{mHH}, \mref{mInput}, 
+\mref{mParams}, \mref{mControl}\\
 R2 & M2, M3, M4, M5, M6\\%\mref{mInput}, \mref{mParams}\\
 R3 & M4, M5, M6, M7, M8, M9\\%\mref{mVerify}\\
 R4 & M4, M5, M6, M7, M8, M9\\%\mref{mOutput}, \mref{mControl}\\
@@ -413,16 +426,16 @@ R4 & M4, M5, M6, M7, M8, M9\\%\mref{mOutput}, \mref{mControl}\\
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
+In this section, the uses hierarchy between modules is provided. 
+\citet{Parnas1978} said of two programs A and B that A {\em uses} B if
 correct execution of B may be necessary for A to complete the task described in
 its specification. That is, A {\em uses} B if there exist situations in which
 the correct functioning of A depends upon the availability of a correct
 implementation of B.  Figure \ref{FigUH} illustrates the use relation between
 the modules. It can be seen that the graph is a directed acyclic graph
 (DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
+system, and modules in the higher level of the hierarchy are essentially 
+simpler because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
@@ -431,17 +444,20 @@ because they use modules from the lower levels.
 \label{FigUH}
 \end{figure}
 
-\wss{The uses relation is confusing.  The input module should be ``used by'' other
-  modules, not using them.  I would think the input module would be lower in the
-hierarchy.  I don't know why the trajectory simulation module uses the gui
-module?  Maybe this will be clear to me (and you) when you write the MIS.}
+\wss{The uses relation is confusing.  The input module should be ``used by'' 
+  other modules, not using them. I would think the input module would be lower 
+  in the hierarchy. I don't know why the trajectory simulation module uses the 
+GUI module?  Maybe this will be clear to me (and you) when you write the MIS.}
+
+\newpage
 
 %\section*{References}
 \subsection*{References}\label{ssec:ref} \wss{You shouldn't do this manually,
   especially since you use BibTeX in the next section.  The new references can
   be added to your .bib file and everything will be generated automatically.}
 \begin{itemize}
-\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
+\item{[1]} Dynamics of multiple pendula 
+\\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
 \item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
 \item{[3]} Pendulum (mathematics)
 \\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
@@ -455,12 +471,14 @@ Differential-Algebraic Equations by Taylor Series
 \\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
 \item{[7]} Poincaré map
 \\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
-ACM, vol. 15, pp. 1053-1058, December 1972.
-\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
-in International Conference on Software Engineering, pp. 408-419, 1984.
-\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
-Proceedings of the 3rd international conference on Software engineering, \\
+\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems 
+into modules'', Comm. ACM, vol. 15, pp. 1053-1058, December 1972.
+\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure 
+of complex systems'', in International Conference on Software Engineering, 
+pp. 408-419, 1984.
+\item{[10]} D. L. Parnas, ``Designing software for ease of extension and 
+contraction,'' in ICSE '78: Proceedings of the 3rd international conference 
+on Software engineering, \\
 (Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
 \item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
 See bib file that doesn't work for me for full citation.

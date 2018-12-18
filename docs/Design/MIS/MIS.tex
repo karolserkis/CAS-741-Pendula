@@ -21,12 +21,12 @@
 \usepackage{fullpage}
 
 \hypersetup{
-bookmarks=true,     % show bookmarks bar?
-colorlinks=true,       % false: boxed links; true: colored links
-linkcolor=red,          % color of internal links (change box color with linkbordercolor)
-citecolor=blue,      % color of links to bibliography
-filecolor=magenta,  % color of file links
-urlcolor=cyan          % color of external links
+bookmarks=true,% show bookmarks bar?
+colorlinks=true,% false: boxed links; true: colored links
+linkcolor=red,% color of internal links (change box color with linkbordercolor)
+citecolor=blue,% color of links to bibliography
+filecolor=magenta,% color of file links
+urlcolor=cyan% color of external links
 }
 
 \usepackage{array}
@@ -38,7 +38,8 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{CAS 741: Module Interface Specification\\[10pt]\Large Dynamical Systems: \progname}
+\title{CAS 741: Module Interface Specification\\[10pt]\Large Dynamical 
+Systems: \progname}
 \author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
 \href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
@@ -61,7 +62,8 @@ November 26, 2018 & 1.0 &  First full draft for submission\\
 \section{Symbols, Abbreviations and Acronyms}
 
 See SRS Documentation at 
-\href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
+\href{https://github.com/karolserkis/CAS-741-Pendula/
+blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
 \wss{give url}
 
 \wss{Also add any additional symbols, abbreviations or acronyms}\\
@@ -97,12 +99,14 @@ The symbols are listed in alphabetical order.\\
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for the \progname project
+The following document details the Module Interface Specifications for the 
+\progname project
 \wss{Fill in your project name and description}
 
 Complementary documents include the System Requirement Specifications
 and Module Guide. The full documentation and implementation can be
-found at: \\\url{https://github.com/karolserkis/CAS-741-Pendula}.  \wss{provide the url for your repo}
+found at: \\\url{https://github.com/karolserkis/CAS-741-Pendula}.  
+\wss{provide the url for your repo}
 
 \section{Notation}
 
@@ -110,16 +114,18 @@ found at: \\\url{https://github.com/karolserkis/CAS-741-Pendula}.  \wss{provide 
   a starting point.}  \wss{You shouldn't keep my original comments in your
   version.  The SS comments for the references really look odd.}
 
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995}\wss{HoffmanAndStrooper1995},
+The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}\wss{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}\wss{HoffmanAndStrooper1995}.  
-For instance, the symbol := is used for a multiple assignment statement and conditional rules follow the form 
+\cite{GhezziEtAl2003}\wss{GhezziEtAl2003}.  The mathematical notation comes 
+from Chapter 3 of \citet{HoffmanAndStrooper1995}.  
+For instance, the symbol := is used for a multiple assignment statement and 
+conditional rules follow the form 
 $(c_1 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.\\\\
-(Karol) I am also using \href{https://proofwiki.org/wiki/Symbols:R}{this link} for 
-now.\\
+(Karol) I am also using \href{https://proofwiki.org/wiki/Symbols:R}{this link}
+for now.\\
 
-The following table summarizes the primitive data types used by \progname and the symbols used in this document.
+The following table summarizes the primitive data types used by \progname and 
+the symbols used in this document.
 The choice of symbols was made to be consistent with calculus, ordinary
 differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical
 spaces are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.)
@@ -132,16 +138,19 @@ spaces are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.)
 \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
 \midrule
 character & char & a single symbol or digit\\
-integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
-natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
+integer & $\mathbb{Z}$ & a number without a fractional component in 
+(-$\infty$, $\infty$) \\
+natural number & $\mathbb{N}$ & a number without a fractional component in 
+[1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \bottomrule
 \end{tabular} 
 \end{center}
 
 \noindent
-The specification of \progname uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
+The specification of \progname uses some derived data types: sequences, 
+strings, and tuples. 
+Sequences are lists filled with elements of the same data type. Strings
 are sequences of characters. Tuples contain a list of values, potentially of
 different types. In addition, \progname uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
@@ -149,7 +158,8 @@ described by giving their type signature followed by their specification.
 
 \section{Module Decomposition}
 
-The following table is taken directly from the Module Guide document for this project.
+The following table is taken directly from the Module Guide document for 
+this project.
 
 \begin{table}[h!]
 \centering
@@ -167,7 +177,8 @@ The following table is taken directly from the Module Guide document for this pr
 & Data Structure Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Generic Trajectory Simulation GUI Module}\\
+\multirow{3}{0.3\textwidth}{Software Decision} & {Generic Trajectory Simulation
+ GUI Module}\\
 & Generic GUI/Plot Module\\
 & Lagrangian Module\\
 & Hamiltonian Module\\ 
@@ -185,16 +196,21 @@ The following table is taken directly from the Module Guide document for this pr
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hypperlinks to 
+external documents.}\\
 
-\noindent Execution flow of \progname{}. Calls the different modules in the appropriate order.
+\noindent Execution flow of \progname{}. Calls the different modules in 
+the appropriate order.
 The general steps of the module are:
 \begin{enumerate}
-	\item Read in and verify mps\_input.
-	\item Calculate Lagrangian module, iterate over the whole time frame (use data structure).
-	\item Calculate Hamiltonian module, iterate over the whole time frame (use data structure).
-	\item Generate a Plot and Poincar\'{e} map
-	\item Return the trajectory plot output as per the output/simulation module specifications.
+\item Read in and verify mps\_input.
+\item Calculate Lagrangian module, iterate over the whole time frame 
+(use data structure).
+\item Calculate Hamiltonian module, iterate over the whole time frame 
+(use data structure).
+\item Generate a Plot and Poincar\'{e} map
+\item Return the trajectory plot output as per the output/simulation module 
+specifications.
 \end{enumerate}
 
 \subsection{Module}
@@ -205,7 +221,8 @@ mps\_control
 
 mps\_gui (M3, Section 7)\\
 mps\_input (M4, Section 8)\\\\
-Processing modules: \wss{what are processing modules?  I'm not sure about this terminology}\\
+Processing modules: \wss{what are processing modules?  I'm not sure about 
+this terminology}\\
 mps\_lagrang (M5, Section 9), mps\_hamil (M6, Section 10)\\
 mps\_datastruct (M7, Section 11)\\
 generic\_plot (M8, Section 12), mps\_trajplotsim (M9, Section 13) 
@@ -230,8 +247,10 @@ run\_mps & int, str & None & None \\
 
 \subsection{Semantics}
 
-The \progname is designed to have the input and initialization controlled by the user directly through the GUI.
-The \progname Control Module uses the events in the \progname GUI to use the processing modules in order.
+The \progname is designed to have the input and initialization controlled by 
+the user directly through the GUI.
+The \progname Control Module uses the events in the \progname GUI to use the 
+processing modules in order.
 
 \subsubsection{State Variables}
 
@@ -242,7 +261,7 @@ The \progname Control Module uses the events in the \progname GUI to use the pro
 	\item mps\_hamil : calc (see Section 10)
 \end{itemize}
 
-\wss{init is not a type, either is calc?  How am I supposed to read this?  State
+\wss{init is not a type, either is calc?  How am I supposed to read this? State
   variables are specified as a name and a type.}
 
 \subsubsection{Environment Variables}
@@ -254,14 +273,18 @@ The \progname Control Module uses the events in the \progname GUI to use the pro
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+  exceptions, but for practical purposes assumptions are 
+sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent run\_mps(mps\_input) \wss{This doesn't match the int, str specified above?}:
+\noindent run\_mps(mps\_input) 
+\wss{This doesn't match the int, str specified above?}:
 \begin{itemize}
-\item transition: The Multi Pendulum Simulation is initialized and the data structure through the modules
-for calculation (Lagrangian \& Hamilonian \wss{spell check!}). The result is then passed to the plot/simulation/output modules.
+\item transition: The Multi Pendulum Simulation is initialized and the data 
+structure through the modules
+for calculation (Lagrangian \& Hamiltonian. The result is then passed to the 
+plot/simulation/output modules.
 \item output: None \wss{if appropriate} 
 \item exception: None \wss{if appropriate} 
 \end{itemize}
@@ -289,7 +312,7 @@ for calculation (Lagrangian \& Hamilonian \wss{spell check!}). The result is the
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
 Methods to interact with user to make run \progname{}. Serves as 
 interface between the user and the software through 
@@ -328,7 +351,7 @@ gui\_plot & - & GUI object (Poincar\'{e}) & - \\
 \subsection{Semantics}
 
 The \progname process flow is initialized buy user through the GUI. 
-The user triggeres \wss{spell check} the events that start the selected processing step.
+The user triggered the events that start the selected processing step.
 
 \subsubsection{State Variables}
 
@@ -350,7 +373,7 @@ button{\_}Poincar\'{e}: GUI object\\
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
@@ -358,7 +381,8 @@ button{\_}Poincar\'{e}: GUI object\\
 \begin{itemize}
 \item transition: Trigger mps\_input when button\_Input pressed.
 \item output: \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent gui\_trajsim():
@@ -395,10 +419,10 @@ button{\_}Poincar\'{e}: GUI object\\
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
-The format and structure of the input data. Loads, verifies and stores the input data into the appropriate 
-data and object structure.
+The format and structure of the input data. Loads, verifies and stores the 
+input data into the appropriate data and object structure.
 
 \subsection{Module}
 
@@ -408,7 +432,8 @@ mps\_input
 
 mps\_gui (M3, Section 7)\\
 mps\_datastruct (M7, Section 11) \wss{The modules in the uses section should
-  actually be used in the specification.  I don't see where these are actually invoked.}
+actually be used in the specification.  I don't see where these are actually 
+invoked.}
 
 \subsection{Syntax}
 
@@ -435,17 +460,18 @@ gui\_plot & - & GUI object (Poincar\'{e}) & - \\
 
 \subsubsection{State Variables}
 
-data : object \wss{What is this?  object is not a type.  What data are you storing?}
+data : object \wss{What is this? object is not a type. 
+What data are you storing?}
 
 \subsubsection{Environment Variables}
 
 \noindent Plot{\_}TrajSim: GUI object\\
 \wss{Describe this enviro variable.  Are you taking the data fields from
   corresponding fields in the GUI object?}
-\wss{You have really integrated the GUI into your design.  It is better if you
-  almost don't mention the GUI with the idea that the modules can be implemented
-  by any interface.  Maybe a model view controller pattern would work in your
-  case?}
+\wss{You have really integrated the GUI into your design. It is better if you
+ almost don't mention the GUI with the idea that the modules can be implemented
+ by any interface.  Maybe a model view controller pattern would work in your
+ case?}
 
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
@@ -454,7 +480,7 @@ data : object \wss{What is this?  object is not a type.  What data are you stori
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+ exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
@@ -470,25 +496,27 @@ NotReal \wss{I have no idea how to read this.  Are you just checking the type?
 
 \noindent data\_struct(mps\_input):
 \begin{itemize}
-\item transition: mps\_input is the user input that is entered into the GUI. The
-  input is used to initialize the data structure. \wss{What is the data
-    structure?  The MIS is where you make decisions about this.}
+\item transition: mps\_input is the user input that is entered into the GUI. 
+The input is used to initialize the data structure. \wss{What is the data
+    structure? The MIS is where you make decisions about this.}
 \item output: \wss{if appropriate} 
 \item exception: \wss{if appropriate} 
 \end{itemize}
 
 \noindent gui\_trajsim(mps\_datastruct, mps\_input):
 \begin{itemize}
-\item transition: mps\_datastruct is a module that takes the mps\_input and thus the program gui\_trajsim will 
-be prepared for the lagrangian and hamiltonian calculations done by their coresponding modules.
+\item transition: mps\_datastruct is a module that takes the mps\_input and 
+thus the program gui\_trajsim will be prepared for the Lagrangian and 
+Hamiltonian calculations done by their corresponding modules.
 \item output: \wss{if appropriate} 
 \item exception: \wss{if appropriate} 
 \end{itemize}
 
 \noindent gui\_plot(mps\_datastruct, mps\_input):
 \begin{itemize}
-\item transition: mps\_datastruct is a module that takes the mps\_input and thus the program gui\_plot will 
-be prepared for the lagrangian and hamiltonian calculations done by their coresponding modules.
+\item transition: mps\_datastruct is a module that takes the mps\_input and 
+thus the program gui\_plot will be prepared for the Lagrangian and Hamiltonian 
+calculations done by their corresponding modules.
 \item output: \wss{if appropriate} 
 \item exception: \wss{if appropriate} 
 \end{itemize}
@@ -513,10 +541,10 @@ be prepared for the lagrangian and hamiltonian calculations done by their coresp
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
-Lagrangian calculation/algorithm. Calculates the variation of Lagrangian for each pendulum in the chain 
-(each element of the array).
+Lagrangian calculation/algorithm. Calculates the variation of Lagrangian for 
+each pendulum in the chain (each element of the array).
 
 \subsection{Module}
 
@@ -561,22 +589,26 @@ calc\_lagrang & int, str & long, str & - \\
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+ exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent mps\_input():
 \begin{itemize}
-\item transition: mps\_input passed to calc\_lagrang (which in turn the module utlilizes mps\_datastruct).
+\item transition: mps\_input passed to calc\_lagrang (which in turn the module 
+utilizes mps\_datastruct).
 \item output: \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent calc\_lagrang(mps\_input):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \wss{A module without environment variables or state variables is unlikely to
@@ -602,10 +634,10 @@ calc\_lagrang & int, str & long, str & - \\
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
-Hamiltonian calculation/algorithm. Calculates the variation of Hamiltonian for each pendulum in the chain 
-(each element of the array).
+Hamiltonian calculation/algorithm. Calculates the variation of Hamiltonian for 
+each pendulum in the chain (each element of the array).
 
 \subsection{Module}
 
@@ -651,36 +683,42 @@ calc\_hamil & long, str & long, str & - \\
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+ exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent mps\_input():
 \begin{itemize}
-\item transition: mps\_input passed to calc\_lagrang (which in turn the module utlilizes mps\_datastruct).
+\item transition: mps\_input passed to calc\_lagrang (which in turn the module 
+utilizes mps\_datastruct).
 \item output: \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent calc\_lagrang(mps\_input):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent calc\_hamil(mps\_input):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \wss{A module without environment variables or state variables is unlikely to
   have a state transition.  In this case a state transition can only occur if
   the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
+\wss{Modules rarely have both a transition and an output. In most cases you
   will have one or the other.}
 
 \subsubsection{Local Functions}
@@ -696,10 +734,10 @@ calc\_hamil & long, str & long, str & - \\
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
-Data format for an image. Provides convenient format to store, read and manipulate all 
-elements (pixel) from an image.
+Data format for an image. Provides convenient format to store, read and 
+manipulate all elements (pixel) from an image.
 
 \subsection{Module}
 
@@ -745,7 +783,8 @@ mps\_gui & GUI object & - & - \\
 Plot{\_}Poincar\'{e}: GUI object\\
 
 \wss{Why does the data structure use gui objects?  As mentioned previously, the
-  GUI connects to too many modules.  Most modules should be independent of the interface.}
+GUI connects to too many modules. Most modules should be independent of the 
+interface.}
 
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
@@ -754,31 +793,37 @@ Plot{\_}Poincar\'{e}: GUI object\\
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+ exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent calc\_lagrang(mps\_input):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent calc\_hamil(mps\_input):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot \wss{if appropriate} 
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent mps\_gui(mps\_datastruct, gui\_trajsim, gui\_plot):
 \begin{itemize}
-\item transition: Utilizing the mps\_datastruct the mps\_input is calculated and passed to the gui\_trajsim and gui\_plot 
-and thus the program gui\_trajsim will be prepared for the lagrangian and hamiltonian calculations done by their 
-coresponding modules.
+\item transition: Utilizing the mps\_datastruct the mps\_input is calculated 
+and passed to the gui\_trajsim and gui\_plot 
+and thus the program gui\_trajsim will be prepared for the Lagrangian and 
+Hamiltonian calculations done by their corresponding modules.
 \item output: To gui\_trajsim and gui\_plot \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 
@@ -786,7 +831,7 @@ coresponding modules.
   have a state transition.  In this case a state transition can only occur if
   the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
+\wss{Modules rarely have both a transition and an output. In most cases you
   will have one or the other.}
 
 \subsubsection{Local Functions}
@@ -797,15 +842,16 @@ coresponding modules.
   have local scope.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{MIS of Generic GUI/Plot Module (M8)} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Generic GUI/Plot Module (M8)} \label{Module} 
+\wss{Use labels for cross-referencing}
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
-Generic methods to interact with the user. Provides the generic interface methods such as buttons, 
-windows, plotting, entry fields to interact with a user.
+Generic methods to interact with the user. Provides the generic interface 
+methods such as buttons, windows, plotting, entry fields to interact 
+with a user.
 
 \subsection{Module}
 
@@ -849,21 +895,24 @@ Plot{\_}Poincar\'{e}: GUI object\\
 \subsubsection{Assumptions}
 
 \wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+ exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent gui\_trajsim():
 \begin{itemize}
 \item transition: \wss{if appropriate} 
-\item output: To mps\_gui(mps\_datastruct, gui\_trajsim, gui\_plot) or the generic\_plot module \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when gui\_trajsim are invalid) \wss{if appropriate} 
+\item output: To mps\_gui(mps\_datastruct, gui\_trajsim, gui\_plot) or the 
+generic\_plot module \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when gui\_trajsim are invalid) 
+\wss{if appropriate} 
 \end{itemize}
 
 \noindent gui\_plot(mps\_datastruct, mps\_input):
 \begin{itemize}
-\item transition: mps\_datastruct is a module that takes the mps\_input and thus the program gui\_plot will 
-be prepared for the lagrangian and hamiltonian calculations done by their coresponding modules.
+\item transition: mps\_datastruct is a module that takes the mps\_input and 
+thus the program gui\_plot will be prepared for the Lagrangian and Hamiltonian 
+calculations done by their corresponding modules.
 \item output: \wss{if appropriate}  \wss{if it isn't appropriate, you should
     remove this field.}
 \item exception: \wss{if appropriate} 
@@ -873,7 +922,7 @@ be prepared for the lagrangian and hamiltonian calculations done by their coresp
   have a state transition.  In this case a state transition can only occur if
   the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
+\wss{Modules rarely have both a transition and an output. In most cases you
   will have one or the other.}
 
 \subsubsection{Local Functions}
@@ -884,12 +933,12 @@ be prepared for the lagrangian and hamiltonian calculations done by their coresp
   have local scope.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{MIS of Trajectory Simulation Module (M9)} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Trajectory Simulation Module (M9)} \label{Module} 
+\wss{Use labels for cross-referencing}
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
 
 Algorithm to simulate the plot trajectory of the chain of pendula.
 Simulates the chain of pendula in space using the Lagrangian
@@ -949,13 +998,17 @@ data : object
 \begin{itemize}
 \item transition: 
 \begin{enumerate}
-	\item Read in and verify mps\_input.
-	\item Calculate Lagrangian module calc\_lagrang, iterate over the whole time frame (use data structure).
-	\item Calculate Hamiltonian module calc\_hamil, iterate over the whole time frame (use data structure).
-	\item Return the trajectory plot output as per the output/simulation module specifications.
+\item Read in and verify mps\_input.
+\item Calculate Lagrangian module calc\_lagrang, iterate over the whole 
+time frame (use data structure).
+\item Calculate Hamiltonian module calc\_hamil, iterate over the whole 
+time frame (use data structure).
+\item Return the trajectory plot output as per the output/simulation module 
+specifications.
 \end{enumerate}
 \item output: \wss{if appropriate} 
-\item exception: WarnOutOfBounds (warn when mps\_input or calculations of the data structure are invalid) \wss{if appropriate} 
+\item exception: WarnOutOfBounds (warn when mps\_input or calculations of the 
+data structure are invalid) \wss{if appropriate} 
 \end{itemize}
 
 \wss{A module without environment variables or state variables is unlikely to
@@ -979,7 +1032,8 @@ data : object
   especially since you use BibTeX in the next section.  The new references can
   be added to your .bib file and everything will be generated automatically.}
 \begin{itemize}
-\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
+\item{[1]} Dynamics of multiple pendula 
+\\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
 \item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
 \item{[3]} Pendulum (mathematics)
 \\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
@@ -993,12 +1047,14 @@ Differential-Algebraic Equations by Taylor Series
 \\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
 \item{[7]} Poincaré map
 \\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
-ACM, vol. 15, pp. 1053-1058, December 1972.
-\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
-in International Conference on Software Engineering, pp. 408-419, 1984.
-\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
-Proceedings of the 3rd international conference on Software engineering, \\
+\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems 
+into modules'', Comm. ACM, vol. 15, pp. 1053-1058, December 1972.
+\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of 
+complex systems'', in International Conference on Software Engineering, 
+pp. 408-419, 1984.
+\item{[10]} D. L. Parnas, ``Designing software for ease of extension and 
+contraction,'' in ICSE '78: Proceedings of the 3rd international conference on 
+Software engineering, \\
 (Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
 \item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
 See bib file that doesn't work for me for full citation.
