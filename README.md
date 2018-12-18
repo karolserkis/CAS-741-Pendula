@@ -1,11 +1,11 @@
 # CAS-741-Pendula
 
 Karol Serkis
-CAS 741 Project - Multi-Pendulum Simulation (MPS)
+CAS 741 Project - Multi-Pendulum Simulation (MPSim)
 
 # Documentation
 
-This directory contains subdirectories for MPS's 
+This directory contains subdirectories for MPSim's 
 documentation. The templates for all of the documents were
 taken from a gitlab repository -
 [cas741](https://gitlab.cas.mcmaster.ca/smiths/cas741), authored
@@ -33,17 +33,17 @@ To get rid of all of the extra files, run the clean command:
 This directory contains the Module Instance Specification (MIS)
 document and the Module Guide (MG). Together, these documents
 outline how the code is pieced together and provide specific
-inputs and outputs for MPS modules.
+inputs and outputs for MPSim modules.
 
 ### ProblemStatement
 
 This directory contains a general abstract overview of the
-problem that MPS solves.
+problem that MPSim solves.
 
 ### SRS
 
 This directory contains the Software Requirements Specification
-(SRS) document, which explains the purpose of Kaplan in abstract
+(SRS) document, which explains the purpose of MPSim in abstract
 terms. The SRS provides the theory, symbols, units, formulas,
 and data formats necessary to answer the problem statement. The
 requirements (functional and non-functional) given in this document
@@ -67,5 +67,5 @@ tests to catch problems that might arise from implementation.
 
 This directory contains two reports - one for the SystVnVPlan
 and the other for the UnitVnVPlan. It is used to document
-progress that has been made in ensuring MPS's requirements
+progress that has been made in ensuring MPSim's requirements
 are being satisfied.
