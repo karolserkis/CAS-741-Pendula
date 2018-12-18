@@ -1,8 +1,28 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{hyperref}
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{tabu}
+\usepackage{verbatim}
+\usepackage[round]{natbib}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{extarrows}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{hyperref}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -13,11 +33,13 @@
 \usepackage[round]{natbib}
 
 \input{../../Comments}
+\input{../../Common}
 
 \begin{document}
 
-\title{Test Report: Project Title} 
-\author{Author Name}
+\title{\progname:\\ System Verification and Validation Report} 
+\author{Karol Serkis\\\texttt{serkiskj@mcmaster.ca}\\GitHub:
+\href{https://www.github.com/karolserkis}{karolserkis}}
 \date{\today}
 	
 \maketitle
@@ -29,8 +51,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+December 18, 2018 & 1.0 &  First full draft for submission\\
 \bottomrule
 \end{tabularx}
 
@@ -44,10 +65,11 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  R & Requirement\\ 
+  NFR & Non-functional Requirement\\ 
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
