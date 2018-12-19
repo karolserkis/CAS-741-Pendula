@@ -155,16 +155,16 @@ The approach adapted here is called design for change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which \progname software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The format of the
-  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The method of the
+  user input (ex. command-line option vs. dialog box)
 \item[\refstepcounter{acnum} \actheacnum \label{ac3d}:] The 3D coordinate space 
-  to a 2D coordinate space.
+  fixed to a 2D motion in 3D space
 \item[\refstepcounter{acnum} \actheacnum \label{acCoord}:] The format of the
-  Lagrangian/Hamiltonian (2D vs 3D).
+  Lagrangian (2D vs 3D)
 \item[\refstepcounter{acnum} \actheacnum \label{acLinear}:] The (linear)
-  solver algorithm.
+  solver algorithm
 \item[\refstepcounter{acnum} \actheacnum \label{acCont}:] The content of the
-  output (eg. 2D Poincare plot instead of 3D).
+  simulation and/or output (eg. 2D plot instead of 3D)
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -177,20 +177,13 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software. \wss{You can remove this UC.
-    I know it was in the template, but it doesn't make sense to me.  I've
-    removed it from the template.}
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices\\
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen)
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The goal statements 
  of \progname (see SRS; extensions to SRS are still possible, but current goals
  should not change)
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucData}:] The data types 
-(real number) interface device with user
-\wss{This looks like two unlikely changes in one.
-  The physics of the problem is for real numbers, so I'm not sure you need to
-  say this.  You already mention input devices in the first UC.}
+ for the simulation and plot 
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -453,39 +446,6 @@ simpler because they use modules from the lower levels.
 GUI module?  Maybe this will be clear to me (and you) when you write the MIS.}
 
 \newpage
-
-%\section*{References}
-\subsection*{References}\label{ssec:ref} \wss{You shouldn't do this manually,
-  especially since you use BibTeX in the next section.  The new references can
-  be added to your .bib file and everything will be generated automatically.}
-\begin{itemize}
-\item{[1]} Dynamics of multiple pendula 
-\\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
-\item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
-\item{[3]} Pendulum (mathematics)
-\\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
-\item{[4]} Double Pendulum
-\\\url{https://en.wikipedia.org/wiki/Double_pendulum}\item{[4]}
-Differential-Algebraic Equations by Taylor Series
-\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
-\item{[5]} Multi-body Lagrangian Simulations
-\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
-\item{[6]} The double pendulum: Lagrangian formulation
-\\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
-\item{[7]} Poincaré map
-\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems 
-into modules'', Comm. ACM, vol. 15, pp. 1053-1058, December 1972.
-\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure 
-of complex systems'', in International Conference on Software Engineering, 
-pp. 408-419, 1984.
-\item{[10]} D. L. Parnas, ``Designing software for ease of extension and 
-contraction,'' in ICSE '78: Proceedings of the 3rd international conference 
-on Software engineering, \\
-(Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
-\item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
-See bib file that doesn't work for me for full citation.
-\end{itemize}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../ReferenceMaterial/References}

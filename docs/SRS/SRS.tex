@@ -404,11 +404,27 @@ definitions and finally the instance models.
 \subsection{Problem Description}
 
 The \progname software will generate a plot trajectory in a 3D plot grid.
-A simple gravity pendulum is very easy to system to model and consists of a
+A simple gravity pendulum is a very easy system to model and consists of a
 weight suspended from a pivot and the weight is given enough space to swing
 freely. To simplify the model we assume no air resistance with a friction-less
 pivot. The model and calculations for the simple gravity pendulum are well
-defined and only require simple derivations and differential solvers.
+defined and only require simple derivations and differential solvers. 
+To make things simpler to animate and calculate we can restrict to a rigid-body 
+system, where the mass 
+of each pendulum rod is located at the center of gravity of each 
+rod~\cite{DoublePendulum}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=175px]{Double-pendulum-rigid.png}
+	\caption{An example of rigid-body double compound 
+	pendulum~\citep{DoublePendulum}}
+	\label{fig:multipend}
+\end{figure}
+
+In the compound pendulum, mass is distributed along its length and the center 
+of mass of each limb is at its midpoint, and the limb has a moment of inertia 
+of $I = \frac{1}{12}ml^2$ about that point~\cite{DoublePendulum}.
 
 \progname program will produce a simulation given a set of constants and input 
 (starting position away from equilibrium position).
@@ -434,7 +450,7 @@ the kinetic and potential energies of the system respectively.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=190px]{Pendulum_phase_PE.png}
+	\includegraphics[width=300px]{Pendulum_phase_PE.png}
 	\caption{Potential energy and phase portrait of a simple 
 	pendulum~\citep{WikipediaPendulum}}
 	\label{fig:PE-pend}
@@ -445,40 +461,35 @@ the kinetic and potential energies of the system respectively.
 The physical system of \progname program includes the following elements:
 
 \begin{itemize}
-\item[PS1:] Simulate an n-rod multi-pendulum system with no friction and no air
-resistance in a 3D space.
+\item[PS1:] Simulate an n-rod multi-pendulum system with no air
+resistance and a friction-less pivot in a 3D space.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=190px]{triplependula.PNG}
-\caption{A triple pendulum example~\citep{SzuminskiOlsztyn2012}.
-See Table of Symbols for more info.}
-	\label{fig:maxresdefault}
+	\includegraphics[width=220px]{multi-pend.jpg}
+	\caption{An example of dynamical and chaotic system with
+	Spring-Mass-Multi-Pendulum~\citep{MLSim}}
+	\label{fig:multipend}
 \end{figure}
 
 \subsubsection{Goal Statements}
 
-\noindent Given the user input and the initial state of the \progname with 
-reference to the table of symbols the goal statements are: 
-
-\wss{Isn't the initial state of the multi-pendulum part of the input?}
+\noindent Given the user input and the initial moment of inertia of 
+the \progname with reference to the table of symbols the goal statements are: 
 
 \begin{itemize}
-\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory plot of 
-the movement of the pendula from user input starting state to equilibrium 
-state of rest and show logged statistics over time to the user. 
-\wss{I believe you are assuming no friction,
-so I don't think the pendula will come to a state of rest.}
-\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a Poincaré map plot of 
-the movement of the pendulums from user input starting state to equilibrium 
-state of rest.
-\end{itemize}
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a trajectory
+simulation of the movement of the pendula from user input (how many pendulums) 
 
-\wss{Your goals are focused on plots.  A more abstract output would be to
-  generate the trajectory, without the word plot. You can still make generating
-  a plot part of the requirements, but it would also be nice to see the option
-  of outputting the results to a file}
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Show logged statistics of 
+Potential and Kinetic Energy over time to the user. 
+
+\item[GS\refstepcounter{goalnum}\thegoalnum:] Generate a plot of Potential
+and Kinetic Energy from the movement of the pendulums from user input 
+(number of pendulums, ground friction interaction) starting state to state of rest
+if ground plane friction is added. Results output to a file.
+\end{itemize}
 
 \newpage
 
@@ -495,26 +506,31 @@ likely change [LC], in which the respective assumption is used.
 \begin{itemize}
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:equation}:]
 In the model we assume no air resistance with a friction-less pivot, moving in
-space with respect to the Lagrangian calculations made. [T1][DD1][IM1] 
-\wss{You need to explicitly invoke these assumptions when they apply, 
-not just list them.}
+space with respect to the Lagrangian calculations made. [\tref{lagrangian}]
+[\ddref{real-interv}] [\iref{add-real}]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:kinetic}:]
-  The kinetic energy will be represented by real-value and will fit the 
-mathematical model and scope. [T2][DD1]
+The kinetic energy will be represented by real-value and will fit the 
+mathematical model and scope. [\tref{kinetic}] [\ddref{real-interv}]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:poten}:]
-  The potential energy will be represented by real-value and will fit the 
-mathematical model and scope. [T3][DD1]
+The potential energy will be represented by real-value and will fit the 
+mathematical model and scope. [\tref{potential}] [\ddref{real-interv}]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A:init-user}:]
 The user knows what the purpose of the simulation model and inputs weights and 
 lengths according to possible simulation characteristics. 
-[DD1][IM1][T1][T2][T3][T4]
+[\ddref{real-interv}] [\iref{add-real}] [\tref{lagrangian}] [\tref{kinetic}]
+[\tref{potential}]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:centered}:]
+The mass is distributed along its length and the center 
+of mass of each limb is at its midpoint, and the limb has a moment of inertia 
+of $I = \frac{1}{12}ml^2$ about that point
+[\ddref{real-interv}] [\iref{add-real}] [\tref{lagrangian}] [\tref{kinetic}]
+[\tref{potential}]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A:init-angle}:]
+The angles will be small enough because the moment of inertia will be fixed,
+that we can assume sin theta equals theta
+[\ddref{real-interv}] [\iref{add-real}] [\tref{lagrangian}] [\tref{kinetic}]
+[\tref{potential}]
 \end{itemize}
-
-\wss{Don't you need the assumption that the angles are small enough that sin
-  theta equals theta?}
-
-\wss{I believe you should have an assumptions that the connecting rods are
-  mass-less.}
 
 \newpage
 
@@ -544,8 +560,7 @@ $$L =\frac{1}{2}(m_1 + m_2) l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2 l_2^2
   \hline
   Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & [A1][A4] \wss{Use cross-references to generate these, 
-rather than hard-coding.}\\
+  Ref.\ By & [\aref{A:equation}][\aref{A:init-user}]\\
   \hline
 \end{tabu}
 \end{minipage}
@@ -580,7 +595,7 @@ $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
   \hline
   Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & [A2][A4]\\
+  Ref.\ By & [\aref{A:kinetic}][\aref{A:init-user}]\\
   \hline
 \end{tabu}
 \end{minipage}
@@ -605,7 +620,7 @@ $$= -(m_1 + m_2) g l_1 \cos\theta_1 - m_2 g l_2\cos\theta_2$$\\
   \hline
   Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & [A3][A4]\\
+  Ref.\ By & [\aref{A:poten}][\aref{A:init-user}]\\
   \hline
 \end{tabu}
 \end{minipage}\\
@@ -640,7 +655,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   \hline
   Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & T1,T2,T3,T4,T5\\
+  Ref.\ By & [\tref{lagrangian}][\tref{kinetic}][\tref{potential}]\\
   \hline
 \end{tabu}
 \end{minipage}
@@ -671,7 +686,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
   \hline
   Source & ~\citep{DiegoAssencioLagrang}\\
   \hline
-  Ref.\ By & T1,T2,T3,T4,T5\\
+  Ref.\ By & [\tref{lagrangian}][\tref{kinetic}][\tref{potential}]\\
   \hline
 \end{tabu}
 \end{minipage}
@@ -725,7 +740,6 @@ This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
 
-
 \subsection{Functional Requirements}
 
 \noindent \begin{itemize}
@@ -734,14 +748,12 @@ qualities that the software is expected to exhibit.
 program should be able to have axis labels \& 3D Cartesian coordinates. 
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program 
-  will take the following inputs: \wss{It would be nice to use symbols to 
-  represent the inputs. You also want a way to identify how 
-  many masses you have.}
-  \begin{enumerate} \item The initial mass of the weights. 
-      \wss{This is a confusing sentence, since mass and weight are different 
-      concepts. If you use a symbol, like $m_i$ then you could probably 
-      simplify the presentation.}
-                    \item The initial length of the rods.
+  will take the following inputs: 
+  \begin{enumerate}
+   \item The number of pendulum rods in the simulation. 
+   \item Toggle the ground plane to introduce friction to the
+   pendulum rod initial moment of inertia
+   \item Toggle the plot of Potential \& Kinetic Energy
   \end{enumerate}
                     
 \item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program 
@@ -749,19 +761,16 @@ will calculate the kinetic and potential energy after the user has set the
 initialization parameters of input from the user have been entered.
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program 
-will calculate the Lagrangian (and Hamiltonian (differential on Lagrangian) 
-if needed) after the user has set the initialization parameters of input 
-have been entered and the kinetic and potential energy of the system as whole 
-has been calculated. \wss{This is
-  the only time you mention the Hamiltonian. You should define it in your
-  documentation, or not mention it.}
+will calculate the Lagrangian after the user has set the initialization 
+parameters of input have been entered and the kinetic and potential energy of 
+the system as whole has been calculated.
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funplot}:] \progname program
 will ensure that the inputs do not violate the constraints specified in the 
 Data Constraints section:
     \begin{enumerate} \item \progname program will 
-generate diagrams with and plot lines and timeline of logged movement. 
-\item The timeline of swings of the pendulum will be logged and eventually
+generate diagrams with and plot lines and time-line of logged movement. 
+\item The time-line of swings of the pendulum will be logged and eventually
 return to a resting state in equilibrium
 \end{enumerate}
 
@@ -825,26 +834,20 @@ the user's display.
 \end{itemize}
 
 \subsubsection*{Re-usability}
-Reusability is not a priority because there are currently no future products 
+Re-usability is not a priority because there are currently no future products 
 that will rely on \progname
 
 \subsubsection*{Portability}
 To ensure the portability, the \progname software will be multi-platform.
-
-\wss{Your NFRs are ambiguous. You might have been better off with the blanket
-  statement in the first paragraph, since the list of qualities brings 
-  attention to the fact that what you have stated is not measurable.}
 
 \section{Likely Changes}    
 
 \noindent \begin{itemize}
 
 \item[LC\refstepcounter{lcnum}\thelcnum \label{only2dsim}:] Generation of 
-simulation only in 2D
+simulation in 3D but fix theta=0 to fix into 2D movement
 \item[LC\refstepcounter{lcnum}\thelcnum \label{only2dplot}:] Generation of 
-plot and diagrams only in 2D
-\item[LC\refstepcounter{lcnum}\thelcnum \label{maybe-mpi}:] Generation of 
-diagrams using distributed/parallel computing
+plot and potential \& kinetic energy only in 2D
 
 \end{itemize}
 
@@ -863,9 +866,7 @@ with an ``X'' may have to be modified as well.
 %general definitions, data definitions, instance models, and likely changes on
 %the assumptions.
 
-%\afterpage{
-%\begin{landscape}
-\begin{table}[h!]
+\begin{table}[!htb]
 \centering
 \label{Table:A_trace}
 \begin{tabular}{|c|c|c|c|c|}
@@ -878,21 +879,18 @@ with an ``X'' may have to be modified as well.
 \tref{lagrangian} & X &  &  & X \\ \hline
 \tref{kinetic} &  & X &  & X \\ \hline
 \tref{potential} &  &  & X & X \\ \hline
-\tref{poincare} &  &  &  & X \\ \hline
 \ddref{real-interv} & X & X & X & X \\ \hline
 \iref{add-real} & X & X & X & X \\ \hline
 \lcref{only2dsim} & X & X & X & X \\ \hline
 \lcref{only2dplot} & X & X & X & X \\ \hline
-\lcref{maybe-mpi} & X & X & X & X\\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Assumptions 
 and Other Items}
-
 \end{table}
-%\end{landscape}
-%}
 
-\begin{table}[h]
+\afterpage{
+\begin{landscape}
+\begin{table}[!htb]
 	\centering
 	\label{Table:trace}
 	\begin{tabular}{|c|c|c|c|c|c|c|}
@@ -900,80 +898,44 @@ and Other Items}
 		& \tref{lagrangian}
 		& \tref{kinetic}
 		& \tref{potential}
-		& \tref{poincare}
 		& \ddref{real-interv}
 		& \iref{add-real} \\
 		\hline
-        \tref{lagrangian} & X & X & X & X & X & X \\ \hline
-        \tref{kinetic} & X & X & X & X & X & X\\ \hline
-        \tref{potential} & X & X & X & X & X & X\\ \hline
-        \tref{poincare} &  &  &  &  & X & X\\ \hline
-        \ddref{real-interv} & X & X & X &  & X & X\\ \hline
-        \iref{add-real} & X & X & X &  & X & X\\ \hline
+        \tref{lagrangian} & X & X & X & X & X \\ \hline
+        \tref{kinetic} & X & X & X & X & X\\ \hline
+        \tref{potential} & X & X & X & X & X\\ \hline
+        \ddref{real-interv} & X & X & X & X & X\\ \hline
+        \iref{add-real} & X & X & X & X & X\\ \hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections Between Items of 
 	Different Sections}
 \end{table}
 
-
-\begin{table}[h!]
+\begin{table}[!htb]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline        
 		& \tref{lagrangian}
 		& \tref{kinetic}
 		& \tref{potential}
-		& \tref{poincare}
 		& \ddref{real-interv}
 		& \iref{add-real} \\
 		\hline
-        \rref{funinput} & X & X & X &  & X & X \\ \hline
-        \rref{funkinpot} & X & X & X & X & X & X\\ \hline
-        \rref{funlagham} & X & X & X &  & X & X \\ \hline
-        \rref{funplot} & X & X & X & X & X & X\\ \hline
+        \rref{funinput} & X & X & X & X & X \\ \hline
+        \rref{funkinpot} & X & X & X & X & X\\ \hline
+        \rref{funlagham} & X & X & X & X & X \\ \hline
+        \rref{funplot} & X & X & X & X & X\\ \hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections Between 
 	Requirements and Instance Models}
 	\label{Table:R_trace}
 \end{table}
-
-%The purpose of the traceability graphs is also to provide easy references on
-%what has to be additionally modified if a certain component is changed.  The
-%arrows in the graphs represent dependencies. The component at the tail of an
-%arrow is depended on by the component at the head of that arrow. Therefore, if 
-%a
-%component is changed, the components that it points to should also be
-%changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-%general definitions, data definitions, instance models, likely changes, and
-%assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-%instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the 
-%		Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the 
-%		Connections Between Requirements, Instance Models, 
-%		and Data Constraints}
-% 	\end{center}
-% \end{figure}
+\end{landscape}
+}
 
 \newpage
 
-\bibliographystyle {plainnat}
 \bibliography {../../ReferenceMaterial/References}
+\bibliographystyle {plainnat}
 
 \end{document}
