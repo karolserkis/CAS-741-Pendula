@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, titlepage]{article}
 
 \usepackage{hyperref}
 \usepackage{amsmath, mathtools}
@@ -106,8 +106,6 @@
 \date{\today}
 	
 \maketitle
-
-~\newpage
 
 \pagenumbering{roman}
 \tableofcontents
@@ -744,8 +742,8 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname 
-program should be able to have axis labels \& 3D Cartesian coordinates. 
+\item[R\refstepcounter{reqnum}\thereqnum \label{3d}:] \progname 
+program should be rendered with 3D Cartesian coordinates. 
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{funinput}:] \progname program 
   will take the following inputs: 
@@ -756,11 +754,11 @@ program should be able to have axis labels \& 3D Cartesian coordinates.
    \item Toggle the plot of Potential \& Kinetic Energy
   \end{enumerate}
                     
-\item[R\refstepcounter{reqnum}\thereqnum \label{funkinpot}:] \progname program 
+\item[R\refstepcounter{reqnum}\thereqnum \label{funkin}:] \progname program 
 will calculate the kinetic and potential energy after the user has set the 
 initialization parameters of input from the user have been entered.
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{funlagham}:] \progname program 
+\item[R\refstepcounter{reqnum}\thereqnum \label{funlagrang}:] \progname program 
 will calculate the Lagrangian after the user has set the initialization 
 parameters of input have been entered and the kinetic and potential energy of 
 the system as whole has been calculated.
@@ -858,14 +856,6 @@ has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
 with an ``X'' may have to be modified as well. 
 
-% Table~\ref{Table:trace} shows the
-%dependencies of theoretical models, general definitions, data definitions, and
-%instance models with each other. Table~\ref{Table:R_trace} shows the
-%dependencies of instance models, requirements, and data constraints on each
-%other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-%general definitions, data definitions, instance models, and likely changes on
-%the assumptions.
-
 \begin{table}[!htb]
 \centering
 \label{Table:A_trace}
@@ -921,9 +911,10 @@ and Other Items}
 		& \ddref{real-interv}
 		& \iref{add-real} \\
 		\hline
-        \rref{funinput} & X & X & X & X & X \\ \hline
-        \rref{funkinpot} & X & X & X & X & X\\ \hline
-        \rref{funlagham} & X & X & X & X & X \\ \hline
+        \rref{3d} & X & X & X & X & X \\ \hline
+        \rref{funinput} & X & X & X & X & X\\ \hline
+        \rref{funkin} & X & X & X & X & X\\ \hline
+        \rref{funlagrang} & X & X & X & X & X \\ \hline
         \rref{funplot} & X & X & X & X & X\\ \hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections Between 

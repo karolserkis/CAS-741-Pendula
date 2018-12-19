@@ -18,6 +18,7 @@
 \usepackage{enumitem}
 \usepackage{extarrows}
 \usetikzlibrary{shapes.geometric, arrows}
+\usepackage{xr-hyper}
 
 \usepackage{fullpage}
 \usepackage[round]{natbib}
@@ -29,14 +30,16 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    citecolor=black,
-    filecolor=black,
+    citecolor=blue,
+    filecolor=blue,
     linkcolor=red,
     urlcolor=blue
 }
 
 \input{../../Comments}
 \input{../../Common}
+
+\externaldocument{../../SRS/SRS}
 
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
@@ -49,6 +52,10 @@
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
+
+\newcounter{reqnum} %Requirement Number
+\newcommand{\rthereqnum}{P\thereqnum}
+\newcommand{\rref}[1]{R\ref{#1}}
 
 \begin{document}
 
@@ -373,12 +380,12 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}, 
+\rref{3d} & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}, 
 \mref{mPM}, \mref{mTM}\\
-R2 & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}\\
-R3 & \mref{mLM}, \mref{mDM}, \mref{mPM}, \mref{mTM}\\
-R4 & \mref{mLM}, \mref{mDM}, \mref{mPM}, \mref{mTM}\\
-R5 & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}, 
+\rref{funinput}  & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}\\
+\rref{funkin} & \mref{mLM}, \mref{mDM}, \mref{mPM}, \mref{mTM}\\
+\rref{funlagrang}  & \mref{mLM}, \mref{mDM}, \mref{mPM}, \mref{mTM}\\
+\rref{funplot} & \mref{mCM}, \mref{mGM}, \mref{mIM}, \mref{mLM}, \mref{mDM}, 
 \mref{mPM}, \mref{mTM}\\
 \bottomrule
 \end{tabular}

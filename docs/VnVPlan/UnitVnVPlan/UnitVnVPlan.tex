@@ -1,13 +1,17 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{xr-hyper}
 \usepackage{hyperref}
 \usepackage{amsmath, mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{colortbl}
 \usepackage{xr}
 \usepackage{longtable}
 \usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{float}
 \usepackage{siunitx}
 \usepackage{caption}
 \usepackage{pdflscape}
@@ -18,26 +22,36 @@
 \usepackage{tikz}
 \usepackage{enumitem}
 \usepackage{extarrows}
-\usepackage{graphicx}
-\usepackage{tabularx}
-\usepackage{float}
-\usepackage{siunitx}
 \usepackage{booktabs}
-
+\usepackage[round]{natbib}
 \usetikzlibrary{shapes.geometric, arrows}
+
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.7}}
+\newcommand*\bigcdot@[2]
+  {\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+%\usepackage{refcheck}
+
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=red,
-    urlcolor=blue
+    bookmarks=true,         % show bookmarks bar?
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links 
+                            %  (change box color with linkbordercolor)
+    citecolor=blue,         % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
 }
-\usepackage[round]{natbib}
+
+\usepackage{fullpage}
 
 \input{../../Comments}
 \input{../../Common}
+\externaldocument{../../SRS/SRS}
+\externaldocument{../../Design/MG/MG}
 
 \newcommand{\sskip}{\vskip 1mm}
 
@@ -53,18 +67,12 @@
 \newcommand{\colHwidth}{0.28\textwidth}
 
 % Used so that cross-references have a meaningful prefix
-\newcounter{defnum} %Definition Number
-\newcommand{\dthedefnum}{GD\thedefnum}
-\newcommand{\dref}[1]{GD\ref{#1}}
 \newcounter{datadefnum} %Datadefinition Number
 \newcommand{\ddthedatadefnum}{DD\thedatadefnum}
 \newcommand{\ddref}[1]{DD\ref{#1}}
 \newcounter{theorynum} %Theory Number
 \newcommand{\tthetheorynum}{T\thetheorynum}
 \newcommand{\tref}[1]{T\ref{#1}}
-\newcounter{tablenum} %Table Number
-\newcommand{\tbthetablenum}{T\thetablenum}
-\newcommand{\tbref}[1]{TB\ref{#1}}
 \newcounter{assumpnum} %Assumption Number
 \newcommand{\atheassumpnum}{P\theassumpnum}
 \newcommand{\aref}[1]{A\ref{#1}}
@@ -127,12 +135,8 @@ December 18, 2018 & 3.0 & Bibliography fixed,
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at 
-\href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}{CAS-741-Pendula SRS}
-\wss{give url} \wss{You should remove these comments, so that the new comments
-  that are added are easier to see.}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}\\
+See SRS Documentation at:\\
+\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}\\
 The symbols are listed in alphabetical order.\\
 
 \renewcommand{\arraystretch}{1.2}
@@ -160,7 +164,7 @@ The symbols are listed in alphabetical order.\\
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
-employedas \wss{proof read} the unit system. In addition to the basic units, several derived
+employed as the unit system. In addition to the basic units, several derived
 units are
 used as described below.  For each unit, the symbol is given followed by a
 description of the unit and the SI name.\\
@@ -215,15 +219,12 @@ directory for this project can be found at GitHub:
 The purpose of this document is to describe the unit VnV plan and requirements for the
 \progname program solution that
 only focuses on multi-pendulum simulations (double \& triple pendula and beyond) and tracking the chaotic
-motion of the system. It will allow users to generate diagrams (e.g. Poincare
-mapping)
-and plot trajectories over time using two different ODE/DAE initial value
-problem solvers. In the case of
-a double pendulum you have a new system that is dynamic and chaotic and
+motion of the system. It will allow users to generate trajectory simulation and
+plot kinetic and potential energy over time using two different ODE/DAE initial value
+problem solvers. In the case of a double pendulum you have a new system that is dynamic and chaotic and
 requires a set of coupled ordinary differential equation solvers. Once one
-introduces
-multiple
-pendula the system becomes chaotic and interesting to model and simulate. 
+introduces multiple pendula the system becomes chaotic and interesting 
+to model and simulate. 
 
 \subsection{Scope}
 
@@ -241,27 +242,19 @@ The scope of the test plan is described below:
 
 The \progname is limited to the user
 initialized inputs and the output of the \progname will either plot trajectories over time, generate
-diagrams, like Poincare mapping
-and limit the user to a specific duration of the simulation, in order to allow
-diagrams and trajectory history to be saved.
+plots of kinetic and potential energy and limit the user to a specific duration of the simulation, 
+in order to allow diagrams and trajectory history to be saved.
 The user will be able to set a range of time and initialize the system. \\
 
 The modules that might be tested for under the Unit VnV plan that are traced to the SRS requirements are:
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module (described in MG$\_$Hardware)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname Control Module (described in MG$\_$Control)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] \progname GUI Module (described MG$\_$GUI)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Parameters Module (described in MG$\_$InputFormat)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Lagrangian Module (described in MG$\_$LA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hamiltonian Module (described in MG$\_$HA)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Data Structure Module (described in MG$\_$DataStruct)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic GUI/Plot Module (described in MG$\_$GUIplot)
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Generic Trajectory Simulation GUI Module (described in MG$\_$SIM)
+\item [\mref{mGM}:] \progname GUI Module
+\item [\mref{mIM}:] User Input Parameters Module
+\item [\mref{mLM}:] Lagrangian Module
+\item [\mref{mDM}:] Data Structure Module
+\item [\mref{mPM}:] Generic Plot Module
+\item [\mref{mTM}:] Trajectory Simulation Module
 \end{description}
-
-\wss{You should leave the hardware hiding module out of scope.  The control
-  module is usually also left out of scope, since it is covered in the system
-  vnv plan.}
 
 %\subsection{Overview of Document}
 
@@ -271,18 +264,18 @@ The modules that might be tested for under the Unit VnV plan that are traced to 
 
 \subsection{Test Team}
 
-The Verification and Validation team consists of:\\
+The Verification and Validation team consists of:\\\\
 Karol Serkis
-\wss{Probably just you.  :-)}
 
 \subsection{Automated Testing Approach}
 
 Unit-based scripts can be created for testing the modules in \progname{}and be tested automatically with 
-scripts written in pytest. See section on verification tools for more information.
+scripts written in pytest. The test scripts using pytest will cycle through an array of data and check an assert 
+statement. See section on verification tools for more information.
 
 \subsection{Verification Tools}
 
-Python has a few open source unit testing frameworks, namely, \\pytest: \url{https://docs.pytest.org}. 
+Python has a few open source unit testing frameworks: \url{https://docs.pytest.org}. \\
 Unit-based scripts can be created for testing the modules in \progname. The functions and classes that automate 
 this process are detailed in the following link: 
 \url{https://github.com/pytest-dev/pytest}.\\
@@ -296,21 +289,21 @@ this process are detailed in the following link:
 
 \subsection{Non-Testing Based Verification}
 
-The non-testing based verfication \wss{spell check} will involve a code inspection by myself and
-Prof Smith during final submission. He will inspect each of the modules to
-guarentee \wss{spell check} that the 
-physical equations have been implemented succesfully, \wss{spell check} verify that the software 
+The non-testing based verification will involve a code inspection by myself and
+Dr.\ Smith during final submission. He will inspect each of the modules to
+guarantee that the 
+physical equations have been implemented successfully, verify that the software 
 is designed to be maintainable and manageable and complete the 
 two surveys in the appendix.\\
 \wss{I will be reviewing your final documentation (for the purpose of grading),
   but the scope of the review you are proposing for me is beyond the time I have available.}
-\wss{List any approaches like code inspection, code walkthrough, symbolic
+\wss{List any approaches like code inspection, code walk-through, symbolic
   execution etc.  Enter not applicable if that is the case.}
 
 \section{Unit Test Description}
 
-The modules that are being unit tested are specificed in the MIS 
-(\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/}). The unit VnV plan 
+The modules that are being unit tested are specified in the MIS 
+(\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/}). The Unit VnV plan 
 ensure that each module is behaving accurately and that each module is 
 satisfying the SRS requirements.\\ 
 	
@@ -325,21 +318,10 @@ as all of the other modules rely on these quantities.
 \begin{enumerate}				
 \item{test-InParams\\}
 
-Type: Automaic \wss{spell check}
+Type: Automatic
 
-Initial State: 
-
-Input: Input from Table of Units:\\
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass & kilogram\\
-    \si{\second} & time & second\\
-    \si{\degree} & angle & degree\\
-    \bottomrule
-  \end{tabular}
+Initial State: number of pendulum rods - nlinks\\
+nlinks N (default N=1)
 
 Output: assert=True
 
@@ -347,8 +329,8 @@ Test Case Derivation: The environment variable inputted by the user should
 match the state variable meant to store the value.\\
 Ex. units for length, mass and time cannot be negative.
 
-How test will be performed: Integer numbers will be inputed in the environment. An assert statement will return true if these 
-are equal.
+How test will be performed: Integer numbers will be inputed in the environment. 
+An assert statement will return true if these are equal.
 
 \wss{The output field should be the expected output, not an assert statement.  I
   do not know how to do your test case.  There should be enough information with
@@ -359,18 +341,19 @@ the distinction between the environment variables and state variables correctly.
 
 \subsubsection{\progname Lagrangian Module Testing}
 
-The following tests were created to ensure that the input parameters module is 
-storing the correct values specified by the user. This first step is critical 
-as all of the other modules rely on these quantities.
+The following tests were created to ensure that the input parameters module and
+data structure is being taken and applied to a Lagrangian calculation that is later
+applied to the control module and simulation. This step is critical 
+as all of the other modules rely on these calculations.
 
 \begin{enumerate}				
 	\item{test-Lagrangian\\}
 	
-	Type: Automaic \wss{spell check}
+	Type: Automatic
 	
 	Initial State: 
 	
-	Input: Input from Table of Units:\\
+	Input: Input from test-InParams and preset constants:\\
   \noindent \begin{tabular}{l l l} 
     \toprule		
     \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
@@ -399,45 +382,6 @@ $$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
 			
 \end{enumerate} 
 
-\subsubsection{\progname Hamiltonian Module Testing}
-
-The following tests were created to ensure that the input parameters module is 
-storing the correct values specified by the user. This first step is critical 
-as all of the other modules rely on these quantities.
-
-\begin{enumerate}				
-	\item{test-Hamiltonian\\}
-	
-	Type: Automaic \wss{spelling!}
-	
-	Initial State: 
-	
-	Input: Input from Table of Units:\\
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass & kilogram\\
-    \si{\second} & time & second\\
-    \si{\degree} & angle & degree\\
-    \bottomrule
-  \end{tabular}
-	
-	Output: assert=True
-	
-	Test Case Derivation: From instance model of the SRS it follows that:
-	(Refer to SRS for equations)
-	
-	How test will be performed: We will check to see if each pendula and plot behaves as expected.
-	Testing the Kinetic Energy equation:
-	$$ T = \displaystyle\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 $$
-$$ = \frac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2}m_2(\dot{x}_2^2 +
-\dot{y}_2^2) $$
-$$ = \frac{1}{2}m_1 l_1^2 \dot{\theta}_1^2 + \frac{1}{2}m_2\left[l_1^2
-\dot{\theta}_1^2 + l_2^2 \dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2
-\cos(\theta_1 - \theta_2)\right]$$
-
 \wss{Your tests are not complete.  You say that you will check whether the
   pendula behaves as expected, but you don't say how this will be determined.
   You give equations, but not how they will be compared.  If you are looking at
@@ -446,13 +390,11 @@ calculated and expected time histories.  Another option is to compare to Dr.\
 Nedialkov's software.  Again, you could calculate the norm of the residual of
 the difference between your calculations and Dr.\ Nedialkov's software and
 yours.}
-
-\end{enumerate} 
 		
 \subsubsection{Plotting Module} 
 
 \begin{enumerate}				
-	\item{test-Plotting-Poincare\'{e}\\}
+	\item{test-Plotting\\}
 	
 	Type: Manual
 	
@@ -471,14 +413,14 @@ yours.}
     \bottomrule
   \end{tabular}
 	
-	Output: Time pendulum trail plot and Poincare\'{e} map
+	Output: Time pendulum trail plot of Kinetic and Potential Energy
 	
-	Test Case Derivation: The Lagrangian Module, Hamiltonian Module and Data structure module should produce valid
+	Test Case Derivation: The Lagrangian Module and Data structure module should produce valid
 	output that corresponds to the reference material and examples.
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resmble \wss{spell check} the examples in my references. See
-        references [1] and [7] \wss{use BibTeX - similar comment elsewhere}
+	they resemble the examples in my references. See
+        references [1] and [7]
 \end{enumerate} 
 
 \begin{enumerate}				
@@ -498,7 +440,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 	output that corresponds to the reference material and examples.
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resmble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
+	they resemble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
 \end{enumerate}
 
 \subsubsection{GUI/Plot Module} 
@@ -531,7 +473,7 @@ $$ P(x) :\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$$\\
 	Check GUI for visual integrity
 	
 	How test will be performed: I will inspect the plots to see if 
-	they resmble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
+	they resemble the examples in my references. See references [1],[2],[3],[4],[5] and [6].
 \end{enumerate} 
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -551,16 +493,14 @@ Verification and Validation Plan at
 		& \tref{lagrangian}
 		& \tref{kinetic}
 		& \tref{potential}
-		& \tref{poincare}
 		& \ddref{real-interv}
 		& \iref{add-real} \\
 		\hline
-        \tref{lagrangian} & X & X & X & X & X & X \\ \hline
-        \tref{kinetic} & X & X & X & X & X & X\\ \hline
-        \tref{potential} & X & X & X & X & X & X\\ \hline
-        \tref{poincare} &  &  &  &  & X & X\\ \hline
-        \ddref{real-interv} & X & X & X &  & X & X\\ \hline
-        \iref{add-real} & X & X & X &  & X & X\\ \hline
+        \tref{lagrangian} & X & X & X & X & X \\ \hline
+        \tref{kinetic} & X & X & X & X & X\\ \hline
+        \tref{potential} & X & X & X & X & X\\ \hline
+        \ddref{real-interv} & X & X & X & X & X\\ \hline
+        \iref{add-real} & X & X & X & X & X\\ \hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections Between Items of 
 	Different Sections}
@@ -574,14 +514,13 @@ Verification and Validation Plan at
 		& \tref{lagrangian}
 		& \tref{kinetic}
 		& \tref{potential}
-		& \tref{poincare}
 		& \ddref{real-interv}
 		& \iref{add-real} \\
 		\hline
-        \rref{funinput} & X & X & X &  & X & X \\ \hline
-        \rref{funkinpot} & X & X & X & X & X & X\\ \hline
-        \rref{funlagham} & X & X & X &  & X & X \\ \hline
-        \rref{funplot} & X & X & X & X & X & X\\ \hline
+        \rref{funinput} & X & X & X & X & X \\ \hline
+        \rref{funkin} & X & X & X & X & X\\ \hline
+        \rref{funlagrang} & X & X & X & X & X \\ \hline
+        \rref{funplot} & X & X & X & X & X\\ \hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections Between Requirements 
 	and Instance Models}
@@ -649,9 +588,8 @@ Their values are defined in this section for easy maintenance.
 \subsection{Software Verification Checklist} 
 \label{softwarevercheck}
 \begin{itemize}
-	\item Did any of the inputs you entered provide suprising \wss{spell
-            check} results? If yes, 
-	what were they?
+	\item Did any of the inputs you entered provide surprising results? 
+	If yes, what were they?
 	\item Were all of the plots legible? 
 \end{itemize} 
 
@@ -660,42 +598,15 @@ Their values are defined in this section for easy maintenance.
 	\item Were you able to setup and execute the program using the comment
 	and makefile instructions alone, or did you require additional troubleshooting/help? 
 	If any steps were unclear, please explain how they might be improved.
-	\item Did the program accept your inital \wss{spell check} input?
+	\item Did the program check for exceptions and provide feedback to your initial input?
 	\item Did the program output the trajectory plot simulation?
 	\item Did the program run the simulation to its completion and smoothly without issues?
-	\item Did the plot of pendulum movement pattern and/or Poincar\'{e} map?
+	\item Did the plot of pendulum movement display correctly?
 \end{enumerate}
 
-\subsection*{References}\label{ssec:ref}
-\begin{itemize}
-\item{[1]} Dynamics of multiple pendula \\\url{http://wmii.uwm.edu.pl/~doliwa/IS-2012/Szuminski-2012-Olsztyn.pdf}
-\item{[2]} Pendulum \\\url{https://en.wikipedia.org/wiki/Pendulum}
-\item{[3]} Pendulum (mathematics)
-\\\url{https://en.wikipedia.org/wiki/Pendulum_(mathematics)}
-\item{[4]} Double Pendulum
-\\\url{https://en.wikipedia.org/wiki/Double_pendulum}\item{[4]}
-Differential-Algebraic Equations by Taylor Series
-\\\url{http://www.cas.mcmaster.ca/~nedialk/daets/}
-\item{[5]} Multi-body Lagrangian Simulations
-\\\url{https://www.youtube.com/channel/UCCuLchOx0W0yoNE9KOCYlVQ}
-\item{[6]} The double pendulum: Lagrangian formulation
-\\\url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6}
-\item{[7]} Poincaré map
-\\\url{https://en.wikipedia.org/wiki/Poincar%C3%A9_map}
-\item{[8]} D. L. Parnas, ``On the criteria to be used in decomposing systems into modules'', Comm.
-ACM, vol. 15, pp. 1053-1058, December 1972.
-\item{[9]} D. Parnas, P. Clement, and D. M. Weiss, ``The modular structure of complex systems'',
-in International Conference on Software Engineering, pp. 408-419, 1984.
-\item{[10]} D. L. Parnas, ``Designing software for ease of extension and contraction,'' in ICSE '78:
-Proceedings of the 3rd international conference on Software engineering, \\
-(Piscataway, NJ, USA), pp. 264-277, IEEE Press, 1978.
-\item{[11]} Smith and Lai(2005); Smith et al. (2007). \\
-See bib file that doesn't work for me for full citation. \wss{The example in the
-  blank project template works.  Following that example should have worked for
-  you as well.}
-\end{itemize}
+\newpage
 
-\wss{I haven't tracked them down, but \LaTeX tells me that you have unresolved
-  references.}
+\bibliography {../../../ReferenceMaterial/References}
+\bibliographystyle {plainnat}
 
 \end{document}

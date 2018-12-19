@@ -417,6 +417,7 @@ def DrawOrigin():
         glLineWidth(3.0);
 
         glColor3f(1,0.5,0.5)   ## light red x-axis
+
         glBegin(GL_LINES)
         glVertex3f(0,0,0)
         glVertex3f(3,0,0)

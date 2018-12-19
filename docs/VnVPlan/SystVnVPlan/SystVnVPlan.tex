@@ -9,6 +9,7 @@
 \usepackage{xr}
 \usepackage{longtable}
 \usepackage{xfrac}
+\usepackage{tabularx}
 \usepackage{float}
 \usepackage{siunitx}
 \usepackage{caption}
@@ -16,21 +17,35 @@
 \usepackage{afterpage}
 \usepackage{tabu}
 \usepackage{verbatim}
-\usepackage[round]{natbib}
 \usepackage{url}
 \usepackage{tikz}
 \usepackage{enumitem}
 \usepackage{extarrows}
 \usepackage{booktabs}
-\usepackage{tabularx}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=red,
-    urlcolor=blue
-}
 \usepackage[round]{natbib}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.7}}
+\newcommand*\bigcdot@[2]
+  {\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+%\usepackage{refcheck}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links 
+                            %  (change box color with linkbordercolor)
+    citecolor=blue,         % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+}
+
+\usepackage{fullpage}
 
 \input{../../Comments}
 \input{../../Common}
@@ -53,8 +68,8 @@
 \midrule
 October 22, 2018 & Karol Serkis & First revision of document\\
 October 21, 2018 & Karol Serkis & New Blank Project Template utilized \\
-December 17, 2018 & Karol Serkis & All GitHub issues and comments addressed \\
-December 18, 2018 & Karol Serkis & SRS \& bibliography fixed, 
+Dec. 17, 2018 & Karol Serkis & All GitHub issues and comments addressed \\
+Dec. 18, 2018 & Karol Serkis & SRS \& bibliography fixed, 
 \& program name fixed \\
 \bottomrule
 \end{tabularx}
@@ -83,7 +98,6 @@ used as described below.  For each unit, the symbol is given followed by a
 description of the unit and the SI name.\\
 
 \renewcommand{\arraystretch}{1.2}
-\begin{center}
   \noindent \begin{tabular}{l l l} 
     \toprule		
     \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
@@ -94,59 +108,7 @@ description of the unit and the SI name.\\
     \si{\degree} & angle & degree\\
     \bottomrule
   \end{tabular}
-\end{center}
 
-\newpage
-
-\subsection{Table of Symbols}
-
-The table that follows summarizes the symbols used in this document along with
-their units. The choice of symbols was made to be consistent with calculus,
-ordinary
-differentials (ODE), the Lagrangian, kinematics etc. The standard mathematical
-spaces
-are used (e.g. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, etc.) as well as some 
-additional spaces defined in the following table. 
-~\newline
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l l p{8cm}} \toprule
-\textbf{symbol} & \textbf{space} & \textbf{unit} & \textbf{description}\\
-\midrule 
-$g$ & $\mathbb{R}$ & -- & gravitational constant
-\\
-$m_1$ & $\mathbb{R}$ & kg & mass of the 1st pendulum weight
-\\ 
-$m_2$ & $\mathbb{R}$ & kg & mass of the 2nd pendulum weight
-\\ 
-$m_n$ & $\mathbb{R}$ & kg & mass of the nth pendulum weight
-\\ 
-$l_1$ & $\mathbb{R}$ & m & length of the 1st pendulum rod
-\\ 
-$l_2$ & $\mathbb{R}$ & m & length of the 2nd pendulum rod
-\\ 
-$l_n$ & $\mathbb{R}$ & m & length of the nth pendulum rod
-\\
-$\theta_1$ & $\mathbb{R}$ & \si{\degree} & amplitude from the pivot point
-\\
-$\theta_2$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the 1st 
-pendulum weight
-\\
-$\theta_n$ & $\mathbb{R}$ & \si{\degree}  & amplitude from the nth 
-pendulum weight
-\\
-$L$ & $\sum\mathbb{R}$ & -- & Pendulum system Lagrangian
-\\
-$T$ & $\sum\mathbb{R}$ & -- & Kinetic energy of system
-\\
-$V$ & $\sum\mathbb{R}$ & -- & Potential energy of system
-\\
-$P(x)$ & $\mathbb{Z} \times \mathbb{R} \implies \mathbb{R}$ & -- & Poincaré 
-map P projects point x onto point P(x)
-\\
-\bottomrule
-\end{longtable*}
-
-\newpage
 \subsection{Abbreviations and Acronyms}
 
 The symbols are listed in alphabetical order.\\
@@ -158,7 +120,6 @@ The symbols are listed in alphabetical order.\\
   \midrule 
   A & Assumption\\
   DD & Data Definition\\
-  GD & General Definition\\
   GS & Goal Statement\\
   IM & Instance Model\\
   LC & Likely Change\\
@@ -170,11 +131,6 @@ The symbols are listed in alphabetical order.\\
   \bottomrule
 \end{tabular}\\
 
-\wss{You shouldn't include symbols, abbreviations etc that you don't actually
-  use in this document.}
-
-\newpage
-
 \tableofcontents
 
 \listoftables
@@ -185,16 +141,13 @@ The symbols are listed in alphabetical order.\\
 
 \pagenumbering{arabic}
 
-This document discusses the verification and validation requirements and
-provides a detailed description of the testing that will be carried out on the
-\progname \wss{I made a comment about your program name in your SRS.  When you
-  get a chance to address the issue there, please address it here as well. I've
-  revised the blank template to use a common file that defines the program name.
-  You might want to make the same modification.} Generator program.
+The purpose of this document is to provide a comprehensive plan for testing the 
+\progname software against the requirements described in the
+\progname SRS. 
 Complementary documents include the System Requirement Specifications, Module
 Guide and Module Interface Specification.  The full documentation and
-implementation can be found
-\href{https://www.github.com/karolserkis}{here}. 
+implementation can be found at:
+\url{https://github.com/karolserkis/CAS-741-Pendula}. 
 After reading this document one should be able to create and run test cases to 
 verify and validate \progname
 \wss{provide an introductory blurb and road map of the Verification and 
@@ -204,38 +157,29 @@ Validation plan}
 
 \subsection{Summary}
 
-The purpose of this document is to provide a comprehensive plan for testing the 
-\progname software against the requirements described in the
-\progname SRS. 
-The \progname will allow users to generate diagrams (e.g. Poincare
-mapping)
-and plot trajectories over time using two different ODE/DAE initial value
+This document discusses the verification and validation requirements and
+provides a detailed description of the testing that will be carried out on the
+\progname  program.
+The \progname will allow users to generate trajectory simulations and 
+plots of kinetic and potential energy, over time using two different ODE/DAE initial value
 problem solvers. See the instance models (IM) in the SRS for more details.
 
 \wss{Say what software is being tested.  Give its name and a brief overview of
   its general functions.}
 
 \subsection{Objectives}
-The purpose of this document is to describe the objectives for the
+The purpose of this section is to describe the objectives for the
 \progname program solution that
 only focuses on multi-pendulum simulations and tracking the chaotic
-motion of the system. It will allow users to generate diagrams (e.g. Poincare
-mapping) and plot trajectories over time using two different ODE/DAE initial 
+motion of the system. It will allow users to generate trajectory simulations
+and plots of kinetic and potential energy over time using two different ODE/DAE initial 
 value problem solvers. The implementation should be reliable and accurate.\\\\
 The System VnV plan will in summary:
 \begin{itemize}
-\item Satisfy the requirements of Dr. Spencer Smith \wss{\LaTeX{} has a rule
-    that it inserts two spaces at the end of a sentence.  It detects a sentence
-    as a period followed by a capital letter. This comes up, for instance, with
-    Dr. Smith.  Since the period after Dr.\ isn't actually the end of a
-    sentence, you need to tell \LaTeX{} to insert one space. You do this either
-    by Dr.\ Smith (if you don't mind a line-break between Dr.\ and Smith), or
-    Dr.~Spencer Smith (to force \LaTeX{} to not insert a line break).}and those
+\item Satisfy the requirements of Dr.\ Spencer Smith and those
   outlined in the SRS.
 \item Build confidence in the software correctness.
 \item Verify usability and effectiveness.
-\item The tests outlined in this document are limited to the verification of 
-the requirements given in the \progname SRS.
 \item The tests outlined in this document are limited to dynamic tests only.  
 No formal static testing (code walk-through, code inspections, etc.) will be 
 carried out.
@@ -343,7 +287,8 @@ Initial State: -
 Input: Initial input for the pendula weights in chain. See SRS and appendix for 
 more info.
 					
-Output: Error or pass message.
+Output: Error or pass message. (how many pendulums did you initialize?)
+(did you provide a positive integer > 1 and < 6?
 					
 How test will be performed: Combinations of inputting non-numerical values as 
 input  (such as letters), or numerical values outside of their respective 
@@ -375,7 +320,8 @@ Input: Similar to test-Rin1
 Output: Binary Variable (Verification of stability) 
 
 How test will be performed: The stability results will be compared with the 
-stability analysis in (ref1). 
+stability analysis in (ref1). (Also see Usability
+Survey in the Appendix)
 
 \end{enumerate}
 
@@ -418,7 +364,8 @@ Output: Pass or fail (See SRS for equations).
 
 How test will be performed: The output ought fit with the physics and math 
 simulations for \progname. This test will loop through a various set of inputs 
-to see if the plot does not go out of bounds or fail with overflow.
+to see if the plot does not go out of bounds or fail with overflow. (Also see Usability
+Survey in the Appendix)
 
 \item{test-NFR3\\} 
 
@@ -432,7 +379,8 @@ Output: Pass or fail.
 
 How test will be performed: The output will be tested against the Simulations
 referenced in the SRS that are already available to compare. Also reference
-Dr. Ned's software and other related. \\ 
+Dr. Ned's software and other related. (Also see Usability
+Survey in the Appendix) \\
 
 \end{enumerate}
 

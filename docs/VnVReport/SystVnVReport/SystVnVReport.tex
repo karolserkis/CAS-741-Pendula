@@ -1,5 +1,5 @@
 \documentclass[12pt, titlepage]{article}
-
+\usepackage{listings}
 \usepackage{hyperref}
 \usepackage{amsmath, mathtools}
 \usepackage{amsfonts}
@@ -31,6 +31,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{fullpage}
 
 \input{../../Comments}
 \input{../../Common}
@@ -52,22 +53,38 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-December 18, 2018 & 1.0 &  First full draft for submission\\
+Dec. 18, 2018 & 1.0 &  First full draft for submission\\
 \bottomrule
 \end{tabularx}
 
 ~\newpage
 
+
 \section{Symbols, Abbreviations and Acronyms}
+
+See SRS Documentation at:\\
+\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}\\
+The symbols are listed in alphabetical order.\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
+  A & Assumption\\
+  DD & Data Definition\\
+  FT & Functional Test \\
+  GD & General Definition\\
+  GS & Goal Statement\\
+  IM & Instance Model\\
+  LC & Likely Change\\
+  MG & Module Guide\\ 
+  MIS & Module Interface Specification\\ 
+  NF & Non-Functional Requirement\\
+  R & Requirement\\
+  SRS & Software Requirements Specification\\
   T & Test\\
-  R & Requirement\\ 
-  NFR & Non-functional Requirement\\ 
+  VnV & Verification and Validation\\ 
   \bottomrule
 \end{tabular}\\
 
@@ -84,33 +101,123 @@ December 18, 2018 & 1.0 &  First full draft for submission\\
 
 \pagenumbering{arabic}
 
-This document ...
+This document is a review of the system tests that have been performed on 
+\progname{}. This report is a partner to the Unit VnV Report that is located in 
+the docs/VnVReport/UnitVnVReport directory.
 
 \section{Functional Requirements Evaluation}
 
+FR1 was: \progname program should be rendered with 3D Cartesian coordinates. \\
+This requirement has been successfully met.\\
+
+\noindent FR2 was: \progname program 
+  will take the following inputs: 
+  \begin{enumerate}
+   \item The number of pendulum rods in the simulation. 
+   \item Toggle the ground plane to introduce friction to the
+   pendulum rod initial moment of inertia
+   \item Toggle the plot of Potential \& Kinetic Energy
+  \end{enumerate}
+ This requirement has been successfully met.\\
+                    
+FR3 was: \progname program 
+will calculate the kinetic and potential energy after the user has set the 
+initialization parameters of input from the user have been entered.\\
+This requirement has been successfully met.\\
+
+FR4 was: \progname program 
+will calculate the Lagrangian after the user has set the initialization 
+parameters of input have been entered and the kinetic and potential energy of 
+the system as whole has been calculated.
+This requirement has been somewhat met. A generic use of OpenGL and GLUT
+has allowed for other ways around this.\\
+
+FR5 was: \progname program
+will ensure that the inputs do not violate the constraints specified in the 
+Data Constraints section:
+    \begin{enumerate} \item \progname program will 
+generate diagrams with and plot lines and time-line of logged movement. 
+\item The time-line of swings of the pendulum will be logged and eventually
+return to a resting state in equilibrium
+\end{enumerate} 
+This requirement has been somewhat successfully met.\\
+
 \section{Nonfunctional Requirements Evaluation}
 
+NFR1 and subsequent requirements for the software to be portable have been met.\\
+The simulation software can run on any computer system and is contained in one 
+Python file for convenience.
+
 \subsection{Usability}
+
+To make the program easy to use, the interaction with the GUI is minimal. \\
+The user can provide a variety of input types, but because of exception handling
+the program will still run or provide feedback to let the user try the correct input 
+parameters into the command-line.
 		
 \subsection{Performance}
 
-\subsection{etc.}
+The performance bottleneck is most likely the running of the program 
+on a local computer. The simulation requires some relative graphics card for 
+calculations. Performance otherwise is not a focus of the program.
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+Comparing Existing Implementation resulted in very comparable results
+thus the simulation was quite capable and true to life.
 
 \section{Unit Testing}
 
+The unit testing will be covered in more details in the UnitVnVReport. The 
+actual implementation of the unit tests can be found in the src/ or test/ 
+directory on the github repo \url{https://github.com/karolserkis/CAS-741-Pendula}.
+
 \section{Changes Due to Testing}
 
+The actual System VnV Plan tests will be discussed henceforth. All 
+the functional and most of the non-functional requirements have been meet.
+
 \section{Automated Testing}
+
+Unit-based scripts can be created for testing the modules in \progname{}and be tested automatically with 
+scripts written in pytest. The test scripts using pytest will cycle through an array of data and check an assert 
+statement. See section on verification tools for more information.
 		
 \section{Trace to Requirements}
+
+This section will be covered in the Unit VnV Report. All functional requirements met.
 		
 \section{Trace to Modules}		
 
+This section will be covered in the Unit VnV Report.
+Not enough tests have been performed to assess the proper behaviour of the 
+modules in \progname{}.	
+
 \section{Code Coverage Metrics}
+
+Current code coverage metrics can be found in the test scripts 
+using pytest will cycle through an array of data and check an assert 
+statement. See section on verification tools for more information.
+
+\begin{lstlisting}[language=python, showstringspaces=false]
+
+Name                                         Cover
+----------------------------------------------------------------
+src/MPSim.py                                1/3 tests
+src/MPSim_inputargparse_test.py             7/8 tests
+test/sim_inputargparse_test.py              7/8 tests
+---------------------------------------------------------------
+
+$ pytest-3
+============= test session starts==================================
+platform linux -- Python 3.6.7, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: /mnt/c/Users/Karol/CAS-741-Pendula/src, inifile:
+collected 8 items
+
+MPSim_inputargparse_test.py .......x                                                                                                                               [100%]
+
+============ 7 passed, 1 xfailed in 2.19 seconds ==================
+\end{lstlisting}
 
 \bibliographystyle{plainnat}
 
