@@ -176,7 +176,6 @@ this project.
  GUI Module}\\
 & Generic GUI/Plot Module\\
 & Lagrangian Module\\
-& Hamiltonian Module\\ 
 \bottomrule
 
 \end{tabular}
@@ -196,9 +195,7 @@ The general steps of the module are:
 \item Read in and verify mps\_input.
 \item Calculate Lagrangian module, iterate over the whole time frame 
 (use data structure).
-\item Calculate Hamiltonian module, iterate over the whole time frame 
-(use data structure).
-\item Generate a Plot and Poincar\'{e} map
+\item Generate a Plot
 \item Return the trajectory plot output as per the output/simulation module 
 specifications.
 \end{enumerate}
@@ -213,7 +210,7 @@ mps\_gui (M3, Section 7)\\
 mps\_input (M4, Section 8)\\\\
 Processing modules: \wss{what are processing modules?  I'm not sure about 
 this terminology}\\
-mps\_lagrang (M5, Section 9), mps\_hamil (M6, Section 10)\\
+mps\_lagrang (M5, Section 9)\\
 mps\_datastruct (M7, Section 11)\\
 generic\_plot (M8, Section 12), mps\_trajplotsim (M9, Section 13) 
 
@@ -248,7 +245,6 @@ processing modules in order.
 	\item mps\_input\_init : init (see Section 8)
 	\item mps\_datastruct\_init : init (see Section 11)
 	\item mps\_lagrang : calc (see Section 9)
-	\item mps\_hamil : calc (see Section 10)
 \end{itemize}
 
 \wss{init is not a type, either is calc?  How am I supposed to read this? State
@@ -302,7 +298,7 @@ plot/simulation/output modules.)
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hyperlinks to external documents.}\\
+\wss{It is also possible to use \LaTeX for hyper-links to external documents.}\\
 
 Methods to interact with user and display \& run \progname{}. Serves as 
 interface between the user and the software through 
@@ -352,7 +348,6 @@ None
 \noindent Plot{\_}TrajSim: GUI object\\
 button{\_}Input: GUI object\\
 button{\_}TrajSim: GUI object\\
-button{\_}Poincar\'{e}: GUI object\\
 
 \wss{More words to describe these environment variables would be helpful.}
 
@@ -501,7 +496,7 @@ Hamiltonian calculations done by their corresponding modules.
 \noindent gui\_plot(mps\_datastruct, mps\_input):
 \begin{itemize}
 \item transition: mps\_datastruct is a module that takes the mps\_input and 
-thus the program gui\_plot will be prepared for the Lagrangian and Hamiltonian 
+thus the program gui\_plot will be prepared for the Lagrangian 
 calculations done by their corresponding modules.
 \item output: \wss{if appropriate} 
 \item exception: \wss{if appropriate} 
@@ -636,7 +631,7 @@ mps\_datastruct
 mps\_gui (M3, Section 7)\\
 mps\_input (M4, Section 8)\\\\
 Processing modules:\\
-mps\_lagrang (M5, Section 9), mps\_hamil (M6, Section 10)\\
+mps\_lagrang (M5, Section 9)\\
 mps\_datastruct (M7, Section 11)\\
 
 \subsection{Syntax}
@@ -775,7 +770,6 @@ gui\_plot & GUI object & GUI object & - \\
 \subsubsection{Environment Variables}
 
 \noindent Plot{\_}TrajSim: GUI object\\
-Plot{\_}Poincar\'{e}: GUI object\\
 \wss{This section is not necessary for all modules.  Its purpose is to capture
   when the module has external interaction with the environment, such as for a
   device driver, screen interface, keyboard, file, etc.}
