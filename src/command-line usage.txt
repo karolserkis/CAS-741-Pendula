@@ -1,0 +1,13 @@
+Instructions for installation and running of software:
+
+usage: MPSim.py [-h] [--nlinks N] [--scv Kp] [--scp Kd] [--gsv KGp]
+                [--gsp KGd] [--timestep dT] [--gplane | --no-gplane]
+                [--plot | --no-plot]
+
+
+Example:
+
+$ python3 MPSim.py --nlinks 5 --gplane
+Hit ESC key to quit.
+Simulation reset
+KE: 22.8   PE: 115.3   Total: 138.1

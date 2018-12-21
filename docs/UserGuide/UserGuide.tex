@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{longtable}
-
+\usepackage{listings}
 %Packages from template
 \usepackage{amsmath, mathtools}
 \usepackage{amsfonts}
@@ -20,7 +20,7 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
-
+\usepackage{color}
 % Author's packages
 
 \usepackage{booktabs}
@@ -29,6 +29,32 @@
 \usepackage{indentfirst}
 \usepackage{csquotes}
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\small\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\lstset{language=c}
 
 \hypersetup{
 %bookmarks=true,% show bookmarks bar?
@@ -106,9 +132,9 @@ December 14, 2018 & Karol Serkis & First revision of document\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at 
-\href{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}
-{CAS-741-Pendula SRS}
+See SRS Documentation at:\\
+\url{https://github.com/karolserkis/CAS-741-Pendula/blob/master/docs/SRS/SRS.pdf}\\
+
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -128,14 +154,13 @@ See SRS Documentation at
   R & Requirement\\
   SRS & Software Requirements Specification\\
   T & Test\\
-  VnV & Verification and Validation\\ 
   \bottomrule
 \end{tabular}\\
 
 \subsection{Table of Units}
 
 Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is
-employedas the unit system. In addition to the basic units, several derived
+employed as the unit system. In addition to the basic units, several derived
 units are
 used as described below.  For each unit, the symbol is given followed by a
 description of the unit and the SI name.\\
@@ -211,10 +236,21 @@ the different steps of execution which are
 \begin{itemize}
 \item %\enquote{Input}: 
 Pass the user input from the command-line options
+
 \item %\enquote{SMHSim}: 
 Simulate the plot trajectory of the pendula.
 \end{itemize}
 
+\begin{lstlisting}
+usage: MPSim.py [-h] [--nlinks N] [--scv Kp] [--scp Kd] [--gsv KGp]
+                [--gsp KGd] [--timestep dT] [--gplane | --no-gplane]
+                [--plot | --no-plot]
+
+$ python3 MPSim.py --nlinks 5 --gplane
+Hit ESC key to quit.
+Simulation reset
+KE: 22.8   PE: 115.3   Total: 138.1
+\end{lstlisting}
 %\begin{figure}[H]
 %\centering
 %\includegraphics[scale=1]{Figures/SMG_Flow.png}
@@ -231,7 +267,7 @@ Simulate the plot trajectory of the pendula.
 %\label{fig:nm_shift}
 %\end{figure}
 
-\section{Load files}
+\section{Load Simulation/input}
 
 To pass the user input from the command-line options in \progname{} 
 one must do this:
@@ -263,19 +299,26 @@ Once the command-line options loaded the simulation process.
 Please be patient, this step can take some time. 
 At the end of the simulation, three windows will appear:
 
-%\begin{figure}[H]
-%\centering
-%\includegraphics[scale=1]{Figures/(n,m)_shift.png}
-%\caption{Conversion window}
-%\label{fig:nm_shift}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=500px]{MPSim.PNG}
+	\caption{Kinetic and potential energy and simulation
+	of multi-rod pendulum chain}
+	\label{fig:PE-pend}
+\end{figure}
 
 \section{Simulate the plot KE and PE}
 
 Once the command-line options loaded the simulation process. 
 Please be patient, this step can take some time. 
-At the end of the simulation, three windows will appear:
+At the end of the simulation, KE and PE will appear:
 
+\begin{lstlisting}
+$ python3 MPSim.py --nlinks 5 --gplane
+Hit ESC key to quit.
+Simulation reset
+KE: 22.8   PE: 115.3   Total: 138.1
+\end{lstlisting}
 %\begin{figure}[H]
 %\centering
 %\includegraphics[scale=1]{Figures/(n,m)_shift.png}
